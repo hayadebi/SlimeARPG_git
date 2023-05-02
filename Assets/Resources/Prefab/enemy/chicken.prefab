@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4622764785085755377}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7414348376446937119}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 402026531471057224}
   - component: {fileID: 402026531471057227}
   - component: {fileID: 402026531471057235}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: chicken
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -283,6 +283,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!95 &402026531471057224
 Animator:
   serializedVersion: 3
@@ -315,6 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -335,7 +338,11 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: Chicken
   enemyName2: 
   partobj: {fileID: 0}
@@ -343,6 +350,7 @@ MonoBehaviour:
   dropItemID: 1e0000001f000000
   droprare: 0500000006000000
   dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -383,7 +391,19 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
 --- !u!114 &402026531471057235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +438,7 @@ GameObject:
   - component: {fileID: 6045066980528498748}
   - component: {fileID: 6720894076638338633}
   - component: {fileID: 430243716835932267}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,6 +547,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &547775221196955049
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415660428512935617}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +592,7 @@ GameObject:
   - component: {fileID: 6369582792841351174}
   - component: {fileID: 3222955713236426047}
   - component: {fileID: 2896305917684258140}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7377607189549568168}
   - component: {fileID: 4234869117792384732}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: helm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973389165893221677}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightwing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +825,7 @@ GameObject:
   - component: {fileID: 2037312031274347165}
   - component: {fileID: 2037312031274347164}
   - component: {fileID: 2037312031274347167}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atCol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -869,6 +890,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &2037312031927111681
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2037312031927111686}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9049496740085415850}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftwing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -939,7 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5133119356868729135}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -969,7 +992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3703126728881650057}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightwing_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +1022,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6745854839856910735}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4658888348150870998}
   - component: {fileID: 1611608527473609614}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,7 +1146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2519234166195597133}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3701045185452081049}
   - component: {fileID: 3120246157981367909}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1066980373062224914}
   - component: {fileID: 3027484263568461857}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1335,7 +1358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3303944250146759778}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Bone_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1366,7 +1389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7206449245316730185}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftwing_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1396,7 +1419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7276951944203372470}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,7 +1450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7844815794716536535}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Bone_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1460,7 +1483,7 @@ GameObject:
   - component: {fileID: 7134450661845397207}
   - component: {fileID: 3550993823871129065}
   - component: {fileID: 2396939867830729102}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1535,7 +1558,7 @@ GameObject:
   - component: {fileID: 4513383198949338970}
   - component: {fileID: 7309308043796133158}
   - component: {fileID: 6938661733229935426}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1622,7 +1645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7670965316186370265}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531958644830652171}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3544935523509650080}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: body 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7691215660285960329}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftupleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5854608526213254556}
   - component: {fileID: 927798898106640574}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7024706408484867937}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927550283132015281}
   - component: {fileID: 2632582803179575308}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: flower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8755102026885618425}
   - component: {fileID: 7798938527129809747}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ha.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5448787512871037649}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 533045236970471877}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: flower 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1934488152490752373}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6862160203020904517}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 6938742635656565164}
   - component: {fileID: 6938742635656565167}
   - component: {fileID: 6938742635656565166}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 6938742635994518448}
   - component: {fileID: 6938742635994518450}
   - component: {fileID: 6938742635994518442}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: tubomi
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -844,6 +844,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!95 &6938742635994518448
 Animator:
   serializedVersion: 3
@@ -876,6 +877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -896,7 +899,11 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: Bud
   enemyName2: 
   partobj: {fileID: 0}
@@ -904,6 +911,7 @@ MonoBehaviour:
   dropItemID: 0100000005000000
   droprare: 0400000002000000
   dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -944,7 +952,19 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
 --- !u!114 &6938742635994518442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,7 +991,7 @@ GameObject:
   - component: {fileID: 6938742636310883985}
   - component: {fileID: 6938742636310883983}
   - component: {fileID: 6938742636310883982}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1067,7 @@ GameObject:
   - component: {fileID: 6938742636566292837}
   - component: {fileID: 6938742636566292836}
   - component: {fileID: 6938742636566292839}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,6 +1176,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &6938742636858183078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1189,7 @@ GameObject:
   - component: {fileID: 6938742636858183074}
   - component: {fileID: 6938742636858183077}
   - component: {fileID: 6938742636858183076}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atCol
   m_TagString: noactive
   m_Icon: {fileID: 0}
@@ -1233,6 +1254,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &6938742637241335938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1268,7 @@ GameObject:
   - component: {fileID: 6938742637241336062}
   - component: {fileID: 6938742637241335937}
   - component: {fileID: 6938742637241335936}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1332,7 +1355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2423824323937390610}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightupleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,7 +1385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793945732805963564}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,7 +1416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9007978895430905760}
   - component: {fileID: 4389461964600758758}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 365092691448813593}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,7 +1535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 535143697745412668}
   - component: {fileID: 8712547428049441749}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ha.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1599,7 +1622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2321146991361344109}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: flower_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}

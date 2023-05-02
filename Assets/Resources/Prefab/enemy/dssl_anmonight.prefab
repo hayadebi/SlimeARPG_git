@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6102525311427010767}
   - component: {fileID: 6490122031134791354}
   - component: {fileID: 192645937656410264}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &739911614464909592
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ GameObject:
   - component: {fileID: 739911614464909599}
   - component: {fileID: 739911614464909607}
   - component: {fileID: 739911614464909600}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: dssl_anmonight
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -187,6 +188,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!135 &739911614464909602
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -397,6 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -419,6 +423,8 @@ MonoBehaviour:
     BTend_objOn: {fileID: 0}
     BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
   maxendDay: -1
   enemyName: anmo
   enemyName2: 
@@ -469,11 +475,18 @@ MonoBehaviour:
   poisontrg: 0
   poisontime: 0
   minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
   noground: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 9
+  tips_trg: 
 --- !u!1 &904121081994455470
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +500,7 @@ GameObject:
   - component: {fileID: 6859457055531997429}
   - component: {fileID: 3165712989700625868}
   - component: {fileID: 3415238108992069039}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2895197771584665974}
   - component: {fileID: 7621650201329813296}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5930941149165769181}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4001216219877139116}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: luhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7213972820913902710}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5610422114273087595}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ldhand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5229288149050462947}
   - component: {fileID: 24696088173111381}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: kai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344787206168592148}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rdhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5924570359994696105}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rdhand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 816063559280799685}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ldhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513322097428340613}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ruhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1032,7 @@ GameObject:
   - component: {fileID: 7347954113209177713}
   - component: {fileID: 7347954113209177715}
   - component: {fileID: 7347954113209177714}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: moveCol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -1068,6 +1081,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!54 &7347954113209177714
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1096,7 +1111,7 @@ GameObject:
   - component: {fileID: 7347954113215363073}
   - component: {fileID: 7347954113215363075}
   - component: {fileID: 7347954113215363074}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atcol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -1145,6 +1160,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!54 &7347954113215363074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1171,7 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8930845834023831848}
   - component: {fileID: 4574928591578857561}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,7 +1276,7 @@ GameObject:
   - component: {fileID: 7230048747834549796}
   - component: {fileID: 3896537291916975386}
   - component: {fileID: 2744739498476859773}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1351,7 @@ GameObject:
   - component: {fileID: 4176560954993059753}
   - component: {fileID: 7078254420536360405}
   - component: {fileID: 7430928395891110833}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

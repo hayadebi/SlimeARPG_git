@@ -101,6 +101,7 @@ public class player : MonoBehaviour
     private AudioSource bgmaudio = null;
     private Audiovolume bgmvolume = null;
     private int tmp_fieldcount = 0;
+    public bool start_savepos = true;
     GameObject serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
@@ -146,15 +147,16 @@ public class player : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         rb = this.GetComponent<Rigidbody>();
         rb.useGravity = false;
-        GManager.instance.posX = PlayerPrefs.GetFloat("posX", 0f);
-        GManager.instance.posY = PlayerPrefs.GetFloat("posY", 0f);
+        GManager.instance.posX = PlayerPrefs.GetFloat("posX", 39f);
+        GManager.instance.posY = PlayerPrefs.GetFloat("posY", 0.5f);
         GManager.instance.posZ = PlayerPrefs.GetFloat("posZ", 0f);
         //----
         Vector3 ppos = this.transform.position;
         ppos.x = GManager.instance.posX;
         ppos.y = GManager.instance.posY;
         ppos.z = GManager.instance.posZ;
-        this.transform.position = ppos;
+        if(start_savepos )
+            this.transform.position = ppos;
         anim.SetInteger(Anumbername, 0);
         setMagic();
         setSkill();

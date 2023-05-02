@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 525799148366459112}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: uprightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9186627184930905347}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: uprighthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5679826102292311179}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downrightleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1307662796522872958}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downrightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4585243027083268821}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: head 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9096326338934043204}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: upleftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1203921635042035105}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downlefthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3739437828025801334}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: upbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2523619856876041944}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downlefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7778979468009111796}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downleftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4010627691437822083}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downleftleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3926837075244448221}
   - component: {fileID: 8933353005642843684}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: YEAH_Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7107385845289271575}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2552206875178068948}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downrighthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060091977803200284}
   - component: {fileID: 3639201024030461814}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201821305076212743}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: uplefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603269095591354863}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6288741065523889231}
   - component: {fileID: 2560275860965417375}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 1995739332254556425}
   - component: {fileID: 4105787114529403738}
   - component: {fileID: 2094106883780853532}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: goblinYaku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,6 +785,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!95 &2094106883780853532
 Animator:
   serializedVersion: 3
@@ -813,7 +814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3586491153837604173}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downrighthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

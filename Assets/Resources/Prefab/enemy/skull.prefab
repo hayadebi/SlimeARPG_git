@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4753931397293527750}
   - component: {fileID: 3585204161691750108}
   - component: {fileID: 5942440434666677528}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atcol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -48,6 +48,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!135 &3585204161691750108
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -87,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1227239988385354330}
   - component: {fileID: 5184258255038065154}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8334293549097076097}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 646869470784686332}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3681946147480699668}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: head 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878673879724552195}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +306,7 @@ GameObject:
   - component: {fileID: 3791440289271355763}
   - component: {fileID: 7410925906014118477}
   - component: {fileID: 8564979893052526122}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7456731915097282418}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftdownhand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 170454371554446681}
   - component: {fileID: 1976027670830321871}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: righthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7962986910122251327}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightdownhand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8671815975451080430}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +565,7 @@ GameObject:
   - component: {fileID: 7583373281169807614}
   - component: {fileID: 3670626359339139714}
   - component: {fileID: 4022941368304520422}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4809934284667588492}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8352068936195800632}
   - component: {fileID: 7345427069757052881}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1897650764500884929}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightuphand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8194286662714398372}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: downbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,7 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5250144508637626363}
   - component: {fileID: 1389772710721335171}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: lefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2999624617619640519}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightdownhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8131039872529156319}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -996,7 +998,7 @@ GameObject:
   - component: {fileID: 322899821828497304}
   - component: {fileID: 781979561230985709}
   - component: {fileID: 5937934161823043535}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,6 +1107,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &6051357240593419345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,7 +1117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8057408412639915908}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftdownhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1157,7 @@ GameObject:
   - component: {fileID: 5092818810984372739}
   - component: {fileID: 41881482271403708}
   - component: {fileID: 6154321382129595548}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: skull
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -1247,6 +1250,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!82 &8806986208025436837
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1389,6 +1393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -1409,7 +1415,11 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: Skeleton
   enemyName2: 
   partobj: {fileID: 0}
@@ -1417,6 +1427,7 @@ MonoBehaviour:
   dropItemID: 06000000
   droprare: 07000000
   dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -1457,7 +1468,19 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
 --- !u!114 &6154321382129595548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,7 +1510,7 @@ GameObject:
   - component: {fileID: 1151234871712556962}
   - component: {fileID: 8873625000712743579}
   - component: {fileID: 9200556252859032312}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1595,7 +1618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480630327109832338}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1628,7 +1651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2363989896673106287}
   - component: {fileID: 323477095388074891}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1721,7 +1744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526032872026331304}
   - component: {fileID: 4015742795534624494}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1813,7 +1836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5571183536124057441}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftuphand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1844,7 +1867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3890381448019351273}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: upbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1877,7 +1900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8477553783409611640}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1910,7 +1933,7 @@ GameObject:
   - component: {fileID: 8674308396751459261}
   - component: {fileID: 8648820025027322403}
   - component: {fileID: 8657520091962633425}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Metal Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}

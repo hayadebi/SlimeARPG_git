@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4639888933941518803}
   - component: {fileID: 1993142508872367023}
   - component: {fileID: 2201666931630208459}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2144937651694116958}
   - component: {fileID: 5728959621486287712}
   - component: {fileID: 6883000383347324679}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 753517224757514826}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downlefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2781691310755520642}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrighthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 306255708196176661}
   - component: {fileID: 5019345910568205651}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5183622384952823124}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: upbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3841570354929390910}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrighthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3514838935893332385}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrightleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 2749860200519015289}
   - component: {fileID: 2749860200519015290}
   - component: {fileID: 2749860200519015282}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: goblin_df
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -519,6 +519,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!82 &2749860200519015295
 AudioSource:
   m_ObjectHideFlags: 0
@@ -661,6 +662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -681,7 +684,11 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: goblin
   enemyName2: 
   partobj: {fileID: 0}
@@ -689,6 +696,7 @@ MonoBehaviour:
   dropItemID: 0c00000014000000
   droprare: 0800000008000000
   dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -729,7 +737,19 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
 --- !u!114 &2749860200519015282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,7 +778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7430210317976296901}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: uprighthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3793395006655563987}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downlefthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7278290297635097867}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: uprightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 373157161854461729}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: uplefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -881,7 +901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3457813377420216953}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downleftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7402843619905053759}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downleftleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4027499638261375277}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: upleftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -976,7 +996,7 @@ GameObject:
   - component: {fileID: 6787741703691137057}
   - component: {fileID: 6779760278791383081}
   - component: {fileID: 3004672427173560134}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Metal Broadsword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1086,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4686666989129849001}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9089154052154174398}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1153,7 @@ GameObject:
   - component: {fileID: 8109243662310271088}
   - component: {fileID: 8109243662310271089}
   - component: {fileID: 8109243662310271090}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atCol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -1198,6 +1218,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &8168127013633270970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3827023422221075854}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1242,7 +1264,7 @@ GameObject:
   - component: {fileID: 2784277561661791887}
   - component: {fileID: 5943851388513227702}
   - component: {fileID: 6266563850043153365}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,7 +1373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7141174145148766695}
   - component: {fileID: 3882291044036440511}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1442,7 +1464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8856504674971046721}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1498,7 @@ GameObject:
   - component: {fileID: 3252324719190795957}
   - component: {fileID: 2559058271348510912}
   - component: {fileID: 8880667577825081058}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,3 +1607,4 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2

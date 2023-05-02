@@ -296,9 +296,12 @@ public class clickbutton : MonoBehaviour
             GManager.instance.freenums[i] = 0;
             i++;
         }
-        GManager.instance.posX = 0;
-        GManager.instance.posY = 0;
+        GManager.instance.posX = 39f;
+        GManager.instance.posY = 0.5f;
         GManager.instance.posZ = 0;
+        PlayerPrefs.SetFloat("posX", GManager.instance.posX);
+        PlayerPrefs.SetFloat("posY", GManager.instance.posY);
+        PlayerPrefs.SetFloat("posZ", GManager.instance.posZ);
         GManager.instance.stageNumber = 0;
         for (int i = 0; i < GManager.instance.ItemID.Length;)
         {
@@ -449,9 +452,9 @@ public class clickbutton : MonoBehaviour
             GManager.instance.freenums[i] = PlayerPrefs.GetFloat("freenums"+i,0);
             i++;
         }
-        GManager.instance.posX = PlayerPrefs.GetFloat("posX", 0);
-        GManager.instance.posY = PlayerPrefs.GetFloat("posY", 0); 
-        GManager.instance.posZ = PlayerPrefs.GetFloat("posZ", 0); 
+        GManager.instance.posX = PlayerPrefs.GetFloat("posX", 39.0f);
+        GManager.instance.posY = PlayerPrefs.GetFloat("posY", 0.5f); 
+        GManager.instance.posZ = PlayerPrefs.GetFloat("posZ", 0f); 
         GManager.instance.stageNumber = PlayerPrefs.GetInt("stageN", 0); 
         //---------------
         GManager.instance._minigame.input_indexTrg = PlayerPrefs.GetInt("minigame_indexTrg", 0);

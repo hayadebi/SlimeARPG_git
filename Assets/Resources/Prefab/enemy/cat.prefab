@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5493730295148493591}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4379142305636609935}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downhead_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5474270034167618995}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1738911918880185495}
   - component: {fileID: 3322848482213387057}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: bero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 2342555874877605561}
   - component: {fileID: 2342555874877605567}
   - component: {fileID: 2342555874877605560}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 2342555875170515656}
   - component: {fileID: 2342555875170515657}
   - component: {fileID: 2342555875170515658}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 2342555875294936531}
   - component: {fileID: 2342555875294936556}
   - component: {fileID: 2342555875294936557}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,6 +487,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &2342555875461261288
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +500,7 @@ GameObject:
   - component: {fileID: 2342555875461261293}
   - component: {fileID: 2342555875461261294}
   - component: {fileID: 2342555875461261295}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atCol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -564,6 +565,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &2342555876039709308
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +585,7 @@ GameObject:
   - component: {fileID: 2342555876039709281}
   - component: {fileID: 2342555876039709282}
   - component: {fileID: 2342555876039709283}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: cat
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -782,6 +785,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!95 &2342555876039709281
 Animator:
   serializedVersion: 3
@@ -814,6 +818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -836,6 +842,8 @@ MonoBehaviour:
     BTend_objOn: {fileID: 0}
     BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
   maxendDay: -1
   enemyName: Cat
   enemyName2: 
@@ -886,11 +894,18 @@ MonoBehaviour:
   poisontrg: 0
   poisontime: 0
   minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
   noground: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 9
+  tips_trg: 
 --- !u!114 &2342555876039709283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,7 +932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2342555876100789246}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,7 +965,7 @@ GameObject:
   - component: {fileID: 2342555876110115551}
   - component: {fileID: 2342555876110115544}
   - component: {fileID: 2342555876110115545}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3560996791450974568}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1090,7 @@ GameObject:
   - component: {fileID: 3983541295889431419}
   - component: {fileID: 3983541295889431412}
   - component: {fileID: 3983541295889431413}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: bero_end
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -1251,6 +1266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -1273,6 +1290,8 @@ MonoBehaviour:
     BTend_objOn: {fileID: 0}
     BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
   maxendDay: -1
   enemyName: bero
   enemyName2: 
@@ -1323,11 +1342,18 @@ MonoBehaviour:
   poisontrg: 0
   poisontime: 0
   minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
   noground: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 9
+  tips_trg: 
 --- !u!1 &5048143274533871766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298472794232844107}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8354589362764192681}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3459273848433904899}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: uphead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6246387481580709209}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1460,7 +1486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 725125838137573624}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1494,7 +1520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6035474890105183158}
   - component: {fileID: 637759532713346974}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7974682378017338389}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: uphead_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1611,7 +1637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2509100826710671753}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: bero 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

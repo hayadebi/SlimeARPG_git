@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 550175627283204232}
   - component: {fileID: 550175627286628520}
   - component: {fileID: 550175627285498472}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: MetalBattleaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5143325998083054434}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: uplefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7904350861617673786}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downleftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2662002057393395836}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downleftleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8478578655443459438}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: upleftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 236185006704010474}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 3305114396433614352}
   - component: {fileID: 1905580769141295541}
   - component: {fileID: 4437467116432227711}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: goblin_king
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4354508860091553789}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 3658235636921963571}
   - component: {fileID: 3658235636921963570}
   - component: {fileID: 3658235636921963569}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atCol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -423,6 +423,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &3681270442336573689
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8597699678775654861}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2402661347993335204}
   - component: {fileID: 8623778565596843516}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4081910372892913410}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5204045867709935113}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downlefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7266547325200260289}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrighthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5047816347078623062}
   - component: {fileID: 568921725849682192}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 406052740047810839}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: upbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8575561960337385853}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrighthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +818,7 @@ GameObject:
   - component: {fileID: 8840338791094609842}
   - component: {fileID: 3292616947126789231}
   - component: {fileID: 1858336389327038181}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: gobking
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -904,6 +906,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!82 &7233920649580013372
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1045,6 +1048,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cce41141d586db48b29fc31f7b70a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
+  DsMove: 0
   secondMode: 0
   neweffect: 0
   damageOn: 1
@@ -1064,7 +1071,11 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: goblin
   enemyName2: 
   partobj: {fileID: 0}
@@ -1072,6 +1083,7 @@ MonoBehaviour:
   dropItemID: 0c00000014000000
   droprare: 0800000008000000
   dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -1086,6 +1098,7 @@ MonoBehaviour:
     Lv: 0
     enemyID: 13
     attacktype: "\u95C7\u5C5E\u6027"
+    subgameCharaID: 0
   destroyID: 32
   minsunTime: -1
   maxsunTime: -1
@@ -1111,6 +1124,19 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
+  inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
 --- !u!114 &7233920649580013361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,7 +1184,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmplay: 0
+  endTrg: 0
   local: local
+  badend: badend
+  setP: 0
+  input_say: {fileID: 0}
+  BGM: {fileID: 0}
+  bgm_index: 1
+  _time: 0
+  fademode: 0
+  bgmA: {fileID: 0}
 --- !u!114 &3292616947126789231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,7 +1256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2688670015818080646}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: uprighthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,7 +1287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8253493565554798050}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downrightleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1282,7 +1317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8568559405238187152}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: downlefthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,7 +1347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2831873278682444104}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: uprightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8950421920935189595}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1087294708614169861}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8199073881735733261}
   - component: {fileID: 9181146016674256504}
   - component: {fileID: 2869947745207840858}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &2974946175429749334
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4126732416947355822}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +230,7 @@ GameObject:
   - component: {fileID: 8811820334382405687}
   - component: {fileID: 1051219979444638990}
   - component: {fileID: 728787944856100205}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2133217686502692974}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: luleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8010894912216381905}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6307236870421196472}
   - component: {fileID: 5734869177487355716}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5551600572662386589}
   - component: {fileID: 5636850821916148578}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: asi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4838618351841781765}
   - component: {fileID: 202236145754773059}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +666,7 @@ GameObject:
   - component: {fileID: 4696756568652965606}
   - component: {fileID: 1399273908953374168}
   - component: {fileID: 247476125047402943}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +741,7 @@ GameObject:
   - component: {fileID: 2057670307061557099}
   - component: {fileID: 5135074262533356823}
   - component: {fileID: 4784940670627787635}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7783983296484194320}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ldleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +867,7 @@ GameObject:
   - component: {fileID: 7011901728138506348}
   - component: {fileID: 7011901728138506349}
   - component: {fileID: 7011901728138506346}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: dssl_takoasi
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -913,6 +914,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!136 &7011901728138506355
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1099,6 +1101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -1121,6 +1125,8 @@ MonoBehaviour:
     BTend_objOn: {fileID: 0}
     BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
   maxendDay: -1
   enemyName: tako
   enemyName2: 
@@ -1171,11 +1177,18 @@ MonoBehaviour:
   poisontrg: 0
   poisontime: 0
   minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
   noground: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 9
+  tips_trg: 
 --- !u!114 &7011901728138506346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,7 +1224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2011932444578261677}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ruleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1242,7 +1255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4352382877002280970}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ldleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1273,7 +1286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1688952659243925421}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rdleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9148076224111093003}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rdleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1350,7 @@ GameObject:
   - component: {fileID: 8854809054572109334}
   - component: {fileID: 8854809054572109335}
   - component: {fileID: 8854809054572109332}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: movecol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -1402,6 +1415,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &8854809055363501428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1429,7 @@ GameObject:
   - component: {fileID: 8854809055363501433}
   - component: {fileID: 8854809055363501430}
   - component: {fileID: 8854809055363501431}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atcol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -1479,3 +1494,5 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0

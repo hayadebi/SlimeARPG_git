@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5092038568434223074}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: upbody_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 551809028009990465}
   - component: {fileID: 6191719828588995199}
   - component: {fileID: 5037670275030601240}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 6487435726415501516}
   - component: {fileID: 127546098085806768}
   - component: {fileID: 351797979176226004}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4489521358085446330}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightwing_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1137939161892685814}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightwing_3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2242446403891766488}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightwing_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 3872519886104528266}
   - component: {fileID: 3872519886104528267}
   - component: {fileID: 3872519886104528264}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: dssl_mirror
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -394,6 +394,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!82 &3872519886104528268
 AudioSource:
   m_ObjectHideFlags: 0
@@ -536,6 +537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -558,6 +561,8 @@ MonoBehaviour:
     BTend_objOn: {fileID: 0}
     BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
   maxendDay: -1
   enemyName: mirror
   enemyName2: 
@@ -609,13 +614,17 @@ MonoBehaviour:
   poisontime: 0
   minus_DesHight: 20
   weakness_resistance: 0
+  poison_resistance: 0
   mirror_resistance: 1
+  greetboss_resistance: 0
   mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
   noground: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 12
+  tips_trg: 
 --- !u!114 &3872519886104528264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +652,7 @@ GameObject:
   - component: {fileID: 4063136234163275594}
   - component: {fileID: 4063136234163275595}
   - component: {fileID: 4063136234163275592}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: moveCol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -708,6 +717,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &4063136235483842786
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +731,7 @@ GameObject:
   - component: {fileID: 4063136235483842791}
   - component: {fileID: 4063136235483842788}
   - component: {fileID: 4063136235483842789}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atcol
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -785,6 +796,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &4218770481531002264
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3921884811369745645}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: mainbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8978738868795042048}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: rightwing_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3157948240722394781}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftwing_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3338256221720411955}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: upbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,7 +933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6609090755853818961}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftwing_3_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5071773114252166658}
   - component: {fileID: 6052447355419417456}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: kagami
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1045,7 +1058,7 @@ GameObject:
   - component: {fileID: 3985305327739592618}
   - component: {fileID: 4174744484182354399}
   - component: {fileID: 7012749007053295613}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,6 +1167,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &7615917301076622847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103281169279259945}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftwing_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4532610992026740945}
   - component: {fileID: 1885448810221384930}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1302,7 @@ GameObject:
   - component: {fileID: 4381879008292513680}
   - component: {fileID: 5192931113898486441}
   - component: {fileID: 5520142741571723978}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1396,7 +1410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8553511042728541384}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftwing_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,7 +1441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7905975060001568076}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

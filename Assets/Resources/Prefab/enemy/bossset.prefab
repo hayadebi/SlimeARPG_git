@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 444791352235257549}
   - component: {fileID: 444163593571733223}
   - component: {fileID: 353994977276917220}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u9727\u306E\u58C1"
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -4777,7 +4777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400218734275646122}
   - component: {fileID: 400218734275646123}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4825,7 +4825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400218734451336226}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: bosscmP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,7 +4858,7 @@ GameObject:
   - component: {fileID: 400218735083054320}
   - component: {fileID: 400218735083054327}
   - component: {fileID: 400218735083054326}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u9727\u306E\u58C1 (3)"
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -9625,7 +9625,7 @@ GameObject:
   - component: {fileID: 400218735157905784}
   - component: {fileID: 400218735157905791}
   - component: {fileID: 400218735157905790}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: colev
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -9704,7 +9704,7 @@ GameObject:
   - component: {fileID: 400218735737843717}
   - component: {fileID: 400218735737843716}
   - component: {fileID: 400218735737843771}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u9727\u306E\u58C1 (2)"
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -14469,7 +14469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3604512899443356531}
   - component: {fileID: 3473564709102582316}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14559,7 +14559,7 @@ GameObject:
   - component: {fileID: 973385553261432412}
   - component: {fileID: 4192273552695230969}
   - component: {fileID: 2146253141207348531}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: human_helmet_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14636,7 +14636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3046961279820796513}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14666,7 +14666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1693825558735125754}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: wall
   m_TagString: Destroy
   m_Icon: {fileID: 0}
@@ -14721,7 +14721,7 @@ GameObject:
   - component: {fileID: 1693825559222989238}
   - component: {fileID: 1693825559222989237}
   - component: {fileID: 1693825559222989236}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: eventsay
   m_TagString: OnMask
   m_Icon: {fileID: 0}
@@ -14758,6 +14758,13 @@ MonoBehaviour:
   endTrg: 0
   local: local
   badend: badend
+  setP: 0
+  input_say: {fileID: 0}
+  BGM: {fileID: 0}
+  bgm_index: 1
+  _time: 0
+  fademode: 0
+  bgmA: {fileID: 0}
 --- !u!114 &1693825559222989189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14809,6 +14816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d845595db089ff04483c137c1bfec97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  llnpc: {fileID: 0}
   saySc: {fileID: 0}
   P: {fileID: 0}
   py: 0
@@ -14823,6 +14831,7 @@ MonoBehaviour:
   addEnumber: 02000000
   wall: {fileID: 1693825558735125753}
   bgm: {fileID: 8300000, guid: dede3fc3d3838ac41a631b6df079a230, type: 3}
+  eventsound: {fileID: 0}
   GetCoin: 0
   Trigger: -1
   allID: 1
@@ -14849,6 +14858,7 @@ MonoBehaviour:
   storyText2: 
   inputslskill: -1
   boxc: {fileID: 0}
+  spcol: {fileID: 0}
   getItem: -1
   getPlayer: -1
   notCMRmove: 0
@@ -14857,6 +14867,12 @@ MonoBehaviour:
   input_HintID: -1
   set_itemHint: 0
   _notGameObject: {fileID: 0}
+  UIsummon: 0
+  _inputLocal: 0
+  tips_trg: 
+  subEv_index: 0
+  subEv_numover: 0
+  set_minigameindex: -1
 --- !u!114 &1693825559222989186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15753,7 +15769,7 @@ GameObject:
   - component: {fileID: 1693825559532357769}
   - component: {fileID: 1693825559532357768}
   - component: {fileID: 1693825559532357767}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: "\u9727\u306E\u58C1 (1)"
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -20517,7 +20533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1693825560010706224}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: bossset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20551,7 +20567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6025598733054175230}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20581,7 +20597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1917501246182426325}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: lefthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20612,7 +20628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7782582816696994835}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20644,7 +20660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3371418420047373697}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20682,7 +20698,7 @@ GameObject:
   - component: {fileID: 2366625495240550779}
   - component: {fileID: 4746152102620905132}
   - component: {fileID: 4746152102620905123}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Metal Sword
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -20780,6 +20796,9 @@ MonoBehaviour:
   attacktype: "\u7121\u5C5E\u6027"
   nokill: 0
   outputEvent: -1
+  returnObj: 
+  returntime: 1
+  returnspeed: 0
 --- !u!54 &4746152102620905123
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20805,7 +20824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9127756274849105645}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: righthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20835,7 +20854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7805840161493567296}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: leftleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20866,7 +20885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1983554070950032290}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20896,7 +20915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2970283655256279731}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: righthand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20970,7 +20989,7 @@ GameObject:
   - component: {fileID: 8557948753170519384}
   - component: {fileID: 8557948753170519391}
   - component: {fileID: 8557948753170519390}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: BOSS
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -21199,6 +21218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -21223,6 +21244,7 @@ MonoBehaviour:
     BTend_objOn: {fileID: 0}
     BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
   _AddEnd: 0
   maxendDay: -1
   enemyName: "\u898B\u7FD2\u3044\u6226\u58EB"
@@ -21275,7 +21297,9 @@ MonoBehaviour:
   poisontime: 0
   minus_DesHight: 20
   weakness_resistance: 0
+  poison_resistance: 0
   mirror_resistance: 0
+  greetboss_resistance: 0
   mirror_Trg: 0
   random_mirror: 1
   inputEvent: -1
@@ -21283,6 +21307,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 12
+  tips_trg: 
 --- !u!114 &8557948753170519373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21365,6 +21390,13 @@ MonoBehaviour:
   endTrg: 0
   local: local
   badend: badend
+  setP: 0
+  input_say: {fileID: 0}
+  BGM: {fileID: 0}
+  bgm_index: 1
+  _time: 0
+  fademode: 0
+  bgmA: {fileID: 0}
 --- !u!114 &8557948753170519388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23032,7 +23064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563512803312638993}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23065,7 +23097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5263930429782423984}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: rightleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23096,7 +23128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7579346683915141577}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: lefthand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}

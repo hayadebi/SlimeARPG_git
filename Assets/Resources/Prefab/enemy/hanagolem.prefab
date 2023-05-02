@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6797532384568485320}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: upbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9161596598039412147}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2808019692465185856}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftuphand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2160121819769826185}
   - component: {fileID: 6634380779314042319}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7464074362120504853}
   - component: {fileID: 1734345401345890300}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ha.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2165831888998735961}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftupleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2823886898549450974}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835446258336882384}
   - component: {fileID: 919837170687195002}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ha.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1981451138100034558}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 2950673229065337538}
   - component: {fileID: 2950673229065337539}
   - component: {fileID: 2950673229065337540}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 2950673229214058722}
   - component: {fileID: 2950673229214058723}
   - component: {fileID: 2950673229214058724}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: atCol
   m_TagString: noactive
   m_Icon: {fileID: 0}
@@ -655,6 +655,8 @@ MonoBehaviour:
   ColTrigger: 0
   onAction: 1
   tagName: Player
+  managerTrg: 0
+  managerIndex: 0
 --- !u!1 &2950673229469173746
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +675,7 @@ GameObject:
   - component: {fileID: 2950673229469173742}
   - component: {fileID: 2950673229469173744}
   - component: {fileID: 2950673229469173736}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: hanagolem
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -872,6 +874,7 @@ MonoBehaviour:
   targetobj: []
   indextarget: -1
   objname: 
+  RotSpeed: 2
 --- !u!95 &2950673229469173742
 Animator:
   serializedVersion: 3
@@ -904,6 +907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
   DsMove: 0
   secondMode: 0
   neweffect: 0
@@ -924,7 +929,11 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: Flower golem
   enemyName2: 
   partobj: {fileID: 0}
@@ -932,6 +941,7 @@ MonoBehaviour:
   dropItemID: 0300000007000000
   droprare: 0300000005000000
   dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -972,7 +982,19 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
   inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
 --- !u!114 &2950673229469173736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +1010,7 @@ MonoBehaviour:
   oa: {fileID: 2950673229469173741}
   bossmove: 0
   atCol: {fileID: 2950673229214058724}
+  roomCol: {fileID: 0}
   atMagic: {fileID: 1676540233225613190, guid: 8cd7d57425efe04478cb0e44c6e1c427, type: 3}
   handpos: {fileID: 372374383742789406}
   ase:
@@ -1005,7 +1028,7 @@ GameObject:
   - component: {fileID: 2950673229571263130}
   - component: {fileID: 2950673229571263131}
   - component: {fileID: 2950673229571263132}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1119,7 @@ GameObject:
   - component: {fileID: 2950673229851878377}
   - component: {fileID: 2950673229851878378}
   - component: {fileID: 2950673229851878379}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: barCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,6 +1228,7 @@ MonoBehaviour:
   - {fileID: 0}
   indextarget: 0
   objname: MainC
+  RotSpeed: 2
 --- !u!1 &2950673229918754170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1240,7 @@ GameObject:
   - component: {fileID: 2950673229918754169}
   - component: {fileID: 2950673229918754167}
   - component: {fileID: 2950673229918754168}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2227288587998740459}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1319,7 +1343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4758062157585834982}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightdownhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,7 +1374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 322408292032240805}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftdownhand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1381,7 +1405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436855332726638031}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1438,7 @@ GameObject:
   - component: {fileID: 4875351167794883356}
   - component: {fileID: 4875351167794883354}
   - component: {fileID: 4875351167794883355}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightdownhand_end
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -1465,6 +1489,9 @@ MonoBehaviour:
   attacktype: "\u81EA\u7136\u5C5E\u6027"
   nokill: 0
   outputEvent: -1
+  returnObj: 
+  returntime: 1
+  returnspeed: 0
 --- !u!54 &4875351167794883355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1490,7 +1517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1882278888752391557}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: downbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1522,7 +1549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8213731947706281696}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rightuphand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1553,7 +1580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2983801190296861869}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftdownleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3586889654269807029}
   - component: {fileID: 7789180490774850711}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1680,7 +1707,7 @@ GameObject:
   - component: {fileID: 5598574534590015283}
   - component: {fileID: 5598574534590015281}
   - component: {fileID: 5598574534590015282}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: leftdownhand_end
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -1747,6 +1774,9 @@ MonoBehaviour:
   attacktype: "\u81EA\u7136\u5C5E\u6027"
   nokill: 0
   outputEvent: -1
+  returnObj: 
+  returntime: 1
+  returnspeed: 0
 --- !u!1 &7899087795075314865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729836577164588704}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: leftdownleg_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7465116450936111906}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

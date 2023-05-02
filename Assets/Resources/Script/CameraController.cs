@@ -28,17 +28,20 @@ public class CameraController : MonoBehaviour
     GameObject raypos;
     GameObject dfpos;
     //BoxCollider bc;
-    
+    public Camera charatrg = null;
+    private Camera thiscm = null;
     private void Awake()
     {
         cameraMoveSpeed = 4;
         cpos = GameObject.Find("cmpos");
         raypos = GameObject.Find("raypos");
         dfpos = GameObject.Find("dfpos");//this.transform.position - pl.oldjumpP;
+        if (charatrg != null)
+            thiscm = this.GetComponent<Camera>();
     }
     void LateUpdate()
     {
-        if (GManager.instance.walktrg && charaLookAtPosition != null && enablecamera && cpos != null && raypos != null && GManager.instance.Triggers[103] == 0)
+        if (charatrg==null && GManager.instance.walktrg && charaLookAtPosition != null && enablecamera && cpos != null && raypos != null && GManager.instance.Triggers[103] == 0)
         {
             if(!Input.GetKey(KeyCode.LeftShift))
             {
@@ -85,6 +88,10 @@ public class CameraController : MonoBehaviour
                     hittrg = false;
                 }
             }
+        }
+        else if(charatrg!=null&& charatrg.fieldOfView !=thiscm.fieldOfView)
+        {
+            thiscm.fieldOfView = charatrg.fieldOfView;
         }
     }
 

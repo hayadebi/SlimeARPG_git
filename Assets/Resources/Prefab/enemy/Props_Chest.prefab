@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4746387821233951363}
   - component: {fileID: 8534696253989903654}
   - component: {fileID: 5878783352529234412}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: chest
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 486349170527654260}
   - component: {fileID: 3145699189684201989}
   - component: {fileID: 7765370945101127494}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Props_Chest
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -300,10 +300,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cce41141d586db48b29fc31f7b70a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DsAnim: -1
+  Ds_slimeGet: -1
+  Ds_bgmStop: 0
+  DsMove: 0
   secondMode: 0
   neweffect: 0
   damageOn: 1
   knockbacktrg: 0
+  knockspeed: 12.8
   movetrgnumber: -1
   addEvent: 0
   KillEvent: -1
@@ -318,13 +323,19 @@ MonoBehaviour:
     eventnumber: 0
     renobj: []
     BTend_objOn: {fileID: 0}
+    BADend_objOn: {fileID: 0}
     endtrg: 0
+    _addbad: 0
+  _AddEnd: 0
+  maxendDay: -1
   enemyName: 
   enemyName2: 
   partobj: {fileID: 0}
   getCoin: 2
   dropItemID: 0a000000
   droprare: 01000000
+  dropmonster: {fileID: 0}
+  dropmonster_bad: {fileID: 0}
   isDamage: 0
   easyDestroy: 0
   damagetrg: 0
@@ -339,6 +350,7 @@ MonoBehaviour:
     Lv: 0
     enemyID: 0
     attacktype: "\u7121\u5C5E\u6027"
+    subgameCharaID: 0
   destroyID: -1
   minsunTime: -1
   maxsunTime: -1
@@ -364,3 +376,16 @@ MonoBehaviour:
   icetime: 0
   poisontrg: 0
   poisontime: 0
+  minus_DesHight: 20
+  weakness_resistance: 0
+  poison_resistance: 0
+  mirror_resistance: 0
+  greetboss_resistance: 0
+  mirror_Trg: 0
+  random_mirror: 1
+  inputEvent: -1
+  noground: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 12
+  tips_trg: 
