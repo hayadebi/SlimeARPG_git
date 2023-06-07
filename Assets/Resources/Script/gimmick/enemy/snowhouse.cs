@@ -22,6 +22,7 @@ public class snowhouse : MonoBehaviour
     public GameObject cmp;
     public float count_time = 0;
     private bool summon_trg = false;
+    public Animator shieldAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,9 +79,10 @@ public class snowhouse : MonoBehaviour
 
     void Run()
     {
-        if(!objE.damageOn && summonobj[3] == null && summonobj[4] == null && summon_trg)
+        if(!objE.damageOn && !summonobj[3] && !summonobj[4] && summon_trg)
         {
             objE.damageOn = true;
+            shieldAnim.SetInteger("Anumber", 1);
             Invoke(nameof(shield_off), 1.1f);
         }
         if (!atCol.ColTrigger && attrg == 0)

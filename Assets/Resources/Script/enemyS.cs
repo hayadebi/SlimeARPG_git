@@ -176,9 +176,9 @@ public class enemyS : MonoBehaviour
         {
             Estatus.Lv = Random.Range(minlv, maxlv);
         }
-        if((Estatus.Lv - GManager.instance.Pstatus[GManager.instance.playerselect].Lv) > 5 )
+        if((Estatus.Lv - GManager.instance.Pstatus[GManager.instance.playerselect].Lv) > 10 )
         {
-            Estatus.Lv = GManager.instance.Pstatus[GManager.instance.playerselect].Lv + 5;
+            Estatus.Lv = GManager.instance.Pstatus[GManager.instance.playerselect].Lv + 10;
         }
         if(Estatus.Lv != 0)
         {

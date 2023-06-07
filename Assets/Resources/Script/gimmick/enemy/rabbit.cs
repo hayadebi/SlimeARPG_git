@@ -7,11 +7,13 @@ public class rabbit : MonoBehaviour
     public ColEvent roomCol = null;
     public bool bossmove = false;
     public ColEvent stopCol;
-    enemyS objE;
-    GameObject p;
-    Vector3 target;
-    Rigidbody rb;
-    bool stoptrg = false;
+    private enemyS objE;
+    private GameObject p;
+    private Vector3 target;
+    private Rigidbody rb;
+    private bool stoptrg = false;
+    public bool secondType = false;
+
     // Start is called before the first frame update
     void Start()
     {
