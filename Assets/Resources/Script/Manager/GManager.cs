@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GManager : MonoBehaviour
 {
@@ -375,6 +376,7 @@ public class GManager : MonoBehaviour
     public Tips_ID[] _Tips;
     [Multiline]
     public string[] temp_text;
+    private float reloadtime=0;
     private void Awake()
     {
         if (instance == null)
@@ -387,5 +389,16 @@ public class GManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-   
+    private void Update()
+    {
+        if (GManager.instance.walktrg && SceneManager.GetActiveScene().name.Contains("stage"))
+        {
+            reloadtime += Time.deltaTime;
+            if (reloadtime > 15f)
+            {
+                reloadtime = 0f;
+                Resources.UnloadUnusedAssets();
+            }
+        }
+    }
 }
