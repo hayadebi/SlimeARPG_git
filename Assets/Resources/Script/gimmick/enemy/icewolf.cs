@@ -46,7 +46,17 @@ public class icewolf : MonoBehaviour
             effects[i].Play();
             i++; 
         }
-        
+        summonobj = Instantiate(atMagic[1], atMagic[2].transform.position, atMagic[2].transform.rotation, atMagic[2].transform);
+        if (summonobj != null)
+        {
+            addsummon = summonobj.GetComponent<AddMagic>();
+            if (addsummon != null)
+            {
+                addsummon.enemytrg = true;
+                addsummon.Damage = (objE.Estatus.attack / 2);
+            }
+        }
+
     }
     public void EffectInstantiate()
     {
@@ -94,7 +104,7 @@ public class icewolf : MonoBehaviour
                 {
                     stoptrg = true;
                     rb.velocity = Vector3.zero;
-                    if (objE.Eanim.GetInteger("Anumber") > 0 && objE.Eanim.GetInteger("Anumber") != 2)
+                    if (objE.Eanim.GetInteger("Anumber") > 0 && objE.Eanim.GetInteger("Anumber") != 2 && objE.Eanim.GetInteger("Anumber") != 3)
                     {
                         objE.Eanim.SetInteger("Anumber", 0);
                     }
@@ -105,7 +115,7 @@ public class icewolf : MonoBehaviour
         {
             stoptrg = true;
             rb.velocity = Vector3.zero;
-            if (objE.Eanim.GetInteger("Anumber") > 0 && objE.Eanim.GetInteger("Anumber") != 2)
+            if (objE.Eanim.GetInteger("Anumber") > 0 && objE.Eanim.GetInteger("Anumber") != 2 && objE.Eanim.GetInteger("Anumber") != 3)
             {
                 objE.Eanim.SetInteger("Anumber", 0);
             }
@@ -145,10 +155,20 @@ public class icewolf : MonoBehaviour
             ps.anim.SetInteger(ps.Anumbername,0);
             Event1();
         }
+        else if ((atCol_normal.ColTrigger || atCol_min.ColTrigger) && attrg == 0)
+        {
+            attrg = 1;
+            if (stoptrg == false)
+            {
+                stoptrg = true;
+                rb.velocity = Vector3.zero;
+            }
+            Event2();
+        }
         else if (!atCol_min.ColTrigger && !atCol_normal.ColTrigger && attrg == 0)
         {
             rb.velocity = target;
-            if (objE.Eanim.GetInteger("Anumber") != 2) objE.Eanim.SetInteger("Anumber", 1);
+            if (objE.Eanim.GetInteger("Anumber") != 2 && objE.Eanim.GetInteger("Anumber") != 3) objE.Eanim.SetInteger("Anumber", 1);
             if (stoptrg)
             {
                 stoptrg = false;
@@ -158,7 +178,7 @@ public class icewolf : MonoBehaviour
         {
             stoptrg = true;
             rb.velocity = Vector3.zero;
-            if(objE.Eanim.GetInteger("Anumber")!=2) objE.Eanim.SetInteger("Anumber", 0);
+            if(objE.Eanim.GetInteger("Anumber")!=2 && objE.Eanim.GetInteger("Anumber") != 3) objE.Eanim.SetInteger("Anumber", 0);
         }
 
     }
@@ -191,6 +211,16 @@ public class icewolf : MonoBehaviour
             attmp_downtrg = true;
             ambient_time = 12f;
             Invoke(nameof(Ev_end), 1f);
+        }
+    }
+    void Event2()
+    {
+        if (attrg == 1)
+        {
+            objE.Eanim.SetInteger("Anumber", 3);
+            
+            attrg = 2;
+            Invoke(nameof(Ev_end), 1.2f);
         }
     }
     void Ev_end()
