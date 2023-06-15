@@ -397,7 +397,7 @@ public class clickbutton : MonoBehaviour
         }
         for (int i = 0; i < GManager.instance._craftRecipe.Length;)
         {
-            if (i == 32)
+            if (i > 14)
                 GManager.instance._craftRecipe[i].get_recipe = PlayerPrefs.GetInt("get_recipe" + i, 0);
             else
                 GManager.instance._craftRecipe[i].get_recipe = PlayerPrefs.GetInt("get_recipe" + i, 1);
@@ -570,7 +570,7 @@ public class clickbutton : MonoBehaviour
         }
         for(int i=0;i<GManager.instance._craftRecipe.Length;)
         {
-            if(i==32)
+            if(i>14)
                 GManager.instance._craftRecipe[i].get_recipe = PlayerPrefs.GetInt("get_recipe" + i, 0);
             else
                 GManager.instance._craftRecipe[i].get_recipe = PlayerPrefs.GetInt("get_recipe" + i, 1);

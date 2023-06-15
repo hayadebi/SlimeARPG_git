@@ -115,9 +115,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb35bdb2b3953ea4b93202353bbdf848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  es: {fileID: 0}
   Damage: 32
-  attacktype: "\u5149\u5C5E\u6027"
+  attacktype: "\u795E\u5C5E\u6027"
   nokill: 0
+  outputEvent: -1
+  returnObj: 
+  returntime: 1
+  returnspeed: 0
 --- !u!95 &7225860034811064281
 Animator:
   serializedVersion: 3
@@ -148,7 +153,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16, y: 32, z: 1}
+  m_Size: {x: 16, y: 32, z: 4}
   m_Center: {x: 0, y: 8, z: 0}
 --- !u!114 &683837662794859488
 MonoBehaviour:

@@ -102,6 +102,10 @@ public class player : MonoBehaviour
     private Audiovolume bgmvolume = null;
     private int tmp_fieldcount = 0;
     public bool start_savepos = true;
+
+    public int[] on_slimes;
+    public int select_onslime;
+    private float ftime = 0f;
     GameObject serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
@@ -161,6 +165,37 @@ public class player : MonoBehaviour
         setMagic();
         setSkill();
         setItem();
+        OnSlimes();
+        
+    }
+    void OnSlimes()
+    {
+        int onpl = 0;
+        for(int i = 0; i<GManager.instance.Pstatus.Length;)
+        {
+            if (GManager.instance.Pstatus[i].getpl > 0 && GManager.instance.Pstatus[i].hp > 0) onpl += 1;
+            i++;
+        }
+        if (onpl > 0)
+        {
+            on_slimes = new int[onpl];
+            int tmpindex = 0;
+            select_onslime = 0;
+            for (int i = 0; i < GManager.instance.Pstatus.Length;)
+            {
+                if (GManager.instance.Pstatus[i].getpl > 0 && GManager.instance.Pstatus[i].hp > 0)
+                {
+                    on_slimes[tmpindex] = i;
+                    if (i == GManager.instance.playerselect) select_onslime = tmpindex;
+                    tmpindex += 1;
+                }
+                i++;
+            }
+        }
+        else
+        {
+            ;
+        }
     }
     //private float unloadtime = 0;
     // Update is called once per frame
@@ -269,27 +304,7 @@ public class player : MonoBehaviour
         }
         if (!GManager.instance.over && GManager.instance.walktrg == true && GManager.instance.setmenu == 0)
         {
-            //スライム切り替え
-            if (oldplayer != GManager.instance.playerselect)
-            {
-                oldplayer = GManager.instance.playerselect;
-                GManager.instance.setrg = 9;
-                Instantiate(GManager.instance.effectobj[4], summonP.position, GManager.instance.effectobj[4].transform.rotation);
-                dsobj = summonP.transform.GetChild(0).gameObject;
-                plobj = Instantiate(GManager.instance.Pstatus[GManager.instance.playerselect].pobj,new Vector3(summonP.position.x, summonP.position.y + 0.05f, summonP.position.z), summonP.rotation, summonP);
-                anim = plobj.GetComponent<Animator>();
-                if (dsobj != null)
-                {
-                    Destroy(dsobj.gameObject);
-                }
-                for (int i = 0; i < GManager.instance.colTrg.Length;)
-                {
-                    GManager.instance.colTrg[i] = false;
-                    i++;
-                }
-                setMagic();
-                setSkill();
-            }
+            
             //ランプ
             if(oldlampTrg != GManager.instance.Triggers[102])
             {
@@ -564,7 +579,7 @@ public class player : MonoBehaviour
             //-------------
         }
         //メニュー画面出現
-        if (GManager.instance.setmenu < 1 && GManager.instance.walktrg == true && Input.GetKeyDown(KeyCode.Escape) && !stoptrg)
+        if (GManager.instance.setmenu < 1 && GManager.instance.walktrg == true && Input.GetKey(KeyCode.Escape) && !stoptrg)
         {
             GameObject m = GameObject.Find("menu(Clone)");
             GManager.instance.ESCtrg = false;
@@ -573,13 +588,13 @@ public class player : MonoBehaviour
             ySpeed = 0;
             if (m == null)
             {
-                GManager.instance.setmenu += 1;
+                GManager.instance.setmenu = 1;
                 GManager.instance.walktrg = false;
                 GManager.instance.setrg = 6;
                 Instantiate(menuUI, transform.position, transform.rotation);
             }
         }
-        if (GManager.instance.setmenu < 1 && GManager.instance.walktrg && Input.GetKeyDown(KeyCode.T) && !stoptrg)
+        if (GManager.instance.setmenu < 1 && GManager.instance.walktrg && Input.GetKey(KeyCode.T) && !stoptrg)
         {
             GameObject m = GameObject.Find("selectTips(Clone)");
             GManager.instance.ESCtrg = false;
@@ -588,7 +603,7 @@ public class player : MonoBehaviour
             ySpeed = 0;
             if (m == null)
             {
-                GManager.instance.setmenu += 1;
+                GManager.instance.setmenu = 1;
                 GManager.instance.walktrg = false;
                 GManager.instance.setrg = 6;
                 Instantiate(GManager.instance.effectobj[23], transform.position, transform.rotation);
@@ -623,64 +638,111 @@ public class player : MonoBehaviour
                 var rotation = Quaternion.LookRotation(mousepos - body.transform.position);
                 rotation.x = 0;
                 body.transform.rotation = rotation;
-                
+
                 //切り替えモード変更  0=魔法 1=スキル
-                if (Input.GetMouseButtonDown(2) && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 2)
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 1;
+                    if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode > 0) GManager.instance.Pstatus[GManager.instance.playerselect].changemode -= 1;
+                    else if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode <= 0) GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 2;
                 }
-                else if (Input.GetMouseButtonDown(2) && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 1)
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 0;
-                }
-                else if (Input.GetMouseButtonDown(2) && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 0)
-                {
-                    GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 2;
+                    if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode < 2) GManager.instance.Pstatus[GManager.instance.playerselect].changemode += 1;
+                    else if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode >= 2) GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 0;
                 }
                 //魔法切り替え
                 if (onMagic != null && onMagic.Length != 0 && GManager.instance.over == false && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 0)
                 {
-                    float scroll = Input.GetAxis("Mouse ScrollWheel");
-                    if (scroll > 0)
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
                     {
-                        scroll = 0;
                         SelectPlus();
                     }
-                    else if (scroll < 0)
+                    else if (Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        scroll = 0;
                         SelectMinus();
                     }
                 }
                 //スキル切り替え
                 else if (onSkill != null && onSkill.Length != 0 && GManager.instance.over == false && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 1)
                 {
-                    float scroll = Input.GetAxis("Mouse ScrollWheel");
-                    if (scroll > 0)
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
                     {
-                        scroll = 0;
                         SelectPlus2();
                     }
-                    else if (scroll < 0)
+                    else if (Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        scroll = 0;
                         SelectMinus2();
                     }
                 }
                 //アイテム切り替え
                 else if (onItem != null && onItem.Length != 0 && GManager.instance._quickSelect != -1 && GManager.instance.over == false && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 2)
                 {
-                    float scroll = Input.GetAxis("Mouse ScrollWheel");
-                    if (scroll > 0)
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
                     {
-                        scroll = 0;
                         SelectPlus3();
                     }
-                    else if (scroll < 0)
+                    else if (Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        scroll = 0;
                         SelectMinus3();
                     }
+                }
+                //スライム切り替え
+                if (Input.GetKeyDown(KeyCode.F) && oldplayer == GManager.instance.playerselect && ftime <= 0)
+                {
+                    ftime = 2f;
+                    if (select_onslime < on_slimes.Length - 1)
+                    {
+                        select_onslime += 1;
+                        GManager.instance.playerselect = on_slimes[select_onslime];
+                    }
+                    else if (select_onslime >= on_slimes.Length - 1)
+                    {
+                        select_onslime = 0;
+                        GManager.instance.playerselect = on_slimes[select_onslime];
+                    }
+                    oldplayer = GManager.instance.playerselect;
+                    GManager.instance.setrg = 9;
+                    Instantiate(GManager.instance.effectobj[4], summonP.position, GManager.instance.effectobj[4].transform.rotation);
+                    dsobj = summonP.transform.GetChild(0).gameObject;
+                    plobj = Instantiate(GManager.instance.Pstatus[GManager.instance.playerselect].pobj, new Vector3(summonP.position.x, summonP.position.y + 0.05f, summonP.position.z), summonP.rotation, summonP);
+                    anim = plobj.GetComponent<Animator>();
+                    if (dsobj != null)
+                    {
+                        Destroy(dsobj.gameObject);
+                    }
+                    for (int i = 0; i < GManager.instance.colTrg.Length;)
+                    {
+                        GManager.instance.colTrg[i] = false;
+                        i++;
+                    }
+                    setMagic();
+                    setSkill();
+                    OnSlimes();
+                }
+                else if (oldplayer != GManager.instance.playerselect && !Input.GetKey(KeyCode.F) && ftime <= 0)
+                {
+                    ftime = 2f;
+                    oldplayer = GManager.instance.playerselect;
+                    GManager.instance.setrg = 9;
+                    Instantiate(GManager.instance.effectobj[4], summonP.position, GManager.instance.effectobj[4].transform.rotation);
+                    dsobj = summonP.transform.GetChild(0).gameObject;
+                    plobj = Instantiate(GManager.instance.Pstatus[GManager.instance.playerselect].pobj, new Vector3(summonP.position.x, summonP.position.y + 0.05f, summonP.position.z), summonP.rotation, summonP);
+                    anim = plobj.GetComponent<Animator>();
+                    if (dsobj != null)
+                    {
+                        Destroy(dsobj.gameObject);
+                    }
+                    for (int i = 0; i < GManager.instance.colTrg.Length;)
+                    {
+                        GManager.instance.colTrg[i] = false;
+                        i++;
+                    }
+                    setMagic();
+                    setSkill();
+                }
+                else if(ftime >= 0)
+                {
+                    ftime -= Time.deltaTime;
                 }
                 if (GManager.instance.Pstatus[GManager.instance.playerselect].loadtime == 0 && GManager.instance.Pstatus[GManager.instance.playerselect].magicselect != -1 && onMagic.Length != 0 && onMagic != null)//&& GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 0)
                 {
@@ -1441,6 +1503,8 @@ public class player : MonoBehaviour
                 }
                 var inputX = Input.GetAxisRaw("Horizontal");
                 var inputZ = Input.GetAxisRaw("Vertical");
+                if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)) inputZ = 0;
+                if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) inputX = 0;
                 //if (GManager.instance.skillselect == 3)
                 //{
                 //    inputX *= -1;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.66526246, g: 0.34417108, b: 0.21746117, a: 1}
+  m_IndirectSpecularColor: {r: 0.8050239, g: 0.42267987, b: 0.27113134, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1096,6 +1096,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &106654888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3738,6 +3741,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &1839861630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8292,6 +8298,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!4 &4767236067384622669
 Transform:
   m_ObjectHideFlags: 0
@@ -11003,6 +11012,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &7951523485116330714
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -11283,6 +11295,8 @@ MonoBehaviour:
   itemtime_notWeather: 0
   _Lamp: {fileID: 0}
   start_savepos: 1
+  on_slimes: 
+  select_onslime: 0
 --- !u!54 &7951523485179509166
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14784,6 +14798,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &8040920292466900737
 MonoBehaviour:
   m_ObjectHideFlags: 2

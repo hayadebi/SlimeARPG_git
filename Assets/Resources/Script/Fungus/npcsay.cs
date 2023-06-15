@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
+using System.IO;
+using System;
 [RequireComponent(typeof(Flowchart))]
 public class npcsay : MonoBehaviour
 {
@@ -70,6 +72,14 @@ public class npcsay : MonoBehaviour
     public int subEv_index = 0;
     public int subEv_numover = 0;
     public int set_minigameindex = -1;
+    [Header("ショップ用追加")]
+    public string shop_name="None";//ショップ固有Name(SaveLoad用)
+    public int[] item_randomlist;
+    private int shopYear;
+    private int shopMonth;
+    private int shopDay;
+    private DateTime checkday=DateTime.Today;
+    public bool itemshoptrg = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -134,6 +144,48 @@ public class npcsay : MonoBehaviour
         mainc = GameObject.Find("MainC");
         cmrot = GameObject.Find("cmrot");
         dfpos = GameObject.Find("dfpos");
+        //ショップ毎日更新
+        if (PlayerPrefs.GetString(shop_name, "None") != "None" && itemshoptrg)
+        {
+            DateTime setdate = DateTime.Today;
+            shopYear = PlayerPrefs.GetInt(shop_name+"_Year", setdate.Year);
+            shopMonth = PlayerPrefs.GetInt(shop_name + "_Month", setdate.Month);
+            shopDay = PlayerPrefs.GetInt(shop_name + "_Day", setdate.Day);
+            checkday = new DateTime(shopYear, shopMonth, shopDay);
+        }
+        if (shop_name!= "None"&& itemshoptrg&&(PlayerPrefs.GetString(shop_name,"None")=="None" || (PlayerPrefs.GetString(shop_name, "None") != "None" && Math.Abs(GManager.instance.AllSpanCheck(checkday)) > 0)))
+        {
+            DateTime setdate = GManager.instance.GetGameDay();
+            PlayerPrefs.SetString(shop_name, setdate.ToBinary().ToString());
+            PlayerPrefs.SetInt(shop_name + "_Year", setdate.Year);
+            PlayerPrefs.SetInt(shop_name + "_Month", setdate.Month);
+            PlayerPrefs.SetInt(shop_name + "_Day", setdate.Day);
+
+            shopID[0] = item_randomlist[UnityEngine.Random.Range(0, item_randomlist.Length)];
+            int tmp_result = shopID[0];
+            PlayerPrefs.SetInt(shop_name + "0", tmp_result);
+            while (tmp_result == shopID[0])
+            {
+                tmp_result = item_randomlist[UnityEngine.Random.Range(0, item_randomlist.Length)];
+                if (tmp_result != shopID[0]) break;
+            }
+            shopID[1] = tmp_result;
+            PlayerPrefs.SetInt(shop_name + "1", tmp_result);
+            while (tmp_result == shopID[0] || tmp_result == shopID[1])
+            {
+                tmp_result = item_randomlist[UnityEngine.Random.Range(0, item_randomlist.Length)];
+                if (tmp_result != shopID[0] && tmp_result != shopID[1]) break;
+            }
+            shopID[2] = tmp_result;
+            PlayerPrefs.SetInt(shop_name + "2", tmp_result);
+            PlayerPrefs.Save();
+        }
+        else if(itemshoptrg && shop_name != "None" && PlayerPrefs.GetString(shop_name, "None") != "None")
+        {
+            shopID[0]= PlayerPrefs.GetInt(shop_name + "0", 0);
+            shopID[1] = PlayerPrefs.GetInt(shop_name + "1", 0);
+            shopID[2] = PlayerPrefs.GetInt(shop_name + "2", 0);
+        }
     }
 
     // Update is called once per frame

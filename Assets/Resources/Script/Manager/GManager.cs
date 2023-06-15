@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.IO;
+using System;
 public class GManager : MonoBehaviour
 {
     public static GManager instance = null;
@@ -377,6 +378,16 @@ public class GManager : MonoBehaviour
     [Multiline]
     public string[] temp_text;
     private float reloadtime=0;
+    public int old_year = 2023;
+    [System.Serializable]
+    public struct DevDateTime
+    {
+        public int year;
+        public int month;
+        public int day;
+    }
+    public DevDateTime devdays;
+    public DateTime checkdev = new DateTime(2003, 7, 28);
     private void Awake()
     {
         if (instance == null)
@@ -400,5 +411,48 @@ public class GManager : MonoBehaviour
                 Resources.UnloadUnusedAssets();
             }
         }
+    }
+    public DateTime GetGameDay()
+    {
+        DateTime tmp = DateTime.Today;
+        return tmp;
+    }
+    public int AllSpanCheck(DateTime tmp_time)
+    {
+        int check_result = 0;
+
+        DateTime today = DateTime.Today;
+        DateTime devday = new DateTime(instance.devdays.year, instance.devdays.month, instance.devdays.day);
+        if (instance.checkdev != devday)
+            today = devday;
+        DateTime newday = new DateTime(today.Year, tmp_time.Month, tmp_time.Day);
+        TimeSpan tmpdiff = newday - today;
+        check_result = (int)tmpdiff.TotalDays;
+        //print(check_result.ToString());
+        return check_result;
+    }
+    public bool MonthBoolCheck(DateTime tmp_time)
+    {
+        bool check_result = false;
+        DateTime today = DateTime.Today;
+        DateTime devday = new DateTime(instance.devdays.year, instance.devdays.month, instance.devdays.day);
+        if (instance.checkdev != devday)
+            today = devday;
+        DateTime newday = new DateTime(today.Year, tmp_time.Month, tmp_time.Day);
+        if (newday.Month == today.Month)
+            check_result = true;
+        return check_result;
+    }
+    public int DaySpanCheck(DateTime tmp_time)
+    {
+        int check_result = 0;
+        DateTime today = DateTime.Today;
+        DateTime devday = new DateTime(instance.devdays.year, instance.devdays.month, instance.devdays.day);
+        if (instance.checkdev != devday)
+            today = devday;
+        DateTime newday = new DateTime(today.Year, tmp_time.Month, tmp_time.Day);
+        check_result = newday.Day - today.Day;
+        print(check_result.ToString());
+        return check_result;
     }
 }

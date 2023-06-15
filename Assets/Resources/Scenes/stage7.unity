@@ -10474,6 +10474,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &315166826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12794,8 +12797,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383962615}
-  m_LocalRotation: {x: 0.19735584, y: 0.3568351, z: 0.07739583, w: -0.9097963}
-  m_LocalPosition: {x: 132.02934, y: -127.42731, z: -2.9227753}
+  m_LocalRotation: {x: -0.36185968, y: -0.31610745, z: -0.13200149, w: 0.86701167}
+  m_LocalPosition: {x: 677.61304, y: -722.2573, z: -204.03098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -27147,6 +27150,7 @@ MonoBehaviour:
   roomCol: {fileID: 0}
   bossmove: 0
   stopCol: {fileID: 1014630610}
+  secondType: 0
 --- !u!114 &633494165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35477,6 +35481,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &838897507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38055,6 +38062,7 @@ MonoBehaviour:
   roomCol: {fileID: 0}
   bossmove: 0
   stopCol: {fileID: 1060419048}
+  secondType: 0
 --- !u!114 &912638991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52187,6 +52195,7 @@ MonoBehaviour:
   roomCol: {fileID: 0}
   bossmove: 0
   stopCol: {fileID: 305918090}
+  secondType: 0
 --- !u!114 &1382636021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54363,6 +54372,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &1423362340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68929,6 +68941,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: "\u30D6\u30EA\u30A6\u30AA\u306E\u7D20\u6750\u5C4B"
+  item_randomlist: 050000000500000033000000330000002b0000002b0000002a000000310000001e000000
+  itemshoptrg: 1
 --- !u!114 &1553439465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72071,6 +72086,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &1622879049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85487,6 +85505,9 @@ MonoBehaviour:
   subEv_index: 18
   subEv_numover: 1
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &1863176448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91049,6 +91070,9 @@ MonoBehaviour:
   subEv_index: 18
   subEv_numover: 1
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!1 &1863491058
 GameObject:
   m_ObjectHideFlags: 0
@@ -94882,6 +94906,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: "\u30D6\u30EA\u30A6\u30AA\u306E\u98DF\u3079\u7269\u5C4B"
+  item_randomlist: 38000000380000003700000037000000360000003600000039000000220000002c000000
+  itemshoptrg: 1
 --- !u!114 &1935041800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98690,6 +98717,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &2046864585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100102,6 +100132,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!1 &2047523839
 GameObject:
   m_ObjectHideFlags: 0
@@ -105021,6 +105054,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: "\u30D6\u30EA\u30A6\u30AA\u306E\u30DD\u30FC\u30B7\u30E7\u30F3\u5C4B"
+  item_randomlist: 0e0000000e0000000f0000000f0000001500000004000000080000000c0000000d000000
+  itemshoptrg: 1
 --- !u!95 &779397544558542575
 Animator:
   serializedVersion: 3
@@ -120938,6 +120974,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &3650096494189170418
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -130012,6 +130051,7 @@ MonoBehaviour:
   roomCol: {fileID: 0}
   bossmove: 0
   stopCol: {fileID: 7346230330923002010}
+  secondType: 0
 --- !u!114 &7062202470777839594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137790,6 +137830,9 @@ MonoBehaviour:
   subEv_index: 0
   subEv_numover: 0
   set_minigameindex: -1
+  shop_name: None
+  item_randomlist: 
+  itemshoptrg: 0
 --- !u!114 &9194110555312762823
 MonoBehaviour:
   m_ObjectHideFlags: 0

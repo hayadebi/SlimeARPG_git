@@ -39,13 +39,9 @@ public class icewolf : MonoBehaviour
         ice_ui = GameObject.Find("ice").GetComponent<Image>();
         defaultColor = ice_ui.color;
     }
-    public void EffectOn()
+    public void EffectMagic()
     {
-        for(int i=0; i < effects.Length;)
-        {
-            effects[i].Play();
-            i++; 
-        }
+        objE.audioS.Stop();
         summonobj = Instantiate(atMagic[1], atMagic[2].transform.position, atMagic[2].transform.rotation, atMagic[2].transform);
         if (summonobj != null)
         {
@@ -56,19 +52,13 @@ public class icewolf : MonoBehaviour
                 addsummon.Damage = (objE.Estatus.attack / 2);
             }
         }
+        objE.audioS.PlayOneShot(ase[2]);
 
     }
     public void EffectInstantiate()
     {
+        objE.audioS.PlayOneShot(ase[1]);
         Instantiate(atMagic[0], transform.position, transform.rotation);
-    }
-    public void EffectOff()
-    {
-        for (int i = 0; i < effects.Length;)
-        {
-            effects[i].Stop();
-            i++;
-        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -76,16 +66,16 @@ public class icewolf : MonoBehaviour
         if (attmp_uptrg)
         {
             Color tmpc = ice_ui.color;
-            tmpc.a = Mathf.SmoothStep(tmpc.a, defaultColor.a * 3f, Time.deltaTime * 3f); // Mathf.Lerp(tmpc.a, defaultColor.a * 3f, Time.deltaTime * 3f);
+            tmpc.a = Mathf.SmoothStep(tmpc.a, defaultColor.a * 3f, Time.deltaTime * 5f); // Mathf.Lerp(tmpc.a, defaultColor.a * 3f, Time.deltaTime * 3f);
             ice_ui.color = tmpc;
-            RenderSettings.fogDensity = Mathf.SmoothStep(RenderSettings.fogDensity, 0.04f, Time.deltaTime); //Mathf.Lerp(RenderSettings.fogDensity, 0.04f, Time.deltaTime);
+            RenderSettings.fogDensity = Mathf.SmoothStep(RenderSettings.fogDensity, 0.04f, Time.deltaTime*8); //Mathf.Lerp(RenderSettings.fogDensity, 0.04f, Time.deltaTime);
         }
         else if (attmp_downtrg)
         {
             Color tmpc = ice_ui.color;
-            tmpc.a = Mathf.SmoothStep(tmpc.a, defaultColor.a, Time.deltaTime * 4f);
+            tmpc.a = Mathf.SmoothStep(tmpc.a, defaultColor.a, Time.deltaTime * 7f);
             ice_ui.color = tmpc;
-            RenderSettings.fogDensity = Mathf.SmoothStep(RenderSettings.fogDensity, 0.01f, Time.deltaTime*1.5f);
+            RenderSettings.fogDensity = Mathf.SmoothStep(RenderSettings.fogDensity, 0.01f, Time.deltaTime*10f);
         }
         if (objE.absoluteStop == false)
         {
@@ -220,7 +210,7 @@ public class icewolf : MonoBehaviour
             objE.Eanim.SetInteger("Anumber", 3);
             
             attrg = 2;
-            Invoke(nameof(Ev_end), 1.2f);
+            Invoke(nameof(Ev_end), 1.3f);
         }
     }
     void Ev_end()

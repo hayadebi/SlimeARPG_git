@@ -1041,6 +1041,24 @@ MonoBehaviour:
     _equalsset: 0
     pl_equalsselect: 0
     _quickset: 0
+  - itemname: "\u96EA\u7389"
+    itemscript: "\u96EA\u7CFB\u7D71\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u304B\u3089\u624B\u306B\u5165\u308B\u30A2\u30A4\u30C6\u30E0\u3002\n\u51B7\u3084\u3059\u305F\u3081\u306E\u7D20\u6750\u3068\u3057\u3066\u3088\u304F\u7528\u3044\u3089\u308C\u308B\u3002"
+    itemimage: {fileID: 2868463794252429349, guid: f827469d62f58fa459872a8f31ea021c,
+      type: 3}
+    eventnumber: -1
+    itemprice: 12
+    itemnumber: 0
+    itemobj: {fileID: 0}
+    itemname2: Snowball
+    itemscript2: 'An item obtained from snow monsters.
+
+      It is often used as
+      a material for cooling.'
+    gettrg: 0
+    rare: R
+    _equalsset: 0
+    pl_equalsselect: 0
+    _quickset: 0
   P_equalsID:
   - hand_equals: -1
     accessory_equals: -1
@@ -3721,7 +3739,7 @@ MonoBehaviour:
 
       It seems that
       the witch''s hometown was destroyed by the Demon King Slime.'
-    inputhouse: "\u59CB\u307E\u308A\u306E\u68EE\u3067\u6311\u3093\u3067\u304D\u305F"
+    inputhouse: "\u672A\u6765\u306E\u8005"
     inputhouse2: They fought in the forest of beginnings.
     inputattacktype: "\u95C7\u5C5E\u6027"
     inputattacktype2: Dark attribute
@@ -3756,7 +3774,7 @@ MonoBehaviour:
       She usually serves the
       Demon King, and when the Demon King commands her to do something, she will
       kill whoever is on the other end of the line.'
-    inputhouse: "\u9B54\u738B\u57CE"
+    inputhouse: "\u666E\u6BB5\u306F\u9B54\u738B\u57CE\u3067\u52D9\u3081\u3066\u3044\u308B\u3088\u3046\u3060"
     inputhouse2: Demon King's castle.
     inputattacktype: "\u95C7\u5C5E\u6027"
     inputattacktype2: Dark attribute
@@ -3766,14 +3784,14 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 29773339a46baa04d93601dbfb1daf7a, type: 3}
   - name: "\u30B9\u30CE\u30FC\u30CF\u30A6\u30B9"
     name2: Snow house
-    script: "\u5F31\u3044\u7A2E\u65CF\u3092\u5B89\u5168\u306A\u96EA\u3060\u308B\u307E\u306E\u4E2D\u3078\u4F4F\u307E\u308F\u305B\u308B\u4EE3\u308F\u308A\u306B\u3001\n\u4F4F\u5C45\u4EBA\u304C\u606F\u7D76\u3048\u305F\u3089\u305D\u306E\u9B42\u3092\u55B0\u3089\u3046\u2026\n\u5171\u5B58\u4EF2\u9593\u304C\u5B58\u5728\u3059\u308B\u9593\u306F\u30C0\u30E1\u30FC\u30B8\u3092\u4E00\u5207\u53D7\u3051\u305A\u3001\n\u5012\u305B\u308B\u3068\u305F\u307E\u306B\u6BDB\u7CF8\u7389\u3001\u96EA\u7389\u3092\u30C9\u30ED\u30C3\u30D7\u3059\u308B\u3002"
-    script2: 'Instead of letting the weaker species live in the safety of the snowball,
-      it feeds on their souls when the dweller reaches the end of its life span...
+    script: "\u5F31\u3044\u7A2E\u65CF\u3092\u5B89\u5168\u306A\u96EA\u3060\u308B\u307E\u306E\u4E2D\u3078\u4F4F\u307E\u308F\u305B\u308B\u4EE3\u308F\u308A\u306B\u3001\n\u4F4F\u5C45\u4EBA\u304C\u606F\u7D76\u3048\u305F\u3089\u305D\u306E\u9B42\u3092\u55B0\u3089\u3046\u2026\n\u5171\u5B58\u4EF2\u9593\u304C\u5B58\u5728\u3059\u308B\u9593\u306F\u30C0\u30E1\u30FC\u30B8\u3092\u4E00\u5207\u53D7\u3051\u305A\u3001\n\u5012\u305B\u308B\u3068\u305F\u307E\u306B\u96F6\u77F3\u3001\u96EA\u7389\u3092\u30C9\u30ED\u30C3\u30D7\u3059\u308B\u3002"
+    script2: 'Instead of letting the weaker species dwell in the safety of the snowman,
+      When the dweller ceases to breathe, its soul is consumed...
 
-      While
-      coexisting companions are present, they do not take any damage and occasionally
-      drop yarn balls and snowballs if they are able to defeat.'
-    inputhouse: "\u6C37\u7D50\u6D1E\u7A9F"
+      While coexisting
+      companions are present, they do not take any damage, When defeated, it will
+      occasionally drop a dripstone or a snowball.'
+    inputhouse: "\u6C37\u7D50\u6D1E\u7A9F\u3067\u751F\u606F\u304C\u78BA\u8A8D\u3055\u308C\u3066\u3044\u308B"
     inputhouse2: Ice cave
     inputattacktype: "\u6C34\u5C5E\u6027"
     inputattacktype2: Water attribute
@@ -3795,14 +3813,33 @@ MonoBehaviour:
 
       When defeated, they sometimes drop
       rabbit eggs.'
-    inputhouse: "\u30B9\u30CE\u30FC\u30CF\u30A6\u30B9\u306E\u4F53\u5185"
+    inputhouse: "\u30B9\u30CE\u30FC\u30CF\u30A6\u30B9\u306E\u4F53\u5185\u3067\u3067\u751F\u606F\u304C\u78BA\u8A8D\u3055\u308C\u3066\u3044\u308B"
     inputhouse2: Inside the Snow House
-    inputattacktype: "\u81EA\u7136\u5C5E\u6027"
-    inputattacktype2: Natural attribute
+    inputattacktype: "\u6C34\u5C5E\u6027"
+    inputattacktype2: Water attribute
     inputbadtype: "\u706B\u5C5E\u6027"
     inputbadtype2: Fire attribute
     gettrg: 0
     image: {fileID: 21300000, guid: 100c368f08dfdaa4a93a613b1203c569, type: 3}
+  - name: "\u30A2\u30A4\u30B9\u30A6\u30EB\u30D5"
+    name2: Ice wolf
+    script: "\u6C37\u7D50\u6D1E\u7A9F\u306B\u4F4F\u307F\u7740\u304D\u3001\r\n\u7372\u7269\u3092\u982D\u90E8\u306E\u30AF\u30EA\u30B9\u30BF\u30EB\u3076\u3093\u56DE\u3057\u3066\u4ED5\u7559\u3081\u308B\u3088\u3046\u3060\u3002\r\n\u5927\u6614\u306F\u666E\u901A\u306E\u72FC\u3067\u3042\u3063\u305F\u304C\u3001\u6C37\u7D50\u6D1E\u7A9F\u306E\u5F71\u97FF\u3067\u4ECA\u306E\u59FF\u3078\u3068\u9032\u5316\u3057\u305F\u3002\r\n\u5012\u3059\u3068\u305F\u307E\u306B\u30AF\u30EA\u30B9\u30BF\u30EB\u3092\u843D\u3068\u3059\u3002"
+    script2: 'They seem to live in icy caves and kill their prey by swinging the
+      crystal horns on their heads.
+
+      Long ago, it was an ordinary wolf, but
+      it evolved into its current form under the influence of the ice caves.
+
+      When
+      defeated, they sometimes drop crystals.'
+    inputhouse: "\u6C37\u7D50\u6D1E\u7A9F\u3067\u751F\u606F\u304C\u78BA\u8A8D\u3055\u308C\u3066\u3044\u308B"
+    inputhouse2: Confirmed inhabitant in ice caves.
+    inputattacktype: "\u6C34\u5C5E\u6027"
+    inputattacktype2: Water attribute
+    inputbadtype: "\u706B\u5C5E\u6027"
+    inputbadtype2: Fire attribute
+    gettrg: 0
+    image: {fileID: 21300000, guid: 068f85053b1bce14a85659deda2a3163, type: 3}
   mouseP: {x: 0, y: 0, z: 0}
   stageName:
   - "\u30B9\u30C6\u30FC\u30B8\u300C\u59CB\u307E\u308A\u306E\u68EE\u300D"
@@ -4347,3 +4384,8 @@ MonoBehaviour:
     tips_trgID: 122
   temp_text:
   - 
+  old_year: 2023
+  devdays:
+    year: 2003
+    month: 7
+    day: 28
