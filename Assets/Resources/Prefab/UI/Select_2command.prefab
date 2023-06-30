@@ -170,6 +170,9 @@ MonoBehaviour:
   englishText: No
   englishFontSize: 32
   nosetTrg: 0
+  textimage: {fileID: 0}
+  textsprite: {fileID: 0}
+  start_only: 0
 --- !u!1 &2473615429746837874
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +223,7 @@ GameObject:
   - component: {fileID: 2664246368221773357}
   - component: {fileID: 53407145878425557}
   - component: {fileID: 1428443570657149537}
+  - component: {fileID: 9048825741944462952}
   m_Layer: 5
   m_Name: useText
   m_TagString: Untagged
@@ -267,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49056602, g: 0.34164417, b: 0.21520111, a: 1}
+  m_Color: {r: 0.6698113, g: 0.47244087, b: 0.30647027, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -302,6 +306,24 @@ MonoBehaviour:
   englishText: Do you want to use the selected item?
   englishFontSize: 32
   nosetTrg: 0
+  textimage: {fileID: 0}
+  textsprite: {fileID: 0}
+  start_only: 0
+--- !u!114 &9048825741944462952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543702093912880062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.101960786}
+  m_EffectDistance: {x: 1, y: -1.35}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5391428558461262709
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +466,7 @@ MonoBehaviour:
   ui: {fileID: 327478279242930416}
   animname: normaluiend
   destroytime: 1
+  pushesc_anim: 0
 --- !u!82 &681784916395372711
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1008,3 +1031,6 @@ MonoBehaviour:
   englishText: Yes
   englishFontSize: 32
   nosetTrg: 0
+  textimage: {fileID: 0}
+  textsprite: {fileID: 0}
+  start_only: 0
