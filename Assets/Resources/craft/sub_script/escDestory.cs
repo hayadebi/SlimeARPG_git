@@ -155,4 +155,72 @@ public class escDestory : MonoBehaviour
             }
         }
     }
+
+    public void BtnEsc()
+    {
+        GManager.instance.ESCtrg = true;
+        if (pushesc_anim)
+        {
+            GManager.instance.ESCtrg = true;
+            pushesc_anim = false;
+        }
+        if (inputon == true && inputUInumber == -1 && GManager.instance.ESCtrg)
+        {
+            GManager.instance.ESCtrg = false;
+            PlayerPrefs.SetFloat("audioMax", GManager.instance.audioMax);
+            PlayerPrefs.SetFloat("seMax", GManager.instance.seMax);
+            PlayerPrefs.SetInt("mode", GManager.instance.mode);
+            PlayerPrefs.SetFloat("kando", GManager.instance.kando);
+            PlayerPrefs.SetInt("autoattack", GManager.instance.autoattack);
+            PlayerPrefs.SetFloat("rotpivot", GManager.instance.rotpivot);
+            PlayerPrefs.Save();
+            GManager.instance.setmenu = 0;
+            GManager.instance.walktrg = true;
+            Destroy(gameObject, destroytime);
+            ////試験的にアンロード
+            //Resources.UnloadUnusedAssets();
+            //-----------------
+            if (ui != null)
+            {
+                ui.Play(animname);
+                if (seTrg != -1)
+                {
+                    GManager.instance.setrg = seTrg;
+                }
+            }
+        }
+        else if (inputon == true && (inputUInumber + 1) > GManager.instance.setmenu && GManager.instance.ESCtrg)
+        {
+            PlayerPrefs.SetFloat("audioMax", GManager.instance.audioMax);
+            PlayerPrefs.SetFloat("seMax", GManager.instance.seMax);
+            PlayerPrefs.SetInt("mode", GManager.instance.mode);
+            PlayerPrefs.SetFloat("kando", GManager.instance.kando);
+            PlayerPrefs.SetInt("autoattack", GManager.instance.autoattack);
+            PlayerPrefs.SetFloat("rotpivot", GManager.instance.rotpivot);
+            PlayerPrefs.Save();
+            GManager.instance.setmenu -= 1;
+            if (GManager.instance.setmenu < 1)
+            {
+                GManager.instance.setmenu = 0;
+                GManager.instance.ESCtrg = false;
+                GManager.instance.walktrg = true;
+                if (mousetrg == true)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                }
+            }
+            if (ui != null)
+            {
+                GManager.instance.ESCtrg = false;
+                ui.Play(animname);
+                if (seTrg != -1)
+                {
+                    GManager.instance.setrg = seTrg;
+                }
+            }
+            Destroy(gameObject, destroytime);
+            //-----------------
+        }
+    }
 }
