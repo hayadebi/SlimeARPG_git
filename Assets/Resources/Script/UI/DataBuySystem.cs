@@ -14,7 +14,7 @@ public class DataBuySystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameObject.Find("online-jackshop")) jackshop = GameObject.Find("online-jackshop");
+        if(GameObject.Find("online-jackshop(Clone)")) jackshop = GameObject.Find("online-jackshop(Clone)");
         if (jackshop != null && jackshop.GetComponent<StoreManager>()) storem = jackshop.GetComponent<StoreManager>();
         //文章改変・翻訳
         Invoke(nameof(UpdateText), 0.1f);
@@ -23,7 +23,7 @@ public class DataBuySystem : MonoBehaviour
     {
         if (get_buytype == 0)
         {
-            buyprice = GManager.instance.ItemID[GManager.instance.select_buyid].itemprice / 400f;
+            buyprice = GManager.instance.ItemID[GManager.instance.select_buyid].itemprice / 500f;
             if (GManager.instance.isEnglish == 0)
             {
                 buyname = GManager.instance.ItemID[GManager.instance.select_buyid].itemname;
@@ -38,7 +38,7 @@ public class DataBuySystem : MonoBehaviour
         }
         else if (get_buytype == 1)
         {
-            buyprice = GManager.instance.ItemID[GManager.instance._craftRecipe[GManager.instance.select_buyid].craftItem_id].itemprice / 100f;
+            buyprice = GManager.instance.ItemID[GManager.instance._craftRecipe[GManager.instance.select_buyid].craftItem_id].itemprice / 250f;
             if (GManager.instance.isEnglish == 0)
             {
                 buyname = GManager.instance.ItemID[GManager.instance._craftRecipe[GManager.instance.select_buyid].craftItem_id].itemname;
@@ -57,7 +57,7 @@ public class DataBuySystem : MonoBehaviour
         if (storem != null)
         {
             GManager.instance.setrg = 36;
-            storem.BuyAddData(-buyprice);
+            storem.BuyAddData(buyprice);
             if (get_buytype == 0)
             {
                 GManager.instance.ItemID[GManager.instance.select_buyid].itemnumber += 1;
