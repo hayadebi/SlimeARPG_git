@@ -153,7 +153,9 @@ public class StoreManager : MonoBehaviour
             if (GManager.instance.isEnglish == 0) get_devcoinviewtext.text = "所持デビコイン：" + GManager.instance.get_devcoin.ToString();
             else if (GManager.instance.isEnglish != 0) get_devcoinviewtext.text = "Devil coins you have：" + GManager.instance.get_devcoin.ToString();
             NCMBObject obj = get_ncmbobj;
-            obj.Increment("adsCoin", tmpnum - setf);
+            print((tmpnum + setf).ToString());
+            obj[coin_name] = tmpnum + setf;
+            //obj.Increment("adsCoin", -setf);
             obj.SaveAsync();
         }
     }

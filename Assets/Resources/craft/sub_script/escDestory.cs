@@ -64,7 +64,7 @@ public class escDestory : MonoBehaviour
             }
             else if (mouseesctrg == true)
             {
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || GManager.instance.ESCtrg || Input.GetKeyDown(KeyCode.Return))
                 {
                     GManager.instance.ESCtrg = false;
                     PlayerPrefs.SetFloat("audioMax", GManager.instance.audioMax);
@@ -126,7 +126,7 @@ public class escDestory : MonoBehaviour
             }
             else if(mouseesctrg == true)
             {
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || GManager.instance.ESCtrg || Input.GetKeyDown(KeyCode.Return))
                 {
                     PlayerPrefs.SetFloat("audioMax", GManager.instance.audioMax);
                     PlayerPrefs.SetFloat("seMax", GManager.instance.seMax);
@@ -182,6 +182,7 @@ public class escDestory : MonoBehaviour
             //-----------------
             if (ui != null)
             {
+                GManager.instance.ESCtrg = false;
                 ui.Play(animname);
                 if (seTrg != -1)
                 {

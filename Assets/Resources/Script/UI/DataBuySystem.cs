@@ -57,7 +57,7 @@ public class DataBuySystem : MonoBehaviour
         if (storem != null)
         {
             GManager.instance.setrg = 36;
-            storem.BuyAddData(buyprice);
+            storem.BuyAddData(-buyprice);
             if (get_buytype == 0)
             {
                 GManager.instance.ItemID[GManager.instance.select_buyid].itemnumber += 1;
