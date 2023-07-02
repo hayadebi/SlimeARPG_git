@@ -23,6 +23,12 @@ public class clickbutton : MonoBehaviour
     public Animator anim_;
     public string a_name;
     public int a_setnumber;
+    [Header("課金用")]
+    public bool mpurseuser_trg = false;
+    public clickbutton usercheck=null;
+    public int set_buyid = -1;
+    [Header("0=アイテム,1=クラフトレシピ")]
+    public int set_buytype = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -45,50 +51,64 @@ public class clickbutton : MonoBehaviour
     }
     public void settingClick()
     {
-        if (GManager.instance.setmenu < maxUI && GManager.instance.walktrg == true)
+        if (!mpurseuser_trg || (mpurseuser_trg && GManager.instance.mpurseuser_on))
         {
-            GManager.instance.setmenu += 1;
-            GManager.instance.walktrg = false;
-            audioSource.PlayOneShot(clickse);
-            if (menutrg == false)
+            GameObject tmpobj=null;
+            if (GManager.instance.setmenu < maxUI && GManager.instance.walktrg == true)
             {
-                Instantiate(settingUI, transform.position, transform.rotation);
+                GManager.instance.setmenu += 1;
+                GManager.instance.walktrg = false;
+                audioSource.PlayOneShot(clickse);
+                if (menutrg == false)
+                {
+                    tmpobj=Instantiate(settingUI, transform.position, transform.rotation);
+                }
+                else if (menutrg == true)
+                {
+                    tmpobj = Instantiate(GManager.instance.spawnUI, transform.position, transform.rotation);
+                }
             }
-            else if (menutrg == true)
+            else if (GManager.instance.setmenu < maxUI && GManager.instance.setmenu > 0)
             {
-                Instantiate(GManager.instance.spawnUI, transform.position, transform.rotation);
+                GManager.instance.setmenu += 1;
+                GManager.instance.walktrg = false;
+                audioSource.PlayOneShot(clickse);
+                if (menutrg == false)
+                {
+                    tmpobj = Instantiate(settingUI, transform.position, transform.rotation);
+                }
+                else if (menutrg == true)
+                {
+                    tmpobj = Instantiate(GManager.instance.spawnUI, transform.position, transform.rotation);
+                }
             }
+            else if (GManager.instance.setmenu < maxUI && GManager.instance.walktrg == false)
+            {
+                GManager.instance.setmenu += 1;
+                GManager.instance.walktrg = false;
+                audioSource.PlayOneShot(clickse);
+                if (menutrg == false)
+                {
+                    tmpobj = Instantiate(settingUI, transform.position, transform.rotation);
+                }
+                else if (menutrg == true)
+                {
+                    tmpobj = Instantiate(GManager.instance.spawnUI, transform.position, transform.rotation);
+                }
+            }
+            if (set_buyid >= 0) GManager.instance.select_buyid = set_buyid;
+            if (set_buytype >= 0 && tmpobj) tmpobj.GetComponent<DataBuySystem>().get_buytype = set_buytype;
         }
-        else if (GManager.instance.setmenu < maxUI && GManager.instance.setmenu > 0)
+        else
         {
-            GManager.instance.setmenu += 1;
-            GManager.instance.walktrg = false;
-            audioSource.PlayOneShot(clickse);
-            if (menutrg == false)
-            {
-                Instantiate(settingUI, transform.position, transform.rotation);
-            }
-            else if (menutrg == true)
-            {
-                Instantiate(GManager.instance.spawnUI, transform.position, transform.rotation);
-            }
-        }
-        else if(GManager.instance.setmenu < maxUI && GManager.instance.walktrg == false)
-        {
-            GManager.instance.setmenu += 1;
-            GManager.instance.walktrg = false;
-            audioSource.PlayOneShot(clickse);
-            if (menutrg == false)
-            {
-                Instantiate(settingUI, transform.position, transform.rotation);
-            }
-            else if (menutrg == true)
-            {
-                Instantiate(GManager.instance.spawnUI, transform.position, transform.rotation);
-            }
+            if (usercheck != null) usercheck.gameObject.SetActive(true);
+            GManager.instance.setrg = 27;
         }
     }
-
+    public void NoSetThis()
+    {
+        GManager.instance.ESCtrg = true;
+    }
     public void startClick()
     {
         if (GManager.instance.bossbattletrg == 0)

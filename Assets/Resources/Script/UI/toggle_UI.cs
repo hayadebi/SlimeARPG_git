@@ -55,7 +55,7 @@ public class toggle_UI : MonoBehaviour
             else if (GManager.instance.isEnglish == 0)
             {
                 toggle.isOn = false;
-                _toggleText.text = "日本語";
+                _toggleText.text = "English";
             }
         }
         else if (_toggleMode == "freecamera")
@@ -105,7 +105,7 @@ public class toggle_UI : MonoBehaviour
             else if (_toggleMode == "localen")
             {
                 GManager.instance.isEnglish = 0;
-                _toggleText.text = "日本語";
+                _toggleText.text = "English";
             }
             else if (_toggleMode == "autodash")
             {

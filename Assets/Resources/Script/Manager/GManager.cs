@@ -388,6 +388,12 @@ public class GManager : MonoBehaviour
     }
     public DevDateTime devdays;
     public DateTime checkdev = new DateTime(2003, 7, 28);
+    //課金要素について
+    public float get_devcoin = 0f;
+    public float get_devnugget = 0f;
+    public string mpurse_address = "";
+    public bool mpurseuser_on = false;
+    public int select_buyid = 0;
     private void Awake()
     {
         if (instance == null)
