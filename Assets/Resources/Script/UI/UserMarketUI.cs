@@ -66,7 +66,7 @@ public class UserMarketUI : MonoBehaviour
                 }
             }
         });
-        Invoke(nameof(SetUI),0.2f);//UIを表示
+        Invoke(nameof(SetUI),0.31f);//UIを表示
     }
     private void Update()
     {
@@ -77,7 +77,7 @@ public class UserMarketUI : MonoBehaviour
     {
         if (onItem!=null && onItem.Count>0 &&storem != null)
         {
-            selectprice = (double)GManager.instance.ItemID[onId[selectnumber]].itemprice / (double)500;
+            selectprice = (double)GManager.instance.ItemID[onId[selectnumber]].itemprice / (double)800;
             if (GManager.instance.isEnglish == 0)
             {
                 get_buyday.text = "出品日：" + onDay[selectnumber];

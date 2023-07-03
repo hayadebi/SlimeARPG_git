@@ -44,14 +44,14 @@ public class craftshopUI : MonoBehaviour
         //ゲームマネージャー内のクラフトレシピ達を格納
         for (int i = 0; GManager.instance._craftRecipe.Length > i;)
         {
-            if (GManager.instance._craftRecipe[i].get_recipe <= 0)
+            if (GManager.instance._craftRecipe[i].get_recipe <= 0 &&!GManager.instance._craftRecipe[i].on_notgetview)
                 boxnumber += 1;
             i += 1;
         }
         onItem = new int[boxnumber];
         for (int i = 0; GManager.instance._craftRecipe.Length > i;)
         {
-            if (GManager.instance._craftRecipe[i].get_recipe <= 0)
+            if (GManager.instance._craftRecipe[i].get_recipe <= 0&& !GManager.instance._craftRecipe[i].on_notgetview)
             {
                 onItem[inputnumber] = i;
                 inputnumber += 1;
@@ -69,7 +69,7 @@ public class craftshopUI : MonoBehaviour
     {
         if (storem != null)
         {
-            selectprice = (double)GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemprice / (double)250;
+            selectprice = (double)GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemprice / (double)200;
             if (GManager.instance.isEnglish == 0)
             {
                 selectname = GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemname;

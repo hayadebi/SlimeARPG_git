@@ -361,6 +361,7 @@ public class GManager : MonoBehaviour
         [Header("使用する素材(6種類まで)")]
         public int[] materialItem_id;
         public int[] materialSet_number;
+        public bool on_notgetview;
     }
     [Header("クラフトレシピを追加、いじるならココ")]
     public CraftID[] _craftRecipe;
