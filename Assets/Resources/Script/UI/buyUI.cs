@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using NCMB;
+using System.IO;
+using System;
 public class buyUI : MonoBehaviour
 {
     public AudioSource audioS;
@@ -139,6 +142,16 @@ public class buyUI : MonoBehaviour
         }
         else if (itemID != null && itemID.Length > (0 + selectnumber) && GManager.instance.ItemID[itemID[0 + selectnumber]].itemnumber > 0 && GManager.instance.ItemID[itemID[0 + selectnumber]].itemprice < 9999 )
         {
+            //--------闇市へ追加--------
+            // クラスのNCMBObjectを作成
+            var tmpidnum = itemID[0 + selectnumber];
+            NCMBObject testClass = new NCMBObject("BlackMarket");
+            // オブジェクトに値を設定
+            testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
+            testClass["itemid"] = tmpidnum;
+            // データストアへの登録
+            testClass.SaveAsync();
+            //--------------------------
             GManager.instance.ItemID[itemID[0 + selectnumber]].itemnumber -= 1;
             oldbuycoin = (GManager.instance.ItemID[itemID[0 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
@@ -158,6 +171,16 @@ public class buyUI : MonoBehaviour
         }
         else if (itemID != null && itemID.Length > (1 + selectnumber) && GManager.instance.ItemID[itemID[1 + selectnumber]].itemnumber > 0 && GManager.instance.ItemID[itemID[1 + selectnumber]].itemprice < 9999)
         {
+            //--------闇市へ追加--------
+            // クラスのNCMBObjectを作成
+            var tmpidnum = itemID[1 + selectnumber];
+            NCMBObject testClass = new NCMBObject("BlackMarket");
+            // オブジェクトに値を設定
+            testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
+            testClass["itemid"] = tmpidnum;
+            // データストアへの登録
+            testClass.SaveAsync();
+            //--------------------------
             GManager.instance.ItemID[itemID[1 + selectnumber]].itemnumber -= 1;
             oldbuycoin = (GManager.instance.ItemID[itemID[1 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
@@ -177,6 +200,16 @@ public class buyUI : MonoBehaviour
         }
         else if (itemID != null && itemID.Length > (2 + selectnumber) && GManager.instance.ItemID[itemID[2 + selectnumber]].itemnumber > 0 && GManager.instance.ItemID[itemID[2 + selectnumber]].itemprice < 9999)
         {
+            //--------闇市へ追加--------
+            // クラスのNCMBObjectを作成
+            var tmpidnum = itemID[2 + selectnumber];
+            NCMBObject testClass = new NCMBObject("BlackMarket");
+            // オブジェクトに値を設定
+            testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
+            testClass["itemid"] = tmpidnum;
+            // データストアへの登録
+            testClass.SaveAsync();
+            //--------------------------
             GManager.instance.ItemID[itemID[2 + selectnumber]].itemnumber -= 1;
             oldbuycoin = (GManager.instance.ItemID[itemID[2 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
@@ -196,6 +229,16 @@ public class buyUI : MonoBehaviour
         }
         else if (itemID != null && itemID.Length > (3 + selectnumber) && GManager.instance.ItemID[itemID[3 + selectnumber]].itemnumber > 0 && GManager.instance.ItemID[itemID[3 + selectnumber]].itemprice < 9999)
         {
+            //--------闇市へ追加--------
+            // クラスのNCMBObjectを作成
+            var tmpidnum = itemID[3 + selectnumber];
+            NCMBObject testClass = new NCMBObject("BlackMarket");
+            // オブジェクトに値を設定
+            testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname2;
+            testClass["itemid"] = tmpidnum;
+            // データストアへの登録
+            testClass.SaveAsync();
+            //--------------------------
             GManager.instance.ItemID[itemID[3 + selectnumber]].itemnumber -= 1;
             oldbuycoin = (GManager.instance.ItemID[itemID[3 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;

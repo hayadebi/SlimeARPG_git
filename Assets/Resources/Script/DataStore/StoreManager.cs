@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 public class StoreManager : MonoBehaviour
 {
-    private string class_name = "AdsClass";
-    private string check_name = "UserCheck";
+    public string class_name = "AdsClass";
+    public string check_name = "UserCheck";
     private string address_num = " ";
-    private string coin_name = "adsCoin";
+    public string coin_name = "adsCoin";
     private int query_limit = 200;
     public InputField get_addressfield;
     public Text get_devcoinviewtext;
