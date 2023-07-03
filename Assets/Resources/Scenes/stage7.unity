@@ -12797,8 +12797,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383962615}
-  m_LocalRotation: {x: -0.36185968, y: -0.31610745, z: -0.13200149, w: 0.86701167}
-  m_LocalPosition: {x: 677.61304, y: -722.2573, z: -204.03098}
+  m_LocalRotation: {x: 0.19169278, y: -0.01465894, z: -0.0027914932, w: -0.9813416}
+  m_LocalPosition: {x: -2361.1438, y: -38.845795, z: 166.65594}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17034,7 +17034,7 @@ PrefabInstance:
     - target: {fileID: 1151405476220745127, guid: af1395f0f2eb66c4dbf5d2d13a77c311,
         type: 3}
       propertyPath: ItemID.Array.data[37].itemprice
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1151405476220745127, guid: af1395f0f2eb66c4dbf5d2d13a77c311,
         type: 3}
@@ -138565,6 +138565,8 @@ MonoBehaviour:
   itemtime_notWeather: 0
   _Lamp: {fileID: 0}
   start_savepos: 1
+  on_slimes: 
+  select_onslime: 0
 --- !u!114 &9194110555392189619
 MonoBehaviour:
   m_ObjectHideFlags: 0

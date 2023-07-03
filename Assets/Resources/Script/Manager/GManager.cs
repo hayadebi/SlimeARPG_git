@@ -394,6 +394,7 @@ public class GManager : MonoBehaviour
     public string mpurse_address = "";
     public bool mpurseuser_on = false;
     public int select_buyid = 0;
+    public DateTime tmpdays;
     private void Awake()
     {
         if (instance == null)
@@ -405,6 +406,10 @@ public class GManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    private void Start()
+    {
+        tmpdays = instance.GetGameDay();
     }
     private void Update()
     {

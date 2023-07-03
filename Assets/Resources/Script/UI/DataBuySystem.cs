@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using NCMB;
+using System.IO;
+using System;
 
 public class DataBuySystem : MonoBehaviour
 {
@@ -11,6 +14,8 @@ public class DataBuySystem : MonoBehaviour
     private StoreManager storem;
     private float buyprice = 0f;
     private string buyname="";
+    public NCMBObject deltarget_data = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,10 +63,20 @@ public class DataBuySystem : MonoBehaviour
         {
             GManager.instance.setrg = 36;
             storem.BuyAddData(-buyprice);
+            if (deltarget_data != null)
+            {
+                NCMBObject objDelete = deltarget_data;
+                objDelete.DeleteAsync();
+                deltarget_data = null;
+            }
             if (get_buytype == 0)
             {
                 GManager.instance.ItemID[GManager.instance.select_buyid].itemnumber += 1;
                 GManager.instance.ItemID[GManager.instance.select_buyid].gettrg = 1;
+
+                PlayerPrefs.SetInt("itemnumber" + GManager.instance.select_buyid, GManager.instance.ItemID[GManager.instance.select_buyid].itemnumber);
+                PlayerPrefs.SetInt("itemget" + GManager.instance.select_buyid, GManager.instance.ItemID[GManager.instance.select_buyid].gettrg);
+                PlayerPrefs.Save();
             }
             else if (get_buytype == 1)
             {

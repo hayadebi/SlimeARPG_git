@@ -266,7 +266,7 @@ MonoBehaviour:
   resettrg: 0
   maxUI: 3
   nextscene: 
-  settingUI: {fileID: 8041620797663497642, guid: a0182b347a990144ab64e2d998dfefa3,
+  settingUI: {fileID: 2995249673434584707, guid: a72053dc154426d49b30090be419e47c,
     type: 3}
   fadeinUI: {fileID: 0}
   clickse: {fileID: 8300000, guid: 7f36c745cf6e6f1458e54e5618e43b6a, type: 3}
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5849056, g: 0.43771356, b: 0.31728372, a: 0.4}
+  m_Color: {r: 0.5849056, g: 0.43771356, b: 0.31728372, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507492131277864364}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507492131277864364}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8971b789a6c197f46a551171bae7a461, type: 3}
   m_Name: 
@@ -2011,7 +2011,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a82dd0906b44c594e93803e77e0df973, type: 3}
-    m_FontSize: 13
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2022,7 +2022,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B8\u30E3\u30C3\u30AF\u306E\u65E5\u66FF\u308F\u308A\u9AD8\u7D1A\u30A2\u30A4\u30C6\u30E0"
+  m_Text: "\u672A\u7FD2\u5F97\u9B54\u6CD5\u8CFC\u5165"
 --- !u!114 &7337640129471777688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2035,8 +2035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b797f3c9e588c334c92a789df455c916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: Jack's Daily High-end Items
-  englishFontSize: 13
+  englishText: Purchase unlearned magic.
+  englishFontSize: 14
   nosetTrg: 0
   textimage: {fileID: 0}
   textsprite: {fileID: 0}
@@ -4175,6 +4175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872771e5e59d8ab49aceb8363dc30309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  class_name: AdsClass
+  check_name: UserCheck
+  coin_name: adsCoin
   get_addressfield: {fileID: 2511564761713846477}
   get_devcoinviewtext: {fileID: 572257379377146515}
 --- !u!1 &4890016457730086469
@@ -4869,7 +4872,7 @@ GameObject:
   - component: {fileID: 4362295101134593473}
   - component: {fileID: 3695330487162989169}
   m_Layer: 5
-  m_Name: jackdayshop
+  m_Name: magicshop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6655,7 +6658,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a82dd0906b44c594e93803e77e0df973, type: 3}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -6666,7 +6669,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8CB7\u53D6\u30A2\u30A4\u30C6\u30E0\u30D5\u30EA\u30FC\u30DE\u30FC\u30B1\u30C3\u30C8"
+  m_Text: "\u8CB7\u53D6\u5C4B\u306E\u95C7\u5E02"
 --- !u!114 &272168283455909272
 MonoBehaviour:
   m_ObjectHideFlags: 0

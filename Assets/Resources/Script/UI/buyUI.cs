@@ -145,10 +145,13 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[0 + selectnumber];
+            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
             testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
             testClass["itemid"] = tmpidnum;
+            testClass["buyday"] = tmpdaystext;
+            testClass["datagroup"] = "useritems";
             // データストアへの登録
             testClass.SaveAsync();
             //--------------------------
@@ -156,6 +159,11 @@ public class buyUI : MonoBehaviour
             oldbuycoin = (GManager.instance.ItemID[itemID[0 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
             audioS.PlayOneShot(buyse);
+
+            PlayerPrefs.SetInt("coin", GManager.instance.Coin);
+            PlayerPrefs.SetInt("itemnumber" + tmpidnum, GManager.instance.ItemID[tmpidnum].itemnumber);
+            PlayerPrefs.SetInt("itemget" + tmpidnum, GManager.instance.ItemID[tmpidnum].gettrg);
+            PlayerPrefs.Save();
             SetUI();
         }
         else
@@ -174,10 +182,13 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[1 + selectnumber];
+            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
             testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
             testClass["itemid"] = tmpidnum;
+            testClass["buyday"] = tmpdaystext;
+            testClass["datagroup"] = "useritems";
             // データストアへの登録
             testClass.SaveAsync();
             //--------------------------
@@ -185,6 +196,11 @@ public class buyUI : MonoBehaviour
             oldbuycoin = (GManager.instance.ItemID[itemID[1 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
             audioS.PlayOneShot(buyse);
+
+            PlayerPrefs.SetInt("coin", GManager.instance.Coin);
+            PlayerPrefs.SetInt("itemnumber" + tmpidnum, GManager.instance.ItemID[tmpidnum].itemnumber);
+            PlayerPrefs.SetInt("itemget" + tmpidnum, GManager.instance.ItemID[tmpidnum].gettrg);
+            PlayerPrefs.Save();
             SetUI();
         }
         else
@@ -203,10 +219,13 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[2 + selectnumber];
+            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
             testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
             testClass["itemid"] = tmpidnum;
+            testClass["buyday"] = tmpdaystext;
+            testClass["datagroup"] = "useritems";
             // データストアへの登録
             testClass.SaveAsync();
             //--------------------------
@@ -214,6 +233,11 @@ public class buyUI : MonoBehaviour
             oldbuycoin = (GManager.instance.ItemID[itemID[2 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
             audioS.PlayOneShot(buyse);
+
+            PlayerPrefs.SetInt("coin", GManager.instance.Coin);
+            PlayerPrefs.SetInt("itemnumber" + tmpidnum, GManager.instance.ItemID[tmpidnum].itemnumber);
+            PlayerPrefs.SetInt("itemget" + tmpidnum, GManager.instance.ItemID[tmpidnum].gettrg);
+            PlayerPrefs.Save();
             SetUI();
         }
         else
@@ -232,10 +256,13 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[3 + selectnumber];
+            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
-            testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname2;
+            testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
             testClass["itemid"] = tmpidnum;
+            testClass["buyday"] = tmpdaystext;
+            testClass["datagroup"] = "useritems";
             // データストアへの登録
             testClass.SaveAsync();
             //--------------------------
@@ -243,6 +270,11 @@ public class buyUI : MonoBehaviour
             oldbuycoin = (GManager.instance.ItemID[itemID[3 + selectnumber]].itemprice / 3) * 2;
             GManager.instance.Coin += oldbuycoin;
             audioS.PlayOneShot(buyse);
+
+            PlayerPrefs.SetInt("coin", GManager.instance.Coin);
+            PlayerPrefs.SetInt("itemnumber" + tmpidnum, GManager.instance.ItemID[tmpidnum].itemnumber);
+            PlayerPrefs.SetInt("itemget" + tmpidnum, GManager.instance.ItemID[tmpidnum].gettrg);
+            PlayerPrefs.Save();
             SetUI();
         }
         else

@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class craftshopUI : MonoBehaviour
 {
-    //【クラフトUIのスクリプト】※スライムディストピアではスライムが素材を食べてクラフトします。
-
     public Image buttonImage; //ボタン自体をいじる時用
     [Header("取得")]
     public AudioSource audioS;
@@ -64,7 +62,7 @@ public class craftshopUI : MonoBehaviour
     }
     private void Update()
     {
-        if (cooltime >= 0) cooltime -= Time.deltaTime;
+        ;// if (cooltime >= 0) cooltime -= Time.deltaTime;
     }
     //クラフトUIを表示(呼び出して使う)
     public void SetUI()
@@ -232,7 +230,7 @@ public class craftshopUI : MonoBehaviour
     {
         if (GManager.instance._craftRecipe[onItem[selectnumber]].get_recipe <= 0 && cooltime<=0)
         {
-            cooltime = 2f;
+            cooltime = 99f;
             audioS.PlayOneShot(onse);
             GManager.instance.setmenu += 1;
             //処理
