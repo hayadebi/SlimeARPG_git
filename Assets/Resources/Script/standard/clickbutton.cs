@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class clickbutton : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class clickbutton : MonoBehaviour
     public bool mpurseuser_trg = false;
     public clickbutton usercheck=null;
     public int set_buyid = -1;
+    public int limit_onviewmax = -1;
     [Header("0=アイテム,1=クラフトレシピ")]
     public int set_buytype = -1;
 
@@ -108,6 +110,40 @@ public class clickbutton : MonoBehaviour
     public void NoSetThis()
     {
         GManager.instance.ESCtrg = true;
+    }
+    public void CheckOnView()
+    {
+        if (!mpurseuser_trg || (mpurseuser_trg && GManager.instance.mpurseuser_on))
+        {
+            if (limit_onviewmax == -1 || (limit_onviewmax > 0 && PlayerPrefs.GetInt("DayAds", 0) < 5))
+            {
+                var tmp = PlayerPrefs.GetInt("DayAds", 0) + 1;
+                PlayerPrefs.SetInt("DayAds", tmp);
+                PlayerPrefs.Save();
+                settingUI.SetActive(true);
+            }
+            else
+            {
+                GManager.instance.setrg = 27;
+                if (this.GetComponent<Image>())
+                {
+                    Image tmpimg = this.GetComponent<Image>();
+                    Color tmpcl = tmpimg.color;
+                    tmpcl.a /= 2;
+                    tmpimg.color = tmpcl;
+                }
+
+            }
+        }
+        else
+        {
+            if (usercheck != null) usercheck.gameObject.SetActive(true);
+            GManager.instance.setrg = 27;
+        }
+    }
+    public void CheckNoView()
+    {
+        this.gameObject.SetActive(false);
     }
     public void startClick()
     {

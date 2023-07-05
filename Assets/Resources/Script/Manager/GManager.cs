@@ -396,6 +396,16 @@ public class GManager : MonoBehaviour
     public bool mpurseuser_on = false;
     public int select_buyid = 0;
     public DateTime tmpdays;
+
+    [System.Serializable]
+    public struct AdsTips_ID
+    {
+        [Multiline]
+        public string jp_tips;
+        [Multiline]
+        public string en_tips;
+    }
+    public AdsTips_ID[] adstips;
     private void Awake()
     {
         if (instance == null)
@@ -410,7 +420,22 @@ public class GManager : MonoBehaviour
     }
     private void Start()
     {
-        tmpdays = instance.GetGameDay();
+        //日替わり処理
+        DateTime tmpdays = instance.GetGameDay();
+        var oldYear = PlayerPrefs.GetInt("oldallYear", (tmpdays.Year - 1));
+        var oldMonth = PlayerPrefs.GetInt("oldallMonth", (tmpdays.Month - 1));
+        var oldDay = PlayerPrefs.GetInt("oldallDay", (tmpdays.Day - 1));
+        DateTime olddays = new DateTime(oldYear, oldMonth, oldDay);
+        if (Math.Abs(GManager.instance.AllSpanCheck(olddays)) > 0)
+        {
+            PlayerPrefs.SetInt("oldallYear", tmpdays.Year);
+            PlayerPrefs.SetInt("oldallMonth", tmpdays.Month);
+            PlayerPrefs.SetInt("oldallDay", tmpdays.Day);
+            //その他日替わりセーブ
+            PlayerPrefs.SetInt("DayAds", 0);
+            PlayerPrefs.Save();
+            //日替わり処理
+        }
     }
     private void Update()
     {
