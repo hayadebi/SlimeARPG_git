@@ -141,6 +141,36 @@ public class clickbutton : MonoBehaviour
             GManager.instance.setrg = 27;
         }
     }
+    public void ChildOnView()
+    {
+        if (!mpurseuser_trg || (mpurseuser_trg && GManager.instance.mpurseuser_on))
+        {
+            if (limit_onviewmax == -1 || (limit_onviewmax > 0 && PlayerPrefs.GetInt("DayAds", 0) < 5))
+            {
+                var tmp = PlayerPrefs.GetInt("DayAds", 0) + 1;
+                PlayerPrefs.SetInt("DayAds", tmp);
+                PlayerPrefs.Save();
+                Instantiate(settingUI, fadeinUI.transform.position, transform.rotation, fadeinUI.transform);
+            }
+            else
+            {
+                GManager.instance.setrg = 27;
+                if (this.GetComponent<Image>())
+                {
+                    Image tmpimg = this.GetComponent<Image>();
+                    Color tmpcl = tmpimg.color;
+                    tmpcl.a /= 2;
+                    tmpimg.color = tmpcl;
+                }
+
+            }
+        }
+        else
+        {
+            if (usercheck != null) usercheck.gameObject.SetActive(true);
+            GManager.instance.setrg = 27;
+        }
+    }
     public void CheckNoView()
     {
         this.gameObject.SetActive(false);

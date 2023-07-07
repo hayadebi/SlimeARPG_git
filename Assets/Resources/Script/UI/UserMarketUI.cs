@@ -77,7 +77,7 @@ public class UserMarketUI : MonoBehaviour
     {
         if (onItem!=null && onItem.Count>0 &&storem != null)
         {
-            selectprice = (double)GManager.instance.ItemID[onId[selectnumber]].itemprice / (double)800;
+            selectprice = (double)GManager.instance.ItemID[onId[selectnumber]].itemprice / (double)600;
             if (GManager.instance.isEnglish == 0)
             {
                 get_buyday.text = "出品日：" + onDay[selectnumber];
@@ -99,7 +99,7 @@ public class UserMarketUI : MonoBehaviour
             craftItem_script.text = "????????";
         }
         //大雑把に条件を言うと、表示可能なレシピがあるかどうか AND 選択しているか AND 選択してるクラフトレシピの対象アイテムIDが指定されているか
-        else if (onId.Count>0 &&onId[selectnumber] >= 0 && onItem.Count > 0 && selectnumber != -1)
+        else if (onItem != null && onItem.Count > 0 && onId.Count>0 &&onId[selectnumber] >= 0 && selectnumber != -1)
         {
             //それぞれ条件に応じてレシピ情報を表示
             craftItem_image.sprite = GManager.instance.ItemID[onId[selectnumber]].itemimage;
@@ -163,7 +163,7 @@ public class UserMarketUI : MonoBehaviour
     }
     public void ShopPlay()
     {
-        if (onItem != null && onItem.Count > 0 && onId[selectnumber] >= 0 && cooltime <= 0)
+        if (onItem != null && onItem.Count > 0 && onId[selectnumber] >= 0 && cooltime <= 0 && selectprice<=GManager.instance.get_devcoin)
         {
             cooltime = 99f;
             audioS.PlayOneShot(onse);

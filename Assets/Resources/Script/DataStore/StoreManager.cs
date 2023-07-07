@@ -34,7 +34,7 @@ public class StoreManager : MonoBehaviour
     }
     public void CheckUser()
     {
-        string tmp = "https://v6p9d9t4.ssl.hwcdn.net/html/8207507/index.html";
+        string tmp = "https://v6p9d9t4.ssl.hwcdn.net/html/8240861/index.html";
         Application.OpenURL(tmp);
     }
     public void FetchStage()

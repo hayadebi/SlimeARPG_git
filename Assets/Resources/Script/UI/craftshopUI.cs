@@ -24,7 +24,7 @@ public class craftshopUI : MonoBehaviour
     public Text[] material_number; //要求アイテム数
     [Header("格納、一時的な変数達")]
     int selectnumber = 0;
-    public int[] onItem;
+    public int[] onItem=null;
     private int boxnumber = 0;
     private int inputnumber = 0;
     [Header("追加課金UI")]
@@ -44,11 +44,13 @@ public class craftshopUI : MonoBehaviour
         //ゲームマネージャー内のクラフトレシピ達を格納
         for (int i = 0; GManager.instance._craftRecipe.Length > i;)
         {
-            if (GManager.instance._craftRecipe[i].get_recipe <= 0 &&!GManager.instance._craftRecipe[i].on_notgetview)
+            if (GManager.instance._craftRecipe[i].get_recipe <= 0 && !GManager.instance._craftRecipe[i].on_notgetview)
+            {
                 boxnumber += 1;
+            }
             i += 1;
         }
-        onItem = new int[boxnumber];
+        if(boxnumber>0) onItem = new int[boxnumber];
         for (int i = 0; GManager.instance._craftRecipe.Length > i;)
         {
             if (GManager.instance._craftRecipe[i].get_recipe <= 0&& !GManager.instance._craftRecipe[i].on_notgetview)
@@ -67,7 +69,7 @@ public class craftshopUI : MonoBehaviour
     //クラフトUIを表示(呼び出して使う)
     public void SetUI()
     {
-        if (storem != null)
+        if (storem != null && boxnumber > 0)
         {
             selectprice = (double)GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemprice / (double)200;
             if (GManager.instance.isEnglish == 0)
@@ -84,7 +86,7 @@ public class craftshopUI : MonoBehaviour
             }
             
         }
-        if (onItem == null || onItem.Length == 0)//想定外
+        if (boxnumber <= 0 || onItem == null || onItem.Length == 0)//想定外
         {
             craftItem_image.sprite = nullimage;
             craftItem_name.text = "????";
@@ -100,7 +102,7 @@ public class craftshopUI : MonoBehaviour
             }
         }
         //大雑把に条件を言うと、表示可能なレシピがあるかどうか AND 選択しているか AND 選択してるクラフトレシピの対象アイテムIDが指定されているか
-        else if (onItem[selectnumber] >= 0 && onItem.Length > 0 && selectnumber != -1 && onItem.Length <= GManager.instance._craftRecipe.Length && GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id != -1)
+        else if (boxnumber > 0 && onItem[selectnumber] >= 0 && onItem.Length > 0 && selectnumber != -1 && onItem.Length <= GManager.instance._craftRecipe.Length && GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id != -1)
         {
             //それぞれ条件に応じてレシピ情報を表示
             craftItem_image.sprite = GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemimage;
@@ -179,7 +181,7 @@ public class craftshopUI : MonoBehaviour
                 i++;
             }
         }
-        if (GManager.instance._craftRecipe[onItem[selectnumber]].get_recipe > 0)
+        if (boxnumber > 0 && GManager.instance._craftRecipe[onItem[selectnumber]].get_recipe > 0)
         {
             buttonImage.color = new Color(1, 1, 1, 0.5f);
         }
@@ -191,11 +193,11 @@ public class craftshopUI : MonoBehaviour
 
     public void SelectMinus() //レシピ項目を戻って切り替える、セレクトボタン
     {
-        if (onItem.Length == 0)
+        if (boxnumber <= 0 ||onItem.Length == 0)
         {
             audioS.PlayOneShot(notse);
         }
-        else if (selectnumber > 0)
+        else if (boxnumber > 0 && selectnumber > 0)
         {
             audioS.PlayOneShot(selectse);
             selectnumber -= 1;
@@ -210,11 +212,11 @@ public class craftshopUI : MonoBehaviour
     }
     public void SelectPlus() //レシピ項目を進んで切り替える、セレクトボタン
     {
-        if (onItem.Length == 0)
+        if (boxnumber <= 0||onItem.Length == 0)
         {
             audioS.PlayOneShot(notse);
         }
-        else if (selectnumber < (onItem.Length - 1))
+        else if (boxnumber > 0 && selectnumber < (onItem.Length - 1))
         {
             audioS.PlayOneShot(selectse);
             selectnumber += 1;
@@ -228,7 +230,7 @@ public class craftshopUI : MonoBehaviour
     }
     public void ShopPlay()
     {
-        if (GManager.instance._craftRecipe[onItem[selectnumber]].get_recipe <= 0 && cooltime<=0)
+        if (boxnumber > 0 && GManager.instance._craftRecipe[onItem[selectnumber]].get_recipe <= 0 && cooltime<=0 && selectprice <= GManager.instance.get_devcoin)
         {
             cooltime = 99f;
             audioS.PlayOneShot(onse);
