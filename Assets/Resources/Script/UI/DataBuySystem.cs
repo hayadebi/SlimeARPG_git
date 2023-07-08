@@ -28,7 +28,7 @@ public class DataBuySystem : MonoBehaviour
     {
         if (get_buytype == 0)
         {
-            buyprice = GManager.instance.ItemID[GManager.instance.select_buyid].itemprice / 600f;
+            buyprice = GManager.instance.ItemID[GManager.instance.select_buyid].itemprice / 400f;
             if (GManager.instance.isEnglish == 0)
             {
                 buyname = GManager.instance.ItemID[GManager.instance.select_buyid].itemname;
@@ -43,7 +43,7 @@ public class DataBuySystem : MonoBehaviour
         }
         else if (get_buytype == 1)
         {
-            buyprice = GManager.instance.ItemID[GManager.instance._craftRecipe[GManager.instance.select_buyid].craftItem_id].itemprice / 200f;
+            buyprice = GManager.instance.ItemID[GManager.instance._craftRecipe[GManager.instance.select_buyid].craftItem_id].itemprice / 100f;
             if (GManager.instance.isEnglish == 0)
             {
                 buyname = GManager.instance.ItemID[GManager.instance._craftRecipe[GManager.instance.select_buyid].craftItem_id].itemname;
@@ -58,7 +58,7 @@ public class DataBuySystem : MonoBehaviour
         }
         else if (get_buytype == 2)
         {
-            buyprice = GManager.instance.MagicID[GManager.instance.select_buyid].magicprice / 200f;
+            buyprice = GManager.instance.MagicID[GManager.instance.select_buyid].magicprice / 100f;
             if (GManager.instance.isEnglish == 0)
             {
                 buyname = GManager.instance.MagicID[GManager.instance.select_buyid].magicname;

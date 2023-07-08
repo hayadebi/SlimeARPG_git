@@ -1762,6 +1762,7 @@ MonoBehaviour:
   BuyCheckUI: {fileID: 2518684524794413808, guid: eb7d8eafe44823942929aa1425112f56,
     type: 3}
   getdevcoin_text: {fileID: 3588187146635273520}
+  parentobj: {fileID: 8604373665759978596}
 --- !u!1 &6977160879498868630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,6 +2716,7 @@ MonoBehaviour:
   BuyCheckUI: {fileID: 2518684524794413808, guid: eb7d8eafe44823942929aa1425112f56,
     type: 3}
   getdevcoin_text: {fileID: 3588187146635273520}
+  parentobj: {fileID: 8604373665759978596}
 --- !u!1 &7628417133747277735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,7 +3021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seTrg: -1
   mouseesctrg: 0
-  inputUInumber: -1
+  inputUInumber: 3
   mousetrg: 0
   ui: {fileID: 8854236515341897410}
   animname: normaluiend
@@ -3314,7 +3316,6 @@ GameObject:
   - component: {fileID: 7700199389354120093}
   - component: {fileID: 4407417528045960771}
   - component: {fileID: 3588187146635273520}
-  - component: {fileID: 855622179882903181}
   - component: {fileID: 1459334951481290482}
   m_Layer: 5
   m_Name: Text
@@ -3383,23 +3384,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "9999\xD7"
---- !u!114 &855622179882903181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729002981390935566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9127a4f5ebbcc140aa803222dc35ef0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossname: 
-  InputText: coin
-  Picon: {fileID: 0}
-  textgetanim: {fileID: 0}
-  estatus: {fileID: 0}
 --- !u!114 &1459334951481290482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3777,6 +3761,7 @@ MonoBehaviour:
   BuyCheckUI: {fileID: 2518684524794413808, guid: eb7d8eafe44823942929aa1425112f56,
     type: 3}
   getdevcoin_text: {fileID: 3588187146635273520}
+  parentobj: {fileID: 8604373665759978596}
 --- !u!1 &8678660599871842506
 GameObject:
   m_ObjectHideFlags: 0

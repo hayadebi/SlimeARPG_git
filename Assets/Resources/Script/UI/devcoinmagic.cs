@@ -36,9 +36,11 @@ public class devcoinmagic : MonoBehaviour
     private int shopID_0;
     private int shopID_1;
     private int shopID_2;
+    public Transform parentobj=null;
     // Start is called before the first frame update
     void Start()
     {
+        if (parentobj == null) parentobj = this.transform;
         if (GameObject.Find("online-jackshop(Clone)")) jackshop = GameObject.Find("online-jackshop(Clone)");
         if (jackshop != null && jackshop.GetComponent<StoreManager>()) storem = jackshop.GetComponent<StoreManager>();
         //-----------------------
@@ -88,7 +90,7 @@ public class devcoinmagic : MonoBehaviour
         GManager.instance.shopID[1] = shopID_1;
         GManager.instance.shopID[2] = shopID_2;
         //-----------------------
-        if (GManager.instance.shopID[inputshopID] > -1) selectprice = (double)GManager.instance.MagicID[GManager.instance.shopID[inputshopID]].magicprice / (double)200;
+        if (GManager.instance.shopID[inputshopID] > -1) selectprice = (double)GManager.instance.MagicID[GManager.instance.shopID[inputshopID]].magicprice / (double)100;
         SetUIMagic();
     }
     void SetUIMagic()
@@ -198,7 +200,7 @@ public class devcoinmagic : MonoBehaviour
             audioS.PlayOneShot(getse);
             GManager.instance.setmenu += 1;
             //処理
-            GameObject tmpobj = Instantiate(BuyCheckUI, transform.position, transform.rotation, transform);
+            GameObject tmpobj = Instantiate(BuyCheckUI, parentobj.transform.position, parentobj.transform.rotation, parentobj.transform);
             GManager.instance.select_buyid = GManager.instance.shopID[inputshopID];
             tmpobj.GetComponent<DataBuySystem>().get_buytype = 2;
             

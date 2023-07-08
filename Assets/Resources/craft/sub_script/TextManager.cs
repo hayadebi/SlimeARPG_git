@@ -17,7 +17,7 @@ public class TextManager : MonoBehaviour
     public bool start_only = false;
     void Start()
     {
-        if (GManager.instance.isEnglish == 1 && !textimage)
+        if (GManager.instance.isEnglish != 0 && textimage==null)
         {
             Text text = GetComponent<Text>();
             jpText = text.text;
@@ -32,15 +32,9 @@ public class TextManager : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
-        else if (GManager.instance.isEnglish == 1 && textimage)
+        else if (GManager.instance.isEnglish != 0 && textimage!=null)
         {
-            Text text = GetComponent<Text>();
-            jpText = text.text;
             textimage.sprite = textsprite;
-            if (nosetTrg)
-            {
-                this.gameObject.SetActive(false);
-            }
         }
         oldis = GManager.instance.isEnglish;
     }

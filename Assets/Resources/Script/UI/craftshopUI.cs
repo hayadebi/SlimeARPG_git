@@ -71,7 +71,7 @@ public class craftshopUI : MonoBehaviour
     {
         if (storem != null && boxnumber > 0)
         {
-            selectprice = (double)GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemprice / (double)200;
+            selectprice = (double)GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemprice / (double)100;
             if (GManager.instance.isEnglish == 0)
             {
                 selectname = GManager.instance.ItemID[GManager.instance._craftRecipe[onItem[selectnumber]].craftItem_id].itemname;

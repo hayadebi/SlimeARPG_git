@@ -699,7 +699,7 @@ public class npcsay : MonoBehaviour
                 }
                 else if (GManager.instance.isEnglish == 1)
                 {
-                    GManager.instance.txtget = "The " + GManager.instance.missionID[missionID].name + " mission has begun.";
+                    GManager.instance.txtget = "The " + GManager.instance.missionID[missionID].name2 + " mission has begun.";
                 }
                 GManager.instance.setrg = 1;
                 GManager.instance.missionID[missionID].inputmission = 1;
@@ -712,7 +712,7 @@ public class npcsay : MonoBehaviour
                 }
                 else if (GManager.instance.isEnglish == 1)
                 {
-                    GManager.instance.txtget = "The " + GManager.instance.missionID[subID].name + " mission has begun.";
+                    GManager.instance.txtget = "The " + GManager.instance.missionID[subID].name2 + " mission has begun.";
                 }
                 GManager.instance.setrg = 1;
                 GManager.instance.missionID[subID].inputmission = 1;

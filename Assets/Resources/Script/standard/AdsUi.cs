@@ -48,7 +48,7 @@ public class AdsUi : MonoBehaviour
             GManager.instance.setrg = 12;
             realtime_ads = 0f;
             if (GManager.instance.isEnglish == 0) btn_counttext.text = "0.1デビコインGET！";
-            else btn_counttext.text = (max_adstime - realtime_texttime).ToString() + "Got my 0.1DC!";
+            else btn_counttext.text = "Got my 0.1DC!";
             storem.BuyAddData(0.1f);
             btn_close.enabled = true;
         }

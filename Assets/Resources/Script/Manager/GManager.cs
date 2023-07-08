@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using NCMB;
 public class GManager : MonoBehaviour
 {
     public static GManager instance = null;
@@ -406,6 +407,9 @@ public class GManager : MonoBehaviour
         public string en_tips;
     }
     public AdsTips_ID[] adstips;
+
+    public bool dxtrg = false;
+    public string tmpchildobj;
     private void Awake()
     {
         if (instance == null)
@@ -433,6 +437,7 @@ public class GManager : MonoBehaviour
             PlayerPrefs.SetInt("oldallDay", tmpdays.Day);
             //その他日替わりセーブ
             PlayerPrefs.SetInt("DayAds", 0);
+            PlayerPrefs.SetString("YpY9012nWJzXaBuS", "false");
             PlayerPrefs.Save();
             //日替わり処理
         }
@@ -489,6 +494,14 @@ public class GManager : MonoBehaviour
             today = devday;
         DateTime newday = new DateTime(today.Year, tmp_time.Month, tmp_time.Day);
         check_result = newday.Day - today.Day;
+        print(check_result.ToString());
+        return check_result;
+    }
+    public int NewOldSpanCheck(DateTime new_time, DateTime old_time)
+    {
+        int check_result = 0;
+        TimeSpan tmpdiff = new_time - old_time;
+        check_result = (int)tmpdiff.TotalDays;
         print(check_result.ToString());
         return check_result;
     }

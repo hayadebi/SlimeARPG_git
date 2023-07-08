@@ -77,7 +77,7 @@ public class UserMarketUI : MonoBehaviour
     {
         if (onItem!=null && onItem.Count>0 &&storem != null)
         {
-            selectprice = (double)GManager.instance.ItemID[onId[selectnumber]].itemprice / (double)600;
+            selectprice = (double)GManager.instance.ItemID[onId[selectnumber]].itemprice / (double)400;
             if (GManager.instance.isEnglish == 0)
             {
                 get_buyday.text = "出品日：" + onDay[selectnumber];
