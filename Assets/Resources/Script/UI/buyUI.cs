@@ -21,9 +21,11 @@ public class buyUI : MonoBehaviour
     public Text[] buttonText;
     public Sprite nullsprite;
     private int oldbuycoin;
+    private DateTime getdays;
     // Start is called before the first frame update
     void Start()
     {
+        getdays = GManager.instance.GetGameDay();
         for (int i = 0; GManager.instance.ItemID.Length > i;)
         {
             if (GManager.instance.ItemID[i].itemnumber > 0)
@@ -145,7 +147,7 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[0 + selectnumber];
-            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
+            string tmpdaystext = getdays.Year.ToString() + "/" + getdays.ToString() + "/" + getdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
             testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
@@ -182,7 +184,7 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[1 + selectnumber];
-            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
+            string tmpdaystext = getdays.Year.ToString() + "/" + getdays.Month.ToString() + "/" + getdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
             testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;
@@ -219,7 +221,7 @@ public class buyUI : MonoBehaviour
             //--------闇市へ追加--------
             // クラスのNCMBObjectを作成
             var tmpidnum = itemID[2 + selectnumber];
-            string tmpdaystext = GManager.instance.tmpdays.Year.ToString() + "/" + GManager.instance.tmpdays.Month.ToString() + "/" + GManager.instance.tmpdays.Day.ToString();
+            string tmpdaystext = getdays.Year.ToString() + "/" + getdays.Month.ToString() + "/" + getdays.Day.ToString();
             NCMBObject testClass = new NCMBObject("BlackMarket");
             // オブジェクトに値を設定
             testClass["itemname"] = GManager.instance.ItemID[tmpidnum].itemname;

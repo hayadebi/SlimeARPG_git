@@ -71,13 +71,55 @@ public class DataBuySystem : MonoBehaviour
             }
 
         }
+        else if (get_buytype == 3)
+        {
+            buyprice = 20;
+            if (GManager.instance.isEnglish == 0)
+            {
+                check_text.text = "オリジナルのデビ塊を20個消費して【有償1デビコイン】\nを購入しようとしています。\nこのまま本当に購入しますか？";
+            }
+            else
+            {
+                check_text.text = "I am about to consume 20 original devil lumps \nto purchase【1 devil coin】.\n Do you really want to purchase it as is?";
+            }
+        }
+        else if (get_buytype == 4)
+        {
+            buyprice = 1;
+            if (GManager.instance.isEnglish == 0)
+            {
+                check_text.text = "1デビコイン消費して【400ゴールド】\nを購入しようとしています。\n貴重なデビコインを消費して本当に購入しますか？";
+            }
+            else
+            {
+                check_text.text = "I am about to spend 1 devilcoin \nto purchase【400 gold】.\n Do you really want to spend your precious devilcoins to purchase it?";
+            }
+        }
+        else if (get_buytype == 5)
+        {
+            buyprice = 0.5f;
+            if (GManager.instance.isEnglish == 0)
+            {
+                check_text.text = "0.5デビコイン消費して【10個のデビ塊(レプリカ)】\nを購入しようとしています。\n貴重なデビコインを消費して本当に購入しますか？";
+            }
+            else
+            {
+                check_text.text = "I am about to spend 0.5 devilcoin \nto purchase【10 devil lumps (replicas)】. \n Do you really want to spend your precious devilcoins to purchase it?";
+            }
+        }
     }
     public void BuyBtn()
     {
         if (storem != null)
         {
             GManager.instance.setrg = 36;
-            storem.BuyAddData(-buyprice);
+            if (get_buytype != 3 ) storem.BuyAddData(-buyprice);
+            else if (get_buytype == 3) 
+            {
+                GManager.instance.ItemID[62].itemnumber -= (int)buyprice;
+                PlayerPrefs.SetInt("itemnumber" + 62, GManager.instance.ItemID[62].itemnumber);
+                PlayerPrefs.Save();
+            }
             if (deltarget_data != null)
             {
                 NCMBObject objDelete = deltarget_data;
@@ -119,6 +161,23 @@ public class DataBuySystem : MonoBehaviour
                     }
                     i++;
                 }
+                PlayerPrefs.Save();
+            }
+            else if (get_buytype == 3)
+            {
+                storem.BuyAddData(1);
+            }
+            else if (get_buytype == 4)
+            {
+                GManager.instance.Coin += 400;
+                PlayerPrefs.SetInt("coin", GManager.instance.Coin);
+                PlayerPrefs.Save();
+            }
+            else if (get_buytype == 5)
+            {
+                GManager.instance.ItemID[63].itemnumber += 10;
+                PlayerPrefs.SetInt("itemnumber" + 63, GManager.instance.ItemID[63].itemnumber);
+                PlayerPrefs.SetInt("itemget" + 63, GManager.instance.ItemID[63].gettrg);
                 PlayerPrefs.Save();
             }
             GManager.instance.ESCtrg = true;
