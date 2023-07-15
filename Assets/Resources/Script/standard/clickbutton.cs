@@ -32,6 +32,7 @@ public class clickbutton : MonoBehaviour
     [Header("0=アイテム,1=クラフトレシピ")]
     public int set_buytype = -1;
 
+
     // Start is called before the first frame update
     void Start()
     {

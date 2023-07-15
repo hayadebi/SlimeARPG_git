@@ -22,6 +22,7 @@ public class ChildMail : MonoBehaviour
     public Text messagedoctext;
     public Text bonusgettext;
     public transmailopen transbtn;
+    public string tmpchildobj;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +30,11 @@ public class ChildMail : MonoBehaviour
     }
     private void Update()
     {
-        if (!parenttrg && movetrg && movetrg != oldmove && GManager.instance.tmpchildobj != "")
+        if (!parenttrg && movetrg && movetrg != oldmove && tmpchildobj != "")
         {
             oldmove = movetrg;
             child_obj = new NCMBObject("GameNews");
-            child_obj.ObjectId = GManager.instance.tmpchildobj;
+            child_obj.ObjectId = tmpchildobj;
             child_obj.FetchAsync();
             Invoke(nameof(CoolMail), 0.31f);
         }
@@ -51,7 +52,7 @@ public class ChildMail : MonoBehaviour
         {
             ischeck_icon.enabled = false;
         }
-        if ("YpY9012nWJzXaBuS" == GManager.instance.tmpchildobj && PlayerPrefs.GetString(GManager.instance.tmpchildobj, "false") == "true") Destroy(gameObject);
+        if ("YpY9012nWJzXaBuS" == tmpchildobj && PlayerPrefs.GetString(tmpchildobj, "false") == "true") Destroy(gameObject);
     }
     public void MailOpen()
     {

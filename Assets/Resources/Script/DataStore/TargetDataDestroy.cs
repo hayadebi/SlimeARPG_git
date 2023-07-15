@@ -23,7 +23,7 @@ public class TargetDataDestroy : MonoBehaviour
         //ユーザーチェック
         NCMBQuery<NCMBObject> query = null;
         query = new NCMBQuery<NCMBObject>(class_name);
-        query.OrderByDescending(check_name);
+        query.OrderByDescending("gametype");
         //検索件数を設定
         query.Limit = query_limit;
         //データストアでの検索を行う
@@ -59,7 +59,7 @@ public class TargetDataDestroy : MonoBehaviour
                             {
                                 break;
                             }
-                            else if (PlayerPrefs.GetString(obj.ObjectId.ToString(), "false") == "false")
+                            else if (PlayerPrefs.GetString(obj.ObjectId.ToString(), "false") == "false" && (obj["gametype"].ToString() == check_name || obj["gametype"].ToString() == "共通"))
                             {
                                 ;
                             }

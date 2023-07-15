@@ -34,7 +34,7 @@ public class StoreManager : MonoBehaviour
     }
     public void CheckUser()
     {
-        string tmp = "https://v6p9d9t4.ssl.hwcdn.net/html/8240861/index.html";
+        string tmp = "https://unitygamehayadebi.jimdofree.com/devusercheck/#";
         Application.OpenURL(tmp);
     }
     public void FetchStage()
@@ -90,7 +90,7 @@ public class StoreManager : MonoBehaviour
             query2 = null;
             query2 = new NCMBQuery<NCMBObject>(class_name);
             //Scoreフィールドの降順でデータを取得
-            query2.OrderByDescending(address_num);
+            query2.OrderByDescending("mpurseAddress");
             //検索件数を設定
             query2.Limit = query_limit;
             int i = 1;
@@ -99,17 +99,20 @@ public class StoreManager : MonoBehaviour
             {
                 if (e != null)
                 {
-                //検索失敗時の処理
-            }
+                    //検索失敗時の処理
+                }
                 else
                 {
-                //検索成功時の処理
-                foreach (NCMBObject obj in objList)
+                    //検索成功時の処理
+                    foreach (NCMBObject obj in objList)
                     {
-                        if(get_ncmbobj==null) get_ncmbobj = obj;
-                        var tmpnum = obj[coin_name].ToString();
-                        GManager.instance.get_devcoin = float.Parse(tmpnum);
-                        break;
+                        if (obj["mpurseAddress"].ToString() == address_num)//
+                        {
+                            if (get_ncmbobj == null) get_ncmbobj = obj;
+                            var tmpnum = obj[coin_name].ToString();
+                            GManager.instance.get_devcoin = float.Parse(tmpnum);
+                            break;
+                        }
                     }
                     if (GManager.instance.isEnglish == 0) get_devcoinviewtext.text = "所持デビコイン：" + GManager.instance.get_devcoin.ToString();
                     else if (GManager.instance.isEnglish != 0) get_devcoinviewtext.text = "Devil coins you have：" + GManager.instance.get_devcoin.ToString();

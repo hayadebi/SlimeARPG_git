@@ -26,7 +26,7 @@ public class MailManager : MonoBehaviour
         //ユーザーチェック
         NCMBQuery<NCMBObject> query = null;
         query = new NCMBQuery<NCMBObject>(class_name);
-        query.OrderByDescending(check_name);
+        query.OrderByDescending("gametype");
         //検索件数を設定
         query.Limit = query_limit;
         //データストアでの検索を行う
@@ -43,7 +43,7 @@ public class MailManager : MonoBehaviour
                 //検索成功時の処理
                 foreach (NCMBObject obj in objList)
                 {
-                    if ((bool)obj["isdx"]==false ||((bool)obj["isdx"] == true && GManager.instance.dxtrg))
+                    if ((obj["gametype"].ToString() == check_name || obj["gametype"].ToString() == "共通") && ((bool)obj["isdx"]==false ||((bool)obj["isdx"] == true && GManager.instance.dxtrg)))
                     {
                         if (obj.ObjectId == "YpY9012nWJzXaBuS" && PlayerPrefs.GetString(obj.ObjectId, "false") == "false")
                         {
@@ -62,10 +62,9 @@ public class MailManager : MonoBehaviour
                             obj["messagedoc"] = "本日のログインボーナス！\n \n+獲得通常コイン："+get_coin+"G\n+獲得アイテム："+tmpitemname+" 1個";
                             obj.SaveAsync();
 
-
-                            GManager.instance.tmpchildobj = obj.ObjectId;
                             GameObject tmpobj = Instantiate(setuiobj, transform.position, transform.rotation, transform);
                             ChildMail tmpchild = tmpobj.GetComponent<ChildMail>();
+                            tmpchild.tmpchildobj = obj.ObjectId.ToString();
                             long tmpitemnum = (long)obj["additemid"];
                             long tmpcoinnum = (long)obj["addnormalcoin"];
                             if (((int)tmpitemnum != -1 || (int)tmpcoinnum > 0) && PlayerPrefs.GetString(obj.ObjectId.ToString(), "false") == "false")
@@ -78,9 +77,9 @@ public class MailManager : MonoBehaviour
                         }
                         else
                         {
-                            GManager.instance.tmpchildobj = obj.ObjectId;
                             GameObject tmpobj = Instantiate(setuiobj, transform.position, transform.rotation, transform);
                             ChildMail tmpchild = tmpobj.GetComponent<ChildMail>();
+                            tmpchild.tmpchildobj = obj.ObjectId.ToString();
                             long tmpitemnum = (long)obj["additemid"];
                             long tmpcoinnum = (long)obj["addnormalcoin"];
                             if (((int)tmpitemnum != -1 || (int)tmpcoinnum > 0) && PlayerPrefs.GetString(obj.ObjectId.ToString(), "false") == "false")
