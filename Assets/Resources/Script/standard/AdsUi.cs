@@ -47,13 +47,20 @@ public class AdsUi : MonoBehaviour
             gettrg = true;
             GManager.instance.setrg = 12;
             realtime_ads = 0f;
-            if (GManager.instance.isEnglish == 0) btn_counttext.text = "4オリジナルGET！";
-            else btn_counttext.text = "Got my 4 original!";
-            GManager.instance.ItemID[62].itemnumber += 4;
-            GManager.instance.ItemID[62].gettrg = 1;
-            PlayerPrefs.SetInt("itemnumber" + 62, GManager.instance.ItemID[62].itemnumber);
-            PlayerPrefs.SetInt("itemget" + 62, GManager.instance.ItemID[62].gettrg);
-            PlayerPrefs.Save();
+            if (GManager.instance.isEnglish == 0) btn_counttext.text = "0.1デビコインGET！";
+            else btn_counttext.text = "Got my 0.1 DC!";
+            if (GManager.instance.mpurseuser_on)
+            {
+                storem.BuyAddData(0.1f);
+            }
+            else
+            {
+                var oldcoin = PlayerPrefs.GetFloat("getdc", 0);
+                oldcoin += 0.1f;
+                PlayerPrefs.SetFloat("getdc", oldcoin);
+                PlayerPrefs.Save();
+            }
+            
             btn_close.enabled = true;
         }
     }

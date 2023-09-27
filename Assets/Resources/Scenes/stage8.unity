@@ -4451,7 +4451,7 @@ PrefabInstance:
     - target: {fileID: 7581499497310432657, guid: c4e42d55a4ab5b34bb7bf7c5e2192e3a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7581499497310432657, guid: c4e42d55a4ab5b34bb7bf7c5e2192e3a,
         type: 3}
@@ -4583,7 +4583,7 @@ PrefabInstance:
     - target: {fileID: 4307586745938718282, guid: 8e4221e0dfcfa2d4e9004b0e6dc88019,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4307586745938718282, guid: 8e4221e0dfcfa2d4e9004b0e6dc88019,
         type: 3}
@@ -23331,7 +23331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -21.599976, y: -23.900024}
+  m_AnchoredPosition: {x: -24, y: -19}
   m_SizeDelta: {x: 100, y: 2}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &5324022272458330812
@@ -24640,7 +24640,7 @@ GameObject:
   - component: {fileID: 5857364275122268161}
   - component: {fileID: 5857364275122268160}
   m_Layer: 5
-  m_Name: mainCanvas (1)
+  m_Name: mainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24849,7 +24849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -433, y: -11}
+  m_AnchoredPosition: {x: -433, y: -9}
   m_SizeDelta: {x: 800, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5857364275183765986
@@ -24873,7 +24873,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a82dd0906b44c594e93803e77e0df973, type: 3}
-    m_FontSize: 24
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -25326,8 +25326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 928, y: 250}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 928, y: 310}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5857364275577393872
 MonoBehaviour:
@@ -28409,7 +28409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 745, y: 369}
+  m_AnchoredPosition: {x: 745, y: 390}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &7826399094469164679

@@ -10,7 +10,8 @@ public class eventdestroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(inputEvent != -1)
+        GManager.instance.EventNumber[eventnumber] = PlayerPrefs.GetInt("EvN" + eventnumber, 0);
+        if (inputEvent != -1)
         {
             if(inputEvent != GManager.instance.EventNumber[eventnumber] && inputmode == 1)
             {

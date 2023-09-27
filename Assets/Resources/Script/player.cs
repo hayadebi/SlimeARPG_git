@@ -106,6 +106,7 @@ public class player : MonoBehaviour
     public int[] on_slimes;
     public int select_onslime;
     private float ftime = 0f;
+    private float natural_curetime = 0f;
     GameObject serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
@@ -162,6 +163,12 @@ public class player : MonoBehaviour
         if(start_savepos )
             this.transform.position = ppos;
         anim.SetInteger(Anumbername, 0);
+
+        if(GManager.instance.ItemID[64].itemnumber > 0 && GManager.instance.sunTime < 100 && GManager.instance.Pstatus[GManager.instance.playerselect].attacktype == "自然属性")
+        {
+            if(GManager.instance.isEnglish==0)GManager.instance.txtget = "現在\"ツボミンのしおり\"の、自然属性スライムを継続的にHP・MP回復させる効果が有効です。";
+            else GManager.instance.txtget= "The effect of continuously restoring nature-aligned slimes' with the current \"Tsubomin Bookmark\" is active.";
+        }
         setMagic();
         setSkill();
         setItem();
@@ -199,16 +206,16 @@ public class player : MonoBehaviour
     }
     //private float unloadtime = 0;
     // Update is called once per frame
-    void SelectPlus()
+    void SelectPlus(int tmp)
     {
         if (onMagic.Length == 0 && onMagic == null)
         {
             GManager.instance.setrg = 2;
         }
-        else if (GManager.instance.Pstatus[GManager.instance.playerselect].magicselect < (onMagic.Length - 1))
+        else if(tmp < onMagic.Length)
         {
             GManager.instance.setrg = 1;
-            GManager.instance.Pstatus[GManager.instance.playerselect].magicselect += 1;
+            GManager.instance.Pstatus[GManager.instance.playerselect].magicselect = tmp;
         }
         else
         {
@@ -221,7 +228,7 @@ public class player : MonoBehaviour
         {
             GManager.instance.setrg = 2;
         }
-        else if (GManager.instance.Pstatus[GManager.instance.playerselect].magicselect > 0)
+        else if (GManager.instance.Pstatus[GManager.instance.playerselect].magicselect > 0 )
         {
             GManager.instance.setrg = 1;
             GManager.instance.Pstatus[GManager.instance.playerselect].magicselect -= 1;
@@ -231,16 +238,16 @@ public class player : MonoBehaviour
             GManager.instance.setrg = 2;
         }
     }
-    void SelectPlus2()
+    void SelectPlus2(int tmp)
     {
         if (onSkill.Length == 0 && onSkill == null)
         {
             GManager.instance.setrg = 2;
         }
-        else if (GManager.instance.Pstatus[GManager.instance.playerselect].selectskill < (onSkill.Length - 1))
+        else if(tmp < onSkill.Length)
         {
             GManager.instance.setrg = 1;
-            GManager.instance.Pstatus[GManager.instance.playerselect].selectskill += 1;
+            GManager.instance.Pstatus[GManager.instance.playerselect].selectskill =tmp;
         }
         else
         {
@@ -263,16 +270,16 @@ public class player : MonoBehaviour
             GManager.instance.setrg = 2;
         }
     }
-    void SelectPlus3()
+    void SelectPlus3(int tmp)
     {
         if (onItem.Length == 0 && onItem == null)
         {
             GManager.instance.setrg = 2;
         }
-        else if (GManager.instance._quickSelect != -1 && GManager.instance._quickSelect < (onItem.Length - 1))
+        else if (GManager.instance._quickSelect != -1 && tmp<onItem.Length)
         {
             GManager.instance.setrg = 1;
-            GManager.instance._quickSelect += 1;
+            GManager.instance._quickSelect = tmp;
         }
         else
         {
@@ -403,6 +410,24 @@ public class player : MonoBehaviour
                     if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > 0 && GManager.instance.Pstatus[GManager.instance.playerselect].maxHP > GManager.instance.Pstatus[GManager.instance.playerselect].hp)
                     {
                         GManager.instance.Pstatus[GManager.instance.playerselect].hp += 1;
+                    }
+                }
+            }
+
+            //しおり効果
+            if (GManager.instance.ItemID[64].itemnumber>0 && GManager.instance.sunTime<100 && GManager.instance.Pstatus[GManager.instance.playerselect].attacktype == "自然属性")
+            {
+                natural_curetime += Time.deltaTime;
+                if (natural_curetime >= 2)
+                {
+                    natural_curetime = 0;
+                    if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > 0 && GManager.instance.Pstatus[GManager.instance.playerselect].maxHP > GManager.instance.Pstatus[GManager.instance.playerselect].hp)
+                    {
+                        GManager.instance.Pstatus[GManager.instance.playerselect].hp += 1;
+                    }
+                    if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > 0 && GManager.instance.Pstatus[GManager.instance.playerselect].maxMP > GManager.instance.Pstatus[GManager.instance.playerselect].mp)
+                    {
+                        GManager.instance.Pstatus[GManager.instance.playerselect].mp += 1;
                     }
                 }
             }
@@ -639,57 +664,93 @@ public class player : MonoBehaviour
                 rotation.x = 0;
                 body.transform.rotation = rotation;
 
-                //切り替えモード変更  0=魔法 1=スキル
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                //切り替えモード変更  0=魔法 1=スキル 2=アイテム
+                if (Input.GetKey(KeyCode.F1) && ftime<=0)
                 {
-                    if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode > 0) GManager.instance.Pstatus[GManager.instance.playerselect].changemode -= 1;
-                    else if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode <= 0) GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 2;
+                    ftime = 0.15f;
+                    GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 0;
                 }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                else if (Input.GetKey(KeyCode.F2) && ftime <= 0)
                 {
-                    if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode < 2) GManager.instance.Pstatus[GManager.instance.playerselect].changemode += 1;
-                    else if (GManager.instance.Pstatus[GManager.instance.playerselect].changemode >= 2) GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 0;
+                    ftime = 0.15f;
+                    GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 1;
+                }
+                else if (Input.GetKey(KeyCode.F3) && ftime <= 0)
+                {
+                    ftime = 0.15f;
+                    GManager.instance.Pstatus[GManager.instance.playerselect].changemode = 2;
                 }
                 //魔法切り替え
                 if (onMagic != null && onMagic.Length != 0 && GManager.instance.over == false && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 0)
                 {
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    if (Input.GetKey(KeyCode.Alpha1) && ftime <= 0)
                     {
-                        SelectPlus();
+                        ftime = 0.14f;
+                        SelectPlus(0);
                     }
-                    else if (Input.GetKeyDown(KeyCode.DownArrow))
+                    else if (Input.GetKey(KeyCode.Alpha2) && ftime <= 0)
                     {
-                        SelectMinus();
+                        ftime = 0.14f;
+                        SelectPlus(1);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha3) && ftime <= 0)
+                    {
+                        ftime = 0.14f;
+                        SelectPlus(2);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha4) && ftime <= 0)
+                    {
+                        ftime = 0.14f;
+                        SelectPlus(3);
                     }
                 }
                 //スキル切り替え
                 else if (onSkill != null && onSkill.Length != 0 && GManager.instance.over == false && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 1)
                 {
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    if (Input.GetKey(KeyCode.Alpha1) && ftime <= 0)
                     {
-                        SelectPlus2();
+                        ftime = 0.14f;
+                        SelectPlus2(0);
                     }
-                    else if (Input.GetKeyDown(KeyCode.DownArrow))
+                    else if (Input.GetKey(KeyCode.Alpha2) && ftime <= 0)
                     {
-                        SelectMinus2();
+                        ftime = 0.14f;
+                        SelectPlus2(1);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha3) && ftime <= 0)
+                    {
+                        ftime = 0.14f;
+                        SelectPlus2(2);
                     }
                 }
                 //アイテム切り替え
                 else if (onItem != null && onItem.Length != 0 && GManager.instance._quickSelect != -1 && GManager.instance.over == false && GManager.instance.Pstatus[GManager.instance.playerselect].changemode == 2)
                 {
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    if (Input.GetKey(KeyCode.Alpha1) && ftime <= 0)
                     {
-                        SelectPlus3();
+                        ftime = 0.14f;
+                        SelectPlus3(0);
                     }
-                    else if (Input.GetKeyDown(KeyCode.DownArrow))
+                    else if (Input.GetKey(KeyCode.Alpha2) && ftime <= 0)
                     {
-                        SelectMinus3();
+                        ftime = 0.14f;
+                        SelectPlus3(1);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha3) && ftime <= 0)
+                    {
+                        ftime = 0.14f;
+                        SelectPlus3(2);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha4) && ftime <= 0)
+                    {
+                        ftime = 0.14f;
+                        SelectPlus3(3);
                     }
                 }
                 //スライム切り替え
-                if (Input.GetKeyDown(KeyCode.F) && oldplayer == GManager.instance.playerselect && ftime <= 0)
+                if (Input.GetKey(KeyCode.F) && ftime <= 0 && oldplayer == GManager.instance.playerselect)
                 {
-                    ftime = 2f;
+                    ftime = 1f;
                     if (select_onslime < on_slimes.Length - 1)
                     {
                         select_onslime += 1;
@@ -715,13 +776,18 @@ public class player : MonoBehaviour
                         GManager.instance.colTrg[i] = false;
                         i++;
                     }
+                    if (GManager.instance.ItemID[64].itemnumber > 0 && GManager.instance.sunTime < 100 && GManager.instance.Pstatus[GManager.instance.playerselect].attacktype == "自然属性")
+                    {
+                        if (GManager.instance.isEnglish == 0) GManager.instance.txtget = "現在\"ツボミンのしおり\"の、自然属性スライムを継続的にHP・MP回復させる効果が有効です。";
+                        else GManager.instance.txtget = "The effect of continuously restoring nature-aligned slimes' with the current \"Tsubomin Bookmark\" is active.";
+                    }
                     setMagic();
                     setSkill();
                     OnSlimes();
                 }
                 else if (oldplayer != GManager.instance.playerselect && !Input.GetKey(KeyCode.F) && ftime <= 0)
                 {
-                    ftime = 2f;
+                    ftime = 0.3f;
                     oldplayer = GManager.instance.playerselect;
                     GManager.instance.setrg = 9;
                     Instantiate(GManager.instance.effectobj[4], summonP.position, GManager.instance.effectobj[4].transform.rotation);
@@ -736,6 +802,11 @@ public class player : MonoBehaviour
                     {
                         GManager.instance.colTrg[i] = false;
                         i++;
+                    }
+                    if (GManager.instance.ItemID[64].itemnumber > 0 && GManager.instance.sunTime < 100 && GManager.instance.Pstatus[GManager.instance.playerselect].attacktype == "自然属性")
+                    {
+                        if (GManager.instance.isEnglish == 0) GManager.instance.txtget = "現在\"ツボミンのしおり\"の、自然属性スライムを継続的にHP・MP回復させる効果が有効です。";
+                        else GManager.instance.txtget = "The effect of continuously restoring nature-aligned slimes' with the current \"Tsubomin Bookmark\" is active.";
                     }
                     setMagic();
                     setSkill();
@@ -847,139 +918,46 @@ public class player : MonoBehaviour
                     //アイテム使用
                     if (Input.GetMouseButton(1) && GManager.instance.Pstatus[GManager.instance.playerselect].loadtime == 0)
                     {
-                        GManager.instance.Pstatus[GManager.instance.playerselect].loadtime = 1;
-                        GManager.instance.Pstatus[GManager.instance.playerselect].maxload = 1;
+                        GManager.instance.Pstatus[GManager.instance.playerselect].loadtime = 0.3f;
+                        GManager.instance.Pstatus[GManager.instance.playerselect].maxload = 0.3f;
                         //———消費———
-                        if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 1)//HP回復
+                        if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber > 0)
                         {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 5;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                            if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 1)//HP回復
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 2)//MP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 5;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 3 && GManager.instance.bossbattletrg == 0 && SceneManager.GetActiveScene().name == "stage" + GManager.instance.stageNumber && GManager.instance.stageNumber != 0)//セーブアイテム
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            //SaveDate();
-                            GManager.instance.setrg = 8;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 4)//ユニムーシュ
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].inputExp = GManager.instance.Pstatus[GManager.instance.playerselect].maxExp;
-                            GManager.instance.setrg = 7;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 5 )//毒消し
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            poisontime = 0;
-                            poisontrg = false;
-                            if (EffectObj != null)
-                            {
-                                Destroy(EffectObj.gameObject);
-                            }
-                            GManager.instance.setrg = 8;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 6 )//火傷治し
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            flametime = 0;
-                            flametrg = false;
-                            infinitytime = 0;
-                            infinitytrg = false;
-                            if (EffectObj != null)
-                            {
-                                Destroy(EffectObj.gameObject);
-                            }
-                            GManager.instance.setrg = 8;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 7)//エリクサー
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            for (int i = 0; i < GManager.instance.Pstatus.Length;)
-                            {
-                                if (GManager.instance.Pstatus[i].getpl > 0)
-                                {
-                                    GManager.instance.Pstatus[i].hp = GManager.instance.Pstatus[i].maxHP;
-                                    GManager.instance.Pstatus[i].mp = GManager.instance.Pstatus[i].maxMP;
-                                }
-                                i++;
-                            }
-                            poisontime = 0;
-                            poisontrg = false;
-                            flametime = 0;
-                            flametrg = false;
-                            infinitytime = 0;
-                            infinitytrg = false;
-                            icetime = 0;
-                            mudtime = 0;
-                            watertime = 0;
-                            darktrg = false;
-                            if (setblood != null)
-                            {
-                                Destroy(setblood.gameObject);
-                            }
-                            bloodTrg = false;
-                            if (EffectObj != null)
-                            {
-                                Destroy(EffectObj.gameObject);
-                            }
-                            GManager.instance.setrg = 14;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 8 )//粉
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            if (Random.Range(0, 13) == 0)//hp小回復
-                            {
-                                GManager.instance.setrg = 16;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
                                 GManager.instance.Pstatus[GManager.instance.playerselect].hp += 5;
                                 if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
                                 {
                                     GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
                                 }
                             }
-                            else if (Random.Range(0, 13) == 1)//mp小回復
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 2)//MP回復
                             {
-                                GManager.instance.setrg = 16;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
                                 GManager.instance.Pstatus[GManager.instance.playerselect].mp += 5;
                                 if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
                                 {
                                     GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
                                 }
                             }
-                            else if (Random.Range(0, 13) == 2)//hp中回復
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 3 && GManager.instance.bossbattletrg == 0 && SceneManager.GetActiveScene().name == "stage" + GManager.instance.stageNumber && GManager.instance.stageNumber != 0)//セーブアイテム
                             {
-                                GManager.instance.setrg = 15;
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxHP / 3);
-                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
-                                {
-                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                                }
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                //SaveDate();
+                                GManager.instance.setrg = 8;
                             }
-                            else if (Random.Range(0, 13) == 3)//mp中回復
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 4)//ユニムーシュ
                             {
-                                GManager.instance.setrg = 15;
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxMP / 3);
-                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
-                                {
-                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
-                                }
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].inputExp = GManager.instance.Pstatus[GManager.instance.playerselect].maxExp;
+                                GManager.instance.setrg = 7;
                             }
-                            else if (Random.Range(0, 13) == 4)//毒回復
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 5)//毒消し
                             {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
                                 poisontime = 0;
                                 poisontrg = false;
                                 if (EffectObj != null)
@@ -988,8 +966,9 @@ public class player : MonoBehaviour
                                 }
                                 GManager.instance.setrg = 8;
                             }
-                            else if (Random.Range(0, 13) == 5)//火傷回復
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 6)//火傷治し
                             {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
                                 flametime = 0;
                                 flametrg = false;
                                 infinitytime = 0;
@@ -1000,8 +979,218 @@ public class player : MonoBehaviour
                                 }
                                 GManager.instance.setrg = 8;
                             }
-                            else if (Random.Range(0, 13) == 6)//エリクサーもどき
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 7)//エリクサー
                             {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                for (int i = 0; i < GManager.instance.Pstatus.Length;)
+                                {
+                                    if (GManager.instance.Pstatus[i].getpl > 0)
+                                    {
+                                        GManager.instance.Pstatus[i].hp = GManager.instance.Pstatus[i].maxHP;
+                                        GManager.instance.Pstatus[i].mp = GManager.instance.Pstatus[i].maxMP;
+                                    }
+                                    i++;
+                                }
+                                poisontime = 0;
+                                poisontrg = false;
+                                flametime = 0;
+                                flametrg = false;
+                                infinitytime = 0;
+                                infinitytrg = false;
+                                icetime = 0;
+                                mudtime = 0;
+                                watertime = 0;
+                                darktrg = false;
+                                if (setblood != null)
+                                {
+                                    Destroy(setblood.gameObject);
+                                }
+                                bloodTrg = false;
+                                if (EffectObj != null)
+                                {
+                                    Destroy(EffectObj.gameObject);
+                                }
+                                GManager.instance.setrg = 14;
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 8)//粉
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                if (Random.Range(0, 13) == 0)//hp小回復
+                                {
+                                    GManager.instance.setrg = 16;
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp += 5;
+                                    if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                    {
+                                        GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                    }
+                                }
+                                else if (Random.Range(0, 13) == 1)//mp小回復
+                                {
+                                    GManager.instance.setrg = 16;
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp += 5;
+                                    if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                    {
+                                        GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                    }
+                                }
+                                else if (Random.Range(0, 13) == 2)//hp中回復
+                                {
+                                    GManager.instance.setrg = 15;
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxHP / 3);
+                                    if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                    {
+                                        GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                    }
+                                }
+                                else if (Random.Range(0, 13) == 3)//mp中回復
+                                {
+                                    GManager.instance.setrg = 15;
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxMP / 3);
+                                    if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                    {
+                                        GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                    }
+                                }
+                                else if (Random.Range(0, 13) == 4)//毒回復
+                                {
+                                    poisontime = 0;
+                                    poisontrg = false;
+                                    if (EffectObj != null)
+                                    {
+                                        Destroy(EffectObj.gameObject);
+                                    }
+                                    GManager.instance.setrg = 8;
+                                }
+                                else if (Random.Range(0, 13) == 5)//火傷回復
+                                {
+                                    flametime = 0;
+                                    flametrg = false;
+                                    infinitytime = 0;
+                                    infinitytrg = false;
+                                    if (EffectObj != null)
+                                    {
+                                        Destroy(EffectObj.gameObject);
+                                    }
+                                    GManager.instance.setrg = 8;
+                                }
+                                else if (Random.Range(0, 13) == 6)//エリクサーもどき
+                                {
+                                    for (int i = 0; i < GManager.instance.Pstatus.Length;)
+                                    {
+                                        if (GManager.instance.Pstatus[i].getpl > 0 && GManager.instance.Pstatus[i].hp < 1)
+                                        {
+                                            GManager.instance.Pstatus[i].hp = GManager.instance.Pstatus[i].maxHP / 3;
+                                            GManager.instance.Pstatus[i].mp = GManager.instance.Pstatus[i].maxMP;
+                                        }
+                                        i++;
+                                    }
+                                    GManager.instance.setrg = 14;
+                                }
+                                else if (Random.Range(0, 13) == 7)//LvUP
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].inputExp = GManager.instance.Pstatus[GManager.instance.playerselect].maxExp;
+                                    GManager.instance.setrg = 7;
+                                }
+                                else if (Random.Range(0, 13) == 8)//セーブ
+                                {
+                                    if (GManager.instance.bossbattletrg == 0 && SceneManager.GetActiveScene().name == "stage" + GManager.instance.stageNumber && GManager.instance.stageNumber != 0)
+                                    {
+                                        //SaveDate();
+                                        GManager.instance.setrg = 8;
+                                    }
+                                }
+                                else if (Random.Range(0, 13) == 9)//燃焼
+                                {
+                                    flametime = 0;
+                                    flametrg = true;
+                                    EffectObj = Instantiate(GManager.instance.effectobj[7], transform.position, transform.rotation, transform);
+                                    GManager.instance.setrg = 18;
+                                }
+                                else if (Random.Range(0, 13) == 10)//毒
+                                {
+                                    poisontime = 0;
+                                    poisontrg = true;
+                                    EffectObj = Instantiate(GManager.instance.effectobj[6], transform.position, transform.rotation, transform);
+                                    GManager.instance.setrg = 17;
+                                }
+                                else if (Random.Range(0, 13) == 11)//神の裁き
+                                {
+                                    holytrg = true;
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp /= 2;
+                                    EffectObj = Instantiate(GManager.instance.effectobj[11], transform.position, transform.rotation, transform);
+                                    GManager.instance.setrg = 19;
+                                }
+                                else if (Random.Range(0, 13) == 12)//闇の呪い
+                                {
+                                    darktrg = true;
+                                    EffectObj = Instantiate(GManager.instance.effectobj[11], transform.position, transform.rotation, transform);
+                                    GManager.instance.setrg = 20;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 9)//HP回復
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 16;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 15;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 11)//HP回復
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 15;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxHP / 3);
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 13)//HP回復
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 14;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxHP / 2);
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 10)//MP回復
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 16;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += 15;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 12)//MP回復
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 15;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxMP / 3);
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 14)//MP回復
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 14;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxMP / 2);
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
+                            }
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 15)//人工エリクサー
+                            {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 14;
                                 for (int i = 0; i < GManager.instance.Pstatus.Length;)
                                 {
                                     if (GManager.instance.Pstatus[i].getpl > 0 && GManager.instance.Pstatus[i].hp < 1)
@@ -1011,373 +1200,262 @@ public class player : MonoBehaviour
                                     }
                                     i++;
                                 }
-                                GManager.instance.setrg = 14;
                             }
-                            else if (Random.Range(0, 13) == 7)//LvUP
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 16)//HP回復
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].inputExp = GManager.instance.Pstatus[GManager.instance.playerselect].maxExp;
-                                GManager.instance.setrg = 7;
-                            }
-                            else if (Random.Range(0, 13) == 8)//セーブ
-                            {
-                                if (GManager.instance.bossbattletrg == 0 && SceneManager.GetActiveScene().name == "stage" + GManager.instance.stageNumber && GManager.instance.stageNumber != 0)
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 23;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 10;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
                                 {
-                                    //SaveDate();
-                                    GManager.instance.setrg = 8;
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
                                 }
                             }
-                            else if (Random.Range(0, 13) == 9)//燃焼
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 17)//MP回復
                             {
-                                flametime = 0;
-                                flametrg = true;
-                                EffectObj = Instantiate(GManager.instance.effectobj[7], transform.position, transform.rotation, transform);
-                                GManager.instance.setrg = 18;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 22;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += 10;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
                             }
-                            else if (Random.Range(0, 13) == 10)//毒
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 18)//万能
                             {
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
                                 poisontime = 0;
-                                poisontrg = true;
-                                EffectObj = Instantiate(GManager.instance.effectobj[6], transform.position, transform.rotation, transform);
-                                GManager.instance.setrg = 17;
-                            }
-                            else if (Random.Range(0, 13) == 11)//神の裁き
-                            {
-                                holytrg = true;
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp /= 2;
-                                EffectObj = Instantiate(GManager.instance.effectobj[11], transform.position, transform.rotation, transform);
-                                GManager.instance.setrg = 19;
-                            }
-                            else if (Random.Range(0, 13) == 12)//闇の呪い
-                            {
-                                darktrg = true;
-                                EffectObj = Instantiate(GManager.instance.effectobj[11], transform.position, transform.rotation, transform);
-                                GManager.instance.setrg = 20;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 9)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 16;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 15;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 11)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 15;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxHP / 3);
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 13)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 14;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxHP / 2);
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 10)//MP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 16;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 15;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 12)//MP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 15;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxMP / 3);
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 14)//MP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 14;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += (GManager.instance.Pstatus[GManager.instance.playerselect].maxMP / 2);
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 15)//人工エリクサー
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 14;
-                            for (int i = 0; i < GManager.instance.Pstatus.Length;)
-                            {
-                                if (GManager.instance.Pstatus[i].getpl > 0 && GManager.instance.Pstatus[i].hp < 1)
+                                poisontrg = false;
+                                flametime = 0;
+                                flametrg = false;
+                                infinitytime = 0;
+                                infinitytrg = false;
+                                icetime = 0;
+                                mudtime = 0;
+                                watertime = 0;
+                                darktrg = false;
+                                if (setblood != null)
                                 {
-                                    GManager.instance.Pstatus[i].hp = GManager.instance.Pstatus[i].maxHP / 3;
-                                    GManager.instance.Pstatus[i].mp = GManager.instance.Pstatus[i].maxMP;
+                                    Destroy(setblood.gameObject);
                                 }
-                                i++;
+                                bloodTrg = false;
+                                if (EffectObj != null)
+                                {
+                                    Destroy(EffectObj.gameObject);
+                                }
+                                GManager.instance.setrg = 15;
                             }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 16)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 23;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 10;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 19)//爆炎
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.itemMagicID = 14;
+                                Instantiate(GManager.instance.effectobj[12], transform.position, transform.rotation, transform);
+                                GManager.instance.setrg = 1;
                             }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 17)//MP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 22;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 10;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 20)//零水
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.itemMagicID = 22;
+                                Instantiate(GManager.instance.effectobj[12], transform.position, transform.rotation, transform);
+                                GManager.instance.setrg = 1;
                             }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 18 )//万能
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            poisontime = 0;
-                            poisontrg = false;
-                            flametime = 0;
-                            flametrg = false;
-                            infinitytime = 0;
-                            infinitytrg = false;
-                            icetime = 0;
-                            mudtime = 0;
-                            watertime = 0;
-                            darktrg = false;
-                            if (setblood != null)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 21)//風来
                             {
-                                Destroy(setblood.gameObject);
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.itemMagicID = 8;
+                                Instantiate(GManager.instance.effectobj[12], transform.position, transform.rotation, transform);
+                                GManager.instance.setrg = 1;
                             }
-                            bloodTrg = false;
-                            if (EffectObj != null)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 22)//HP回復
                             {
-                                Destroy(EffectObj.gameObject);
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 15;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += 15;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                                else if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
                             }
-                            GManager.instance.setrg = 15;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 19 )//爆炎
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.itemMagicID = 14;
-                            Instantiate(GManager.instance.effectobj[12], transform.position, transform.rotation, transform);
-                            GManager.instance.setrg = 1;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 20 )//零水
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.itemMagicID = 22;
-                            Instantiate(GManager.instance.effectobj[12], transform.position, transform.rotation, transform);
-                            GManager.instance.setrg = 1;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 21 )//風来
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.itemMagicID = 8;
-                            Instantiate(GManager.instance.effectobj[12], transform.position, transform.rotation, transform);
-                            GManager.instance.setrg = 1;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 22)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 15;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 15;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 23)//HP回復
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 5;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += 5;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                                else if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
                             }
-                            else if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 24)//完全蘇生
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                GManager.instance.setmenu += 1;
+                                Instantiate(GManager.instance.effectobj[16], this.transform.position, this.transform.rotation);
                             }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 23)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 5;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 5;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 25)//HP回復
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 31;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 10;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                                if (GManager.instance.isEnglish == 0)
+                                {
+                                    GManager.instance.txtget = "60秒間水属性のダメージを軽減します";
+                                }
+                                else if (GManager.instance.isEnglish == 1)
+                                {
+                                    GManager.instance.txtget = "Reduces water type damage for 60 seconds";
+                                }
+                                GManager.instance.Triggers[94] = 1;
                             }
-                            else if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 26)//瞬間移動
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                GManager.instance.setmenu += 1;
+                                Instantiate(GManager.instance.effectobj[17], this.transform.position, this.transform.rotation);
                             }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 24)//完全蘇生
-                        {
-                            GManager.instance.setmenu += 1;
-                            Instantiate(GManager.instance.effectobj[16], this.transform.position, this.transform.rotation);
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 25)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 31;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 10;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 27)//MP回復悪天候無効化
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += 20;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
+                                itemtime_notWeather = 300;
+                                if (GManager.instance.isEnglish == 0)
+                                {
+                                    GManager.instance.txtget = "5分間フィールド効果を無効化します";
+                                }
+                                else if (GManager.instance.isEnglish == 1)
+                                {
+                                    GManager.instance.txtget = "Disables field effects for 5 minutes";
+                                }
                             }
-                            if (GManager.instance.isEnglish == 0)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 28)//MP回復悪天候無効化
                             {
-                                GManager.instance.txtget = "60秒間水属性のダメージを軽減します";
+                                GManager.instance.setrg = 6;
+                                if (GManager.instance.Triggers[102] == 0)
+                                {
+                                    GManager.instance.Triggers[102] = 1;
+                                }
+                                else if (GManager.instance.Triggers[102] == 1)
+                                {
+                                    GManager.instance.Triggers[102] = 0;
+                                }
                             }
-                            else if (GManager.instance.isEnglish == 1)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 29)//HP回復
                             {
-                                GManager.instance.txtget = "Reduces water type damage for 60 seconds";
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 40;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
                             }
-                            GManager.instance.Triggers[94] = 1;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 26)//瞬間移動
-                        {
-                            GManager.instance.setmenu += 1;
-                            Instantiate(GManager.instance.effectobj[17], this.transform.position, this.transform.rotation);
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 27)//MP回復悪天候無効化
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 20;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 30)//最大HPMP増加
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].maxHP += 3;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].maxMP += 3;
                             }
-                            itemtime_notWeather = 300;
-                            if (GManager.instance.isEnglish == 0)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 34 && GManager.instance.Triggers[178] < 1)//持続回復
                             {
-                                GManager.instance.txtget = "5分間フィールド効果を無効化します";
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 22;
+                                GManager.instance.Triggers[178] = GManager.instance.playerselect + 1;
+                                if (GManager.instance.isEnglish == 0)
+                                {
+                                    GManager.instance.txtget = "デビ・コーラの効果で3分間持続回復されます";
+                                }
+                                else if (GManager.instance.isEnglish == 1)
+                                {
+                                    GManager.instance.txtget = "The use of Devi・Cola gave a recovery effect that lasted for 3 minutes.";
+                                }
                             }
-                            else if (GManager.instance.isEnglish == 1)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 31)//HP回復水属性攻撃無効
                             {
-                                GManager.instance.txtget = "Disables field effects for 5 minutes";
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 20;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                                if (GManager.instance.isEnglish == 0)
+                                {
+                                    GManager.instance.txtget = "120秒間水属性のダメージを無効化します";
+                                }
+                                else if (GManager.instance.isEnglish == 1)
+                                {
+                                    GManager.instance.txtget = "Disables water type damage for 120 seconds.";
+                                }
+                                GManager.instance.Triggers[94] = 2;
                             }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 28)//MP回復悪天候無効化
-                        {
-                            GManager.instance.setrg = 6;
-                            if (GManager.instance.Triggers[102] == 0)
-                            {
-                                GManager.instance.Triggers[102] = 1;
-                            }
-                            else if (GManager.instance.Triggers[102] == 1)
-                            {
-                                GManager.instance.Triggers[102] = 0;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 29)//HP回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 40;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 30)//最大HPMP増加
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].maxHP += 3;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].maxMP += 3;
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 34 && GManager.instance.Triggers[178] < 1)//持続回復
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 22;
-                            GManager.instance.Triggers[178] = GManager.instance.playerselect + 1;
-                            if (GManager.instance.isEnglish == 0)
-                            {
-                                GManager.instance.txtget = "デビ・コーラの効果で3分間持続回復されます";
-                            }
-                            else if (GManager.instance.isEnglish == 1)
-                            {
-                                GManager.instance.txtget = "The use of Devi・Cola gave a recovery effect that lasted for 3 minutes.";
-                            }
-                        }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 31)//HP回復水属性攻撃無効
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 20;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
-                            }
-                            if (GManager.instance.isEnglish == 0)
-                            {
-                                GManager.instance.txtget = "120秒間水属性のダメージを無効化します";
-                            }
-                            else if (GManager.instance.isEnglish == 1)
-                            {
-                                GManager.instance.txtget = "Disables water type damage for 120 seconds.";
-                            }
-                            GManager.instance.Triggers[94] = 2;
-                        }
 
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 32)//HP回復HP成長値1増加
-                        {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].add_hp += 1;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].hp += 15;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 32)//HP回復HP成長値1増加
                             {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].add_hp += 1;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].hp += 15;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].hp > GManager.instance.Pstatus[GManager.instance.playerselect].maxHP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].hp = GManager.instance.Pstatus[GManager.instance.playerselect].maxHP;
+                                }
+                                if (GManager.instance.isEnglish == 0)
+                                {
+                                    GManager.instance.txtget = "LvUP時のHP上昇値が1増えた";
+                                }
+                                else if (GManager.instance.isEnglish == 1)
+                                {
+                                    GManager.instance.txtget = "The HP increase at LvUP was increased by 1.";
+                                }
                             }
-                            if (GManager.instance.isEnglish == 0)
+                            else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 33)//MP回復全最大値成長値2増加
                             {
-                                GManager.instance.txtget = "LvUP時のHP上昇値が1増えた";
-                            }
-                            else if (GManager.instance.isEnglish == 1)
-                            {
-                                GManager.instance.txtget = "The HP increase at LvUP was increased by 1.";
+                                GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
+                                GManager.instance.setrg = 7;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].add_hp += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].add_mp += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].add_at += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].add_df += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].maxHP += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].maxMP += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].attack += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].defense += 2;
+                                GManager.instance.Pstatus[GManager.instance.playerselect].mp += 40;
+                                if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
+                                {
+                                    GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
+                                }
+                                if (GManager.instance.isEnglish == 0)
+                                {
+                                    GManager.instance.txtget = "LvUP時の各ステータス上昇値が2増えた";
+                                }
+                                else if (GManager.instance.isEnglish == 1)
+                                {
+                                    GManager.instance.txtget = "The value of each status increase at LvUP was increased by 2.";
+                                }
                             }
                         }
-                        else if (GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].eventnumber == 33)//MP回復全最大値成長値2増加
+                        else
                         {
-                            GManager.instance.ItemID[GManager.instance.Quick_itemSet[onItem[GManager.instance._quickSelect]]].itemnumber -= 1;
-                            GManager.instance.setrg = 7;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].add_hp += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].add_mp += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].add_at += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].add_df += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].maxHP += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].maxMP += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].attack += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].defense += 2;
-                            GManager.instance.Pstatus[GManager.instance.playerselect].mp += 40;
-                            if (GManager.instance.Pstatus[GManager.instance.playerselect].mp > GManager.instance.Pstatus[GManager.instance.playerselect].maxMP)
-                            {
-                                GManager.instance.Pstatus[GManager.instance.playerselect].mp = GManager.instance.Pstatus[GManager.instance.playerselect].maxMP;
-                            }
-                            if (GManager.instance.isEnglish == 0)
-                            {
-                                GManager.instance.txtget = "LvUP時の各ステータス上昇値が2増えた";
-                            }
-                            else if (GManager.instance.isEnglish == 1)
-                            {
-                                GManager.instance.txtget = "The value of each status increase at LvUP was increased by 2.";
-                            }
+                            GManager.instance.setrg = 27;
                         }
                         //------------------------------------
                         //ジャンプ

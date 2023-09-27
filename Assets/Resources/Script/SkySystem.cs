@@ -40,7 +40,7 @@ public class SkySystem : MonoBehaviour
            // else if (GManager.instance.sunTime >= 160 && 180 > GManager.instance.sunTime)
                 //RenderSettings.skybox = skybox[4];
 
-            //360度以上になったら0に戻す
+            //180度以上になったら0に戻す
             if (GManager.instance.sunTime > 180)
             {
                 GManager.instance.sunTime = 0;

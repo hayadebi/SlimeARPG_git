@@ -424,6 +424,12 @@ public class GManager : MonoBehaviour
     }
     private void Start()
     {
+        string tmplist = "";
+        for(int i = 0; i< GManager.instance.ItemID.Length;)
+        {
+            tmplist += GManager.instance.ItemID[i].itemname+",";
+            i++;
+        }
         //日替わり処理
         DateTime tmpdays = instance.GetGameDay();
         var oldYear = PlayerPrefs.GetInt("oldallYear", (tmpdays.Year - 1));

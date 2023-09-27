@@ -186,6 +186,7 @@ public class npcsay : MonoBehaviour
             shopID[1] = PlayerPrefs.GetInt(shop_name + "1", 0);
             shopID[2] = PlayerPrefs.GetInt(shop_name + "2", 0);
         }
+        if (returnTime > 0) returnTime = 1f;
     }
 
     // Update is called once per frame
@@ -421,6 +422,8 @@ public class npcsay : MonoBehaviour
             GManager.instance.playerselect = selectSlime;
         }
         GManager.instance.walktrg = false;
+        yield return new WaitForSeconds(0.2f);
+        if (GameObject.Find("Slime") && GameObject.Find("Slime").GetComponent<Animator>()) GameObject.Find("Slime").GetComponent<Animator>().SetInteger("Anumber", 0);
         GManager.instance.EventNumber[11] += _AddMelancholy;
         if(eanim != null)
         {

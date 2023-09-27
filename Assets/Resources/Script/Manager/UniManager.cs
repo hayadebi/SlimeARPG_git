@@ -10,10 +10,13 @@ namespace UniLang
         private Text thistext;
         private string oldtext;
         private bool converttrg = false;
+        public int fontsized = -1;
+        private int old_fontsize = 0;
         // Start is called before the first frame update
         void Start()
         {
             thistext = this.GetComponent<Text>();
+            old_fontsize = thistext.fontSize;
             oldtext = thistext.text;
             converttrg = true;
             if(GManager.instance.isEnglish != 0) Invoke(nameof(LangConvert), 0.08f);
@@ -22,12 +25,14 @@ namespace UniLang
         // Update is called once per frame
         void Update()
         {
-            if (thistext.text != oldtext && !converttrg && GManager.instance.isEnglish!=0)
+            if (thistext.text != oldtext && !converttrg && GManager.instance.isEnglish != 0)
             {
                 converttrg = true;
                 oldtext = thistext.text;
+                if(fontsized!=-1)thistext.fontSize = fontsized;
                 LangConvert();
             }
+            else if (GManager.instance.isEnglish == 0 && thistext.fontSize != old_fontsize) thistext.fontSize = old_fontsize;
         }
 
         void LangConvert()

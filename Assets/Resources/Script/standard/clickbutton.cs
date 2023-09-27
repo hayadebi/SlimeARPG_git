@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class clickbutton : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class clickbutton : MonoBehaviour
     public int limit_onviewmax = -1;
     [Header("0=アイテム,1=クラフトレシピ")]
     public int set_buytype = -1;
+    private float tmpcooltime = 0f;
+    public float tmpstarttime = 0f;
+    public bool adcooltimetrg = false;
+    public Text adcooltext=null;
 
 
     // Start is called before the first frame update
@@ -42,7 +47,8 @@ public class clickbutton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (tmpcooltime >= 0) tmpcooltime -= Time.deltaTime;
+        if (tmpstarttime >=0) tmpstarttime -= Time.deltaTime;
     }
     public void animClick()
     {
@@ -116,11 +122,18 @@ public class clickbutton : MonoBehaviour
     {
         if (!mpurseuser_trg || (mpurseuser_trg && GManager.instance.mpurseuser_on))
         {
-            if (limit_onviewmax == -1 || (limit_onviewmax > 0 && PlayerPrefs.GetInt("DayAds", 0) < 5))
+            if ((limit_onviewmax == -1&&tmpcooltime<=0) || (limit_onviewmax > 0 && PlayerPrefs.GetInt("DayAds", 0) < limit_onviewmax&&tmpcooltime<=0))
             {
-                var tmp = PlayerPrefs.GetInt("DayAds", 0) + 1;
-                PlayerPrefs.SetInt("DayAds", tmp);
-                PlayerPrefs.Save();
+
+                tmpcooltime = 1f;
+
+                if (limit_onviewmax > 0)
+                {
+                    var tmp = PlayerPrefs.GetInt("DayAds", 0);
+                    tmp += 1;
+                    PlayerPrefs.SetInt("DayAds", tmp);
+                    PlayerPrefs.Save();
+                }
                 settingUI.SetActive(true);
             }
             else
@@ -130,7 +143,7 @@ public class clickbutton : MonoBehaviour
                 {
                     Image tmpimg = this.GetComponent<Image>();
                     Color tmpcl = tmpimg.color;
-                    tmpcl.a /= 2;
+                    tmpcl.a =0.25f;
                     tmpimg.color = tmpcl;
                 }
 
@@ -142,15 +155,41 @@ public class clickbutton : MonoBehaviour
             GManager.instance.setrg = 27;
         }
     }
+    public bool AdcoolCheck()
+    {
+        DateTime tmpnow = DateTime.Now;
+        if(tmpnow.Year!=PlayerPrefs.GetInt("adcoolyear",DateTime.Today.Year) || tmpnow.Month != PlayerPrefs.GetInt("adcoolmonth", DateTime.Today.Month)|| tmpnow.Day != PlayerPrefs.GetInt("adcoolday", DateTime.Today.Day-1)|| tmpnow.Hour!= PlayerPrefs.GetInt("adcoolhour", DateTime.Now.Hour)|| tmpnow.Minute - PlayerPrefs.GetInt("adcoolminute", DateTime.Now.Minute) >= 5)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void AdcoolSet()
+    {
+        DateTime tmpnow = DateTime.Now;
+        PlayerPrefs.SetInt("adcoolyear", DateTime.Today.Year);
+        PlayerPrefs.SetInt("adcoolmonth", DateTime.Today.Month);
+        PlayerPrefs.SetInt("adcoolday", DateTime.Today.Day);
+        PlayerPrefs.SetInt("adcoolhour", DateTime.Now.Hour);
+        PlayerPrefs.SetInt("adcoolminute", DateTime.Now.Minute);
+        PlayerPrefs.Save();
+    }
     public void ChildOnView()
     {
-        if (!mpurseuser_trg || (mpurseuser_trg && GManager.instance.mpurseuser_on))
+        if ((!mpurseuser_trg || (mpurseuser_trg && GManager.instance.mpurseuser_on))&& (!adcooltimetrg || (adcooltimetrg && AdcoolCheck())))
         {
-            if (limit_onviewmax == -1 || (limit_onviewmax > 0 && PlayerPrefs.GetInt("DayAds", 0) < 5))
+            if ((limit_onviewmax == -1 && tmpcooltime <= 0) || (limit_onviewmax > 0 && PlayerPrefs.GetInt("DayAds", 0) < limit_onviewmax && tmpcooltime <= 0))
             {
-                var tmp = PlayerPrefs.GetInt("DayAds", 0) + 1;
-                PlayerPrefs.SetInt("DayAds", tmp);
-                PlayerPrefs.Save();
+                tmpcooltime = 1f;
+                if (adcooltimetrg) AdcoolSet();
+                GManager.instance.setrg = 6;
+                if (limit_onviewmax > 0)
+                {
+                    var tmp = PlayerPrefs.GetInt("DayAds", 0);
+                    tmp += 1;
+                    PlayerPrefs.SetInt("DayAds", tmp);
+                    PlayerPrefs.Save();
+                }
                 Instantiate(settingUI, fadeinUI.transform.position, transform.rotation, fadeinUI.transform);
             }
             else
@@ -160,7 +199,7 @@ public class clickbutton : MonoBehaviour
                 {
                     Image tmpimg = this.GetComponent<Image>();
                     Color tmpcl = tmpimg.color;
-                    tmpcl.a /= 2;
+                    tmpcl.a =0.25f;
                     tmpimg.color = tmpcl;
                 }
 
@@ -169,12 +208,22 @@ public class clickbutton : MonoBehaviour
         else
         {
             if (usercheck != null) usercheck.gameObject.SetActive(true);
+            if (adcooltimetrg && adcooltext) adcooltext.text = "報酬のクールタイム中(獲得時から5分間後まで)";
             GManager.instance.setrg = 27;
         }
     }
+    
     public void CheckNoView()
     {
-        this.gameObject.SetActive(false);
+        if (tmpstarttime <= 0)
+        {
+            //GManager.instance.setrg = 6;
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            GManager.instance.setrg = 27;
+        }
     }
     public void startClick()
     {
@@ -209,7 +258,7 @@ public class clickbutton : MonoBehaviour
     {
         if (menutrg == false && GManager.instance.bossbattletrg == 0)
         {
-            if (resettrg == true)
+            if (resettrg)
             {
                 PlayerPrefs.DeleteAll();
                 _MiniGame(3);
@@ -225,7 +274,7 @@ public class clickbutton : MonoBehaviour
                 PlayerPrefs.Save();
                 resetN();
             }
-            else if (resettrg == false)
+            else if (!resettrg)
             {
                 loadN();
             }
@@ -497,10 +546,10 @@ public class clickbutton : MonoBehaviour
         GManager.instance._minigame.input_indexTrg = 0;
         for (int i = 0; i < k;)
         {
-            oldrandom = Random.Range(0, 7);
+            oldrandom = UnityEngine.Random.Range(0, 7);
             for (int j = 0; GManager.instance._minigame.input_missionID[0] == oldrandom || GManager.instance._minigame.input_missionID[1] == oldrandom || GManager.instance._minigame.input_missionID[2] == oldrandom; j++)
             {
-                oldrandom = Random.Range(0, 7);
+                oldrandom = UnityEngine.Random.Range(0, 7);
             }
             GManager.instance._minigame.input_missionID[i] = oldrandom;// PlayerPrefs.GetInt("minigame_missionID" + i, Random.Range(0,7));
             i++;
@@ -533,6 +582,19 @@ public class clickbutton : MonoBehaviour
         {
             GManager.instance.EventNumber[i] = PlayerPrefs.GetInt("EvN"+i, 0);
             i++;
+        }
+        if (GManager.instance.EventNumber[0] == 0)
+        {
+            _MiniGame(3);
+            PlayerPrefs.SetInt("minigame_indexTrg", GManager.instance._minigame.input_indexTrg);
+            for (int i = 0; i < GManager.instance._minigame.input_missionID.Length;)
+            {
+                PlayerPrefs.SetInt("minigame_missionID" + i, GManager.instance._minigame.input_missionID[i]);
+                i++;
+            }
+            GManager.instance._minigame.input_missionID[3] = 7;
+            PlayerPrefs.SetString("itemscript46", GManager.instance.ItemID[46].itemscript);
+            PlayerPrefs.Save();
         }
         for (int i = 0; i < GManager.instance.freenums.Length;)
         {
