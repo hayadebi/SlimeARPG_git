@@ -34,6 +34,7 @@ public class GManager : MonoBehaviour
     public float seMax = 0.16f;//効果音設定に使用
     public int mode = 1; //難易度設定に使用
     public int isEnglish = 0; //言語設定に使用
+    public string[] Languages;
     public float kando = 1; //感度設定に使用
     public int reduction = 0; //画面効果設定に使用
     public int autoviewup = 1; //近いうちに廃止する設定に使用(没設定)
@@ -422,32 +423,32 @@ public class GManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void Start()
-    {
-        string tmplist = "";
-        for(int i = 0; i< GManager.instance.ItemID.Length;)
-        {
-            tmplist += GManager.instance.ItemID[i].itemname+",";
-            i++;
-        }
-        //日替わり処理
-        DateTime tmpdays = instance.GetGameDay();
-        var oldYear = PlayerPrefs.GetInt("oldallYear", (tmpdays.Year - 1));
-        var oldMonth = PlayerPrefs.GetInt("oldallMonth", (tmpdays.Month - 1));
-        var oldDay = PlayerPrefs.GetInt("oldallDay", (tmpdays.Day - 1));
-        DateTime olddays = new DateTime(oldYear, oldMonth, oldDay);
-        if (Math.Abs(GManager.instance.AllSpanCheck(olddays)) > 0)
-        {
-            PlayerPrefs.SetInt("oldallYear", tmpdays.Year);
-            PlayerPrefs.SetInt("oldallMonth", tmpdays.Month);
-            PlayerPrefs.SetInt("oldallDay", tmpdays.Day);
-            //その他日替わりセーブ
-            PlayerPrefs.SetInt("DayAds", 0);
-            PlayerPrefs.SetString("YpY9012nWJzXaBuS", "false");
-            PlayerPrefs.Save();
-            //日替わり処理
-        }
-    }
+    //private void Start()
+    //{
+    //    string tmplist = "";
+    //    for(int i = 0; i< GManager.instance.ItemID.Length;)
+    //    {
+    //        tmplist += GManager.instance.ItemID[i].itemname+",";
+    //        i++;
+    //    }
+    //    //日替わり処理
+    //    DateTime tmpdays = instance.GetGameDay();
+    //    var oldYear = PlayerPrefs.GetInt("oldallYear", (tmpdays.Year - 1));
+    //    var oldMonth = PlayerPrefs.GetInt("oldallMonth", (tmpdays.Month - 1));
+    //    var oldDay = PlayerPrefs.GetInt("oldallDay", (tmpdays.Day - 1));
+    //    DateTime olddays = new DateTime(oldYear, oldMonth, oldDay);
+    //    if (Math.Abs(GManager.instance.AllSpanCheck(olddays)) > 0)
+    //    {
+    //        PlayerPrefs.SetInt("oldallYear", tmpdays.Year);
+    //        PlayerPrefs.SetInt("oldallMonth", tmpdays.Month);
+    //        PlayerPrefs.SetInt("oldallDay", tmpdays.Day);
+    //        //その他日替わりセーブ
+    //        PlayerPrefs.SetInt("DayAds", 0);
+    //        PlayerPrefs.SetString("YpY9012nWJzXaBuS", "false");
+    //        PlayerPrefs.Save();
+    //        //日替わり処理
+    //    }
+    //}
     private void Update()
     {
         if (GManager.instance.walktrg && SceneManager.GetActiveScene().name.Contains("stage"))

@@ -42,7 +42,7 @@ namespace UniLang
             oldtext = "";
             for (int i = 0; i < tmparrey.Length;)
             {
-                var translator = Translator.Create(Language.Auto, Language.English);
+                var translator = Translator.Create(Language.Auto, GManager.instance.Languages[GManager.instance.isEnglish]);
                 translator.Run(tmparrey[i], results =>
                 {
                     foreach (var n in results)

@@ -57,17 +57,19 @@ public class Audiovolume : MonoBehaviour
                 audio.volume = GManager.instance.seMax;
                 oldvolume = GManager.instance.seMax;
             }
-            //オンオフ
-            if (!battletrg && !GManager.instance.walktrg && !isadd)
-            {
-                audio.enabled = false;
-                isadd = true;
-            }
-            else if (!battletrg && GManager.instance.walktrg && isadd)
-            {
-                audio.enabled = true;
-                isadd = false;
-            }
+            ////オンオフ
+            //if (!battletrg && !audio.enabled)
+            //{
+            //    audio.enabled = true;
+            //}
+            //if (!battletrg && DataManager.instance.Triggers[1] == 1&& audio.enabled)
+            //{
+            //    audio.enabled = false;
+            //}
+            //else if (!battletrg && DataManager.instance.Triggers[1] == 0 && !audio.enabled)
+            //{
+            //    audio.enabled = true;
+            //}
         }
     }
 }
