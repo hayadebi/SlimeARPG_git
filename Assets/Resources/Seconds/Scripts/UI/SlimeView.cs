@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SlimeView : MonoBehaviour
 {
-    [Header("生成場所")]
     [Header("選択中キャラアイコン")]
     public Image selectedIcon;
     [Header("選択されていない状態のキャラアイコン画像")]
@@ -19,6 +18,7 @@ public class SlimeView : MonoBehaviour
     public int selectedId = -1;//表示と使用時に扱うパーティー(playerselect)ID
     [Header("編成中パーティー")]
     public GameObject[] partyContent=new GameObject[3];
+    public GameObject[] partySelecticon = new GameObject[3];
 
     private List<GameObject> slimeList = new List<GameObject>();
     [Header("編成変更を実行時にActiveを切り替えるオブジェクト")]
@@ -49,13 +49,21 @@ public class SlimeView : MonoBehaviour
             yield return null;
             content.SetActive(true);
         }
+        for(int i = 0; i < partySelecticon.Length;)
+        {
+            if (i == selectedId) partySelecticon[i].SetActive(true);
+            else partySelecticon[i].SetActive(false);
+            i++;
+        }
 
         if(selectedId!=-1&&DataManager.instance.playerselect[selectedId]!=-1&& DataManager.instance.playerselect[selectedId] >= 0)
         {
             selectedIcon.sprite = DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].pimage;
             int maxhp = (int)((DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].maxHP + DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].add_hp) * (1 + (DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].Lv / 1.5f)));
             int maxmp = (int)((DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].maxMP + DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].add_mp) * (1 + (DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].Lv / 1.5f)));
-            selectedName.text = "名前："+ DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].pname+ "\n攻撃属性："+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].attacktype) +","+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].attacktype2) +"\n弱点属性："+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].badtype) +","+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].badtype2) ;
+            string tmpname = DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].pname;
+            if (DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].hp <= 0) tmpname = "<color=red>" + tmpname+"</color>";
+            selectedName.text = "名前："+ tmpname+ "\n攻撃属性："+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].attacktype) +","+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].attacktype2) +"\n弱点属性："+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].badtype) +","+TypeString(DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].badtype2) ;
             selectedDocument.text = DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].pdescription;
             selectedStatus.text = "LV："+ DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]] .Lv+ "\nHP："+ DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].hp.ToString()+ "/"+maxhp+"\nMP："+ DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].mp.ToString()+ "/"+maxmp+"\nAT："+ (DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]] .attack+ DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].add_at).ToString()+ "\nDF："+ (DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].defense+ DataManager.instance.Pstatus[DataManager.instance.playerselect[selectedId]].add_df).ToString();
             useButton.SetActive(true);
@@ -76,7 +84,7 @@ public class SlimeView : MonoBehaviour
         switch (magicType)
         {
             case DataManager.MagicType.None:
-                return "無し";
+                return "なし";
             case DataManager.MagicType.Dark:
                 return "闇";
             case DataManager.MagicType.Holy:
@@ -92,7 +100,7 @@ public class SlimeView : MonoBehaviour
             case DataManager.MagicType.Water:
                 return "水";
             default:
-                return "無し";
+                return "なし";
         }
     }
 

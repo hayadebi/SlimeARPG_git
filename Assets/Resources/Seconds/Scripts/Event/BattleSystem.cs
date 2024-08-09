@@ -438,16 +438,11 @@ namespace UniLang
                     playerData[i].targetType = DataManager.TargetType.Enemy;
                     playerData[i].isSelected = false;
                     playerData[i].isGuard = false;
-                    playerData[i].isOver = false;
-                    playerData[i].isCommand = false;
-                    //死んでるの反映
-                    if (playerData[i].hp <= 0)
-                    {
-                        playerData[i].isOver = true;
-                        allDialogUI.playerState[i].isOverUI.gameObject.SetActive(true);
-                    }
-                    selectPlayer = 1;
                     allDialogUI.playerState[i].isOverUI.SetActive(false);
+                    
+                   playerData[i].isCommand = false;
+                    selectPlayer = 1;
+                    
                     //キャラアニメーション反映
                     playerData[i].charaAnim.gameObject.SetActive(true);
                     playerData[i].charaAnim.runtimeAnimatorController = DataManager.instance.Pstatus[playerData[i].playerId].animC;
@@ -457,6 +452,13 @@ namespace UniLang
                     tmpcolor.b = 1;
                     tmpcolor.a = 1;
                     playerData[i].spriteRen.color = tmpcolor;
+                    if (playerData[i].hp > 0) playerData[i].isOver = false;
+                    else
+                    {
+                        playerData[i].isOver = true;
+                        allDialogUI.playerState[i].isOverUI.gameObject.SetActive(true);
+                        playerData[i].charaAnim.runtimeAnimatorController = graveAnimator;
+                    }
                     SettingNewState(i, DataManager.TargetType.Player);
                 }
                 else
@@ -810,17 +812,12 @@ namespace UniLang
                     playerData[i].targetType = DataManager.TargetType.Enemy;
                     playerData[i].isSelected = false;
                     playerData[i].isGuard = false;
-                    playerData[i].isOver = false;
-                    
-                    playerData[i].isCommand = false;
-                    //死んでるの反映
-                    if (playerData[i].hp <= 0)
-                    {
-                        playerData[i].isOver = true;
-                        allDialogUI.playerState[i].isOverUI.gameObject.SetActive(true);
-                    }
-                    selectPlayer = 1;
                     allDialogUI.playerState[i].isOverUI.SetActive(false);
+                    
+
+                    playerData[i].isCommand = false;
+                    selectPlayer = 1;
+                    
                     //キャラアニメーション反映
                     playerData[i].charaAnim.gameObject.SetActive(true);
                     playerData[i].charaAnim.runtimeAnimatorController = DataManager.instance.Pstatus[playerData[i].playerId].animC;
@@ -830,6 +827,13 @@ namespace UniLang
                     tmpcolor.b = 1;
                     tmpcolor.a = 1;
                     playerData[i].spriteRen.color = tmpcolor;
+                    if (playerData[i].hp > 0) playerData[i].isOver = false;
+                    else
+                    {
+                        playerData[i].isOver = true;
+                        allDialogUI.playerState[i].isOverUI.gameObject.SetActive(true);
+                        playerData[i].charaAnim.runtimeAnimatorController = graveAnimator;
+                    }
                     SettingNewState(i, DataManager.TargetType.Player);
                 }
                 else
@@ -1075,6 +1079,7 @@ namespace UniLang
                     if (isStart) allDialogUI.playerState[i].cooltimeSlider.value = 0;
                     if (isStart) allDialogUI.playerState[i].nextCommand.text = "次の行動:未選択\n対象:未選択";
                     if (isStart) allDialogUI.playerSelectDialog.selectedCommandText[i].text = "次の行動:未選択\n対象:未選択";
+                    if(playerData[i].hp<=0||playerData[i].isOver)allDialogUI.playerState[i].isOverUI.SetActive(true);
                 }
                 else
                 {
@@ -4934,7 +4939,6 @@ namespace UniLang
                 playerData[id].selectCommandType = CommandType.None;
                 playerData[id].targetId = -1;
             }
-
             UpdateState();
             if (uiMode == UIMode.NoSelected) NoSelected();
             Resources.UnloadUnusedAssets();
